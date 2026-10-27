@@ -67,8 +67,58 @@ const steps: Step[] = [
   },
 ];
 
+const STEP_MS = 2000;
+const LAST = steps.length - 1;
+
+/*
+ * Rail geometry: the step grid has 6 equal columns separated by --rail-gap,
+ * so each dot sits on its card's centre line (gap is 0 on mobile, where the
+ * rail is a plain 6-stop progress bar above a 2-column grid).
+ */
+const COL = `((100% - ${LAST} * var(--rail-gap)) / ${steps.length})`;
+const centre = (i: number) => `calc(${i} * (${COL} + var(--rail-gap)) + ${COL} / 2)`;
+const span = (n: number) => `calc(${n} * (${COL} + var(--rail-gap)))`;
+
+/** Horizontal progress line: fills linearly toward the next step while playing. */
+function StepRail({ active, playing }: { active: number; playing: boolean }) {
+  return (
+    <div aria-hidden className="relative mb-5 h-4 [--rail-gap:0px] md:[--rail-gap:0.75rem]">
+      {/* Track */}
+      <div className="absolute top-1/2 h-0.5 -translate-y-1/2 rounded-full bg-border" style={{ left: centre(0), width: span(LAST) }} />
+      {/* Reached: first step → active step */}
+      <div
+        className={cn(
+          "absolute top-1/2 h-0.5 -translate-y-1/2 origin-left rounded-full bg-accent transition-transform ease-standard",
+          playing ? "duration-0" : "duration-500"
+        )}
+        style={{ left: centre(0), width: span(LAST), transform: `scaleX(${active / LAST})` }}
+      />
+      {/* In progress: active step → next step, over exactly one interval */}
+      {playing && active < LAST && (
+        <div
+          key={active}
+          className="absolute top-1/2 h-0.5 -translate-y-1/2 origin-left rounded-full bg-accent animate-rail-fill"
+          style={{ left: centre(active), width: span(1), animationDuration: `${STEP_MS}ms` }}
+        />
+      )}
+      {/* Stops */}
+      {steps.map((step, i) => (
+        <span
+          key={step.id}
+          className={cn(
+            "absolute top-1/2 size-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 transition-[background-color,border-color,box-shadow] duration-300 ease-standard",
+            i <= active ? "border-accent bg-accent" : "border-border-strong bg-surface",
+            i === active && "ring-4 ring-accent-subtle"
+          )}
+          style={{ left: centre(i) }}
+        />
+      ))}
+    </div>
+  );
+}
+
 export default function StoreLoopMock() {
-  const { index: activeStep, isPaused, select, ref, pauseHandlers } = useAutoAdvance(steps.length, 2000);
+  const { index: activeStep, isPaused, select, ref, pauseHandlers } = useAutoAdvance(steps.length, STEP_MS);
 
   const current = steps[activeStep];
   const CurrentIcon = current.icon;
@@ -85,9 +135,6 @@ export default function StoreLoopMock() {
         <div className="flex items-center gap-3">
           <StatusDot live={!isPaused} />
           <span className="type-overline text-fg-secondary">Conversion Flow Sequence</span>
-          <span className="hidden rounded-sm border border-accent-subtle-border bg-accent-subtle px-2 py-0.5 type-caption text-accent-text sm:inline-block">
-            Interactive Teardown
-          </span>
         </div>
 
         <div className="flex items-center gap-4 type-caption text-fg-muted">
@@ -96,6 +143,8 @@ export default function StoreLoopMock() {
           </span>
         </div>
       </div>
+
+      <StepRail active={activeStep} playing={!isPaused} />
 
       {/* Six steps */}
       <div className="relative mb-6 grid grid-cols-2 gap-3 md:grid-cols-6">

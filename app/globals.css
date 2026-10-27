@@ -252,6 +252,18 @@
   animation: ring-dash 18s linear infinite;
 }
 
+@keyframes rail-fill {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+@utility animate-rail-fill {
+  animation: rail-fill 2s linear both;
+}
+
 @keyframes shimmer {
   50% {
     opacity: 0.55;
