@@ -7,6 +7,8 @@ type CardProps<T extends ElementType> = {
   interactive?: boolean;
   padding?: "sm" | "md" | "lg";
   tone?: "surface" | "subtle" | "accent";
+  /** Fade up on scroll (see ScrollReveal). On by default. */
+  reveal?: boolean;
   className?: string;
   children?: ReactNode;
 } & Omit<ComponentProps<T>, "as" | "className" | "children">;
@@ -44,13 +46,14 @@ export function Card<T extends ElementType = "div">({
   interactive,
   padding,
   tone,
+  reveal = true,
   className,
   children,
   ...rest
 }: CardProps<T>) {
   const Tag = (as ?? "div") as ElementType;
   return (
-    <Tag className={cardClasses({ interactive, padding, tone, className })} {...rest}>
+    <Tag data-reveal={reveal ? "" : undefined} className={cardClasses({ interactive, padding, tone, className })} {...rest}>
       {children}
     </Tag>
   );

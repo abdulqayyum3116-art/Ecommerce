@@ -99,7 +99,7 @@ export default async function BlogPostPage({
 
         <Container narrow className="section-y">
           {/* 1. The core problem */}
-          <section aria-labelledby="context-heading" className="mb-14">
+          <section data-reveal="" aria-labelledby="context-heading" className="mb-14">
             <Overline className="mb-3">The Context</Overline>
             <h2 id="context-heading" className="mb-4 type-h2 text-fg">
               The Real Bottleneck
@@ -108,7 +108,7 @@ export default async function BlogPostPage({
           </section>
 
           {/* 2. Practical steps */}
-          <section aria-labelledby="steps-heading" className="mb-14">
+          <section data-reveal="" aria-labelledby="steps-heading" className="mb-14">
             <Overline className="mb-3">Execution</Overline>
             <h2 id="steps-heading" className="mb-6 type-h2 text-fg">
               Practical Implementation Steps
@@ -124,7 +124,7 @@ export default async function BlogPostPage({
           </section>
 
           {/* 3. Actionable checklist */}
-          <section aria-labelledby="checklist-heading" className="mb-16">
+          <section data-reveal="" aria-labelledby="checklist-heading" className="mb-16">
             <Overline className="mb-3">Checklist</Overline>
             <h2 id="checklist-heading" className="mb-4 type-h2 text-fg">
               Verification &amp; Deployment Checklist

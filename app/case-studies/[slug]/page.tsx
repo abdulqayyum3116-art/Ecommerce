@@ -61,7 +61,7 @@ export default async function CaseStudyDetailPage({
 
       <Container narrow className="section-y">
         {/* 01 Challenge */}
-        <section aria-labelledby="challenge-heading" className="mb-16">
+        <section data-reveal="" aria-labelledby="challenge-heading" className="mb-16">
           <Overline className="mb-3">Section 01</Overline>
           <h2 id="challenge-heading" className="mb-4 type-h2 text-fg">
             The Technical &amp; Operational Challenge
@@ -72,7 +72,7 @@ export default async function CaseStudyDetailPage({
         </section>
 
         {/* 02 What CodeSquad built */}
-        <section aria-labelledby="built-heading" className="mb-16">
+        <section data-reveal="" aria-labelledby="built-heading" className="mb-16">
           <Overline className="mb-3">Section 02</Overline>
           <h2 id="built-heading" className="mb-6 type-h2 text-fg">
             What CodeSquad Engineered
@@ -119,7 +119,7 @@ export default async function CaseStudyDetailPage({
         </section>
 
         {/* 03 Results — placeholder fields */}
-        <section aria-labelledby="results-heading" className="mb-16">
+        <section data-reveal="" aria-labelledby="results-heading" className="mb-16">
           <Overline className="mb-3">Section 03</Overline>
           <h2 id="results-heading" className="mb-4 type-h2 text-fg">
             Performance Results

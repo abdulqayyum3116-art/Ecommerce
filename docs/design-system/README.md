@@ -216,6 +216,17 @@ accent button.
   (heading order), and step titles inside the loop's buttons are no longer
   headings (invalid inside `<button>`).
 
+### Scroll reveal
+
+Mark any element with `data-reveal` (Cards and SectionHeaders do it by
+default; `<Card reveal={false}>` opts out). `components/layout/ScrollReveal.tsx`
+fades it up 12 px (`--motion-slow`, 250 ms, ease-out) as it enters the
+viewport, cascading siblings 60 ms apart. Elements already on screen at load
+are never hidden (no LCP or CLS cost), nested reveals are skipped, and nothing
+is hidden without JS or under `prefers-reduced-motion`. The conversion loop
+and growth-engine timers start only when their section is half visible and
+pause while it is off screen.
+
 ### Not present on the site (built as primitives, shown in the styleguide)
 
 Modal, toast, table, pagination, skeleton, switch, checkbox, radio — the site

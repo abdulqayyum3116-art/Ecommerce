@@ -75,6 +75,7 @@ export default function StoreLoopMock() {
 
   return (
     <div
+      data-reveal=""
       className="relative w-full overflow-hidden rounded-xl border border-border bg-surface p-5 text-fg shadow-elevation-4 md:p-8"
       ref={ref}
       {...pauseHandlers}

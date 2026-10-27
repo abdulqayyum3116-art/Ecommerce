@@ -24,7 +24,7 @@ export function CtaBand({
   inset?: boolean;
 }) {
   const body = (
-    <div className="relative mx-auto max-w-3xl text-center">
+    <div data-reveal="" className="relative mx-auto max-w-3xl text-center">
       {overline && <Overline className="mb-4">{overline}</Overline>}
       <h2 id={id} className={cn(inset ? "type-h3" : "type-h2", "text-fg")}>
         {title}

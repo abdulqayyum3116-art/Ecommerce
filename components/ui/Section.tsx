@@ -82,6 +82,7 @@ export function SectionHeader({
   const centered = align === "center";
   return (
     <div
+      data-reveal=""
       className={cn(
         "mb-10 flex flex-col gap-6 md:mb-14",
         !centered && action && "md:flex-row md:items-end md:justify-between",

@@ -3,6 +3,7 @@ import { Fraunces, DM_Sans } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import ScrollReveal from "@/components/layout/ScrollReveal";
 
 // Two families only. Fraunces is variable with an optical-size axis, so
 // display sizes get the high-contrast cut; DM Sans is variable on weight.
@@ -75,6 +76,7 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
+        <ScrollReveal />
       </body>
     </html>
   );

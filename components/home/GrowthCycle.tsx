@@ -71,7 +71,7 @@ export default function GrowthCycle() {
 
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12" ref={ref} {...pauseHandlers}>
           {/* Rotating ring */}
-          <div className="flex justify-center lg:col-span-5">
+          <div data-reveal="" className="flex justify-center lg:col-span-5">
             <div className="relative flex size-72 items-center justify-center sm:size-80">
               <svg aria-hidden className="absolute inset-0 size-full" viewBox="0 0 200 200">
                 <circle cx="100" cy="100" r="85" fill="none" className="stroke-border" strokeWidth="3" />
@@ -96,7 +96,7 @@ export default function GrowthCycle() {
           </div>
 
           {/* Stage tabs + detail */}
-          <div className="lg:col-span-7">
+          <div data-reveal="" className="lg:col-span-7">
             <Tabs
               label="Growth stages"
               variant="cards"

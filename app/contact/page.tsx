@@ -34,7 +34,7 @@ export default function ContactPage() {
         <Container>
           <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-12">
             {/* Context & what you receive */}
-            <div className="lg:col-span-6">
+            <div data-reveal="" className="lg:col-span-6">
               <Overline className="mb-3">Comprehensive Teardown</Overline>
               <h2 className="mb-6 type-h2 text-fg">What Your Store Audit Delivers:</h2>
               <p className="mb-8 type-body-lg text-fg-secondary">
@@ -62,7 +62,7 @@ export default function ContactPage() {
             </div>
 
             {/* Form */}
-            <div className="lg:col-span-6">
+            <div data-reveal="" className="lg:col-span-6">
               <ContactForm />
             </div>
           </div>

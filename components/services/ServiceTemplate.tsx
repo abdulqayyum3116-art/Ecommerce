@@ -63,7 +63,7 @@ export default function ServiceTemplate(props: ServiceTemplateProps) {
       <Section aria-labelledby="problem-heading">
         <Container>
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-12">
-            <div className="lg:col-span-5">
+            <div data-reveal="" className="lg:col-span-5">
               <Overline className="mb-3">The Bottleneck</Overline>
               <h2 id="problem-heading" className="mb-4 type-h2 text-fg">
                 {props.problemHeading}
