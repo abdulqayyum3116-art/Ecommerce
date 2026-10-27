@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useEffect, useState, useSyncExternalStore } from "react";
+import React from "react";
 import { UserCheck, Eye, ShoppingCart, CreditCard, CheckCircle2, RefreshCw } from "lucide-react";
 import { cn } from "@/lib/cn";
+import { useAutoAdvance } from "@/lib/useAutoAdvance";
 import { StatusDot } from "@/components/ui/Badge";
 import { icon } from "@/components/ui/icon";
 
@@ -66,36 +67,8 @@ const steps: Step[] = [
   },
 ];
 
-const REDUCED_MOTION = "(prefers-reduced-motion: reduce)";
-
-function subscribeReducedMotion(onChange: () => void) {
-  const mq = window.matchMedia(REDUCED_MOTION);
-  mq.addEventListener("change", onChange);
-  return () => mq.removeEventListener("change", onChange);
-}
-
 export default function StoreLoopMock() {
-  const [activeStep, setActiveStep] = useState(0);
-  // null = no explicit choice yet; auto-play then follows the OS motion setting.
-  const [pausedChoice, setIsPaused] = useState<boolean | null>(null);
-  const prefersReducedMotion = useSyncExternalStore(
-    subscribeReducedMotion,
-    () => window.matchMedia(REDUCED_MOTION).matches,
-    () => false
-  );
-  // Hover / keyboard focus pause temporarily without changing the choice.
-  const [interacting, setInteracting] = useState(false);
-  const isPaused = interacting || (pausedChoice ?? prefersReducedMotion);
-
-  useEffect(() => {
-    if (isPaused) return;
-
-    const interval = setInterval(() => {
-      setActiveStep((prev) => (prev + 1) % steps.length);
-    }, 2800);
-
-    return () => clearInterval(interval);
-  }, [isPaused]);
+  const { index: activeStep, isPaused, select, pauseHandlers } = useAutoAdvance(steps.length, 2000);
 
   const current = steps[activeStep];
   const CurrentIcon = current.icon;
@@ -103,12 +76,7 @@ export default function StoreLoopMock() {
   return (
     <div
       className="relative w-full overflow-hidden rounded-xl border border-border bg-surface p-5 text-fg shadow-elevation-4 md:p-8"
-      onMouseEnter={() => setInteracting(true)}
-      onMouseLeave={() => setInteracting(false)}
-      onFocus={() => setInteracting(true)}
-      onBlur={(e) => {
-        if (!e.currentTarget.contains(e.relatedTarget)) setInteracting(false);
-      }}
+      {...pauseHandlers}
     >
       {/* Header & status bar */}
       <div className="mb-6 flex flex-col justify-between gap-3 border-b border-border pb-4 sm:flex-row sm:items-center">
@@ -139,8 +107,7 @@ export default function StoreLoopMock() {
               key={step.id}
               type="button"
               onClick={() => {
-                setActiveStep(idx);
-                setIsPaused(true);
+                select(idx);
               }}
               aria-pressed={isActive}
               className={cn(

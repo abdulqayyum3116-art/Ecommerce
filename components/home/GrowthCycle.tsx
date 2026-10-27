@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { Compass, ShoppingBag, HeartHandshake, Repeat } from "lucide-react";
+import { useAutoAdvance } from "@/lib/useAutoAdvance";
 import { Section, Container, SectionHeader } from "@/components/ui/Section";
 import { Tabs } from "@/components/ui/Tabs";
 import { Badge } from "@/components/ui/Badge";
@@ -53,7 +54,7 @@ const stages: Stage[] = [
 ];
 
 export default function GrowthCycle() {
-  const [activeStageIndex, setActiveStageIndex] = useState(0);
+  const { index: activeStageIndex, select, pauseHandlers } = useAutoAdvance(stages.length, 3000);
   const activeStage = stages[activeStageIndex];
   const ActiveIcon = activeStage.icon;
 
@@ -68,7 +69,7 @@ export default function GrowthCycle() {
           lead="The four connected stages of a profitable online store. We engineer and automate each transition point so your store scales predictably."
         />
 
-        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12">
+        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12" {...pauseHandlers}>
           {/* Rotating ring */}
           <div className="flex justify-center lg:col-span-5">
             <div className="relative flex size-72 items-center justify-center sm:size-80">
@@ -100,7 +101,7 @@ export default function GrowthCycle() {
               label="Growth stages"
               variant="cards"
               value={activeStage.id}
-              onChange={(id) => setActiveStageIndex(stages.findIndex((s) => s.id === id))}
+              onChange={(id) => select(stages.findIndex((s) => s.id === id))}
               items={stages.map((s) => ({ id: s.id, label: s.name, meta: s.number }))}
             >
               <div className="rounded-lg border border-border bg-surface p-6 shadow-elevation-1 sm:p-8">
