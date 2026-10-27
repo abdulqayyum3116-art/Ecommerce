@@ -1,6 +1,12 @@
 import { notFound } from "next/navigation";
-import Link from "next/link";
-import { ArrowLeft, Clock, Calendar, CheckSquare, ArrowUpRight } from "lucide-react";
+import { Clock, Calendar, CheckSquare, ArrowUpRight } from "lucide-react";
+import { PageHero } from "@/components/ui/PageHero";
+import { Container, Overline } from "@/components/ui/Section";
+import { Card } from "@/components/ui/Card";
+import { Badge } from "@/components/ui/Badge";
+import { ButtonLink } from "@/components/ui/Button";
+import { CtaBand } from "@/components/ui/CtaBand";
+import { icon } from "@/components/ui/icon";
 import { blogPostsList } from "@/lib/blogData";
 import { generateSeoMetadata } from "@/lib/seo";
 
@@ -67,123 +73,87 @@ export default async function BlogPostPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
       />
-      <article className="bg-[#FAFBFC]">
-        {/* Top Header Banner (Dark Mesh) */}
-        <section className="pt-20 pb-24 border-b border-white/[0.08] mesh-gradient-hero grain text-white">
-          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            {/* Back to Blog */}
-            <div className="mb-8">
-              <Link
-                href="/blog"
-                className="inline-flex items-center text-sm font-medium text-slate-300 hover:text-white transition-colors"
-              >
-                <ArrowLeft className="mr-1.5 w-4 h-4" />
-                Back to Ecommerce Insights
-              </Link>
-            </div>
-
-            {/* Meta Row */}
-            <div className="flex flex-wrap items-center gap-3 text-xs text-slate-300 mb-6">
-              <span className="font-semibold text-blue-300 bg-blue-500/10 border border-blue-400/20 px-3 py-1 rounded-full">
-                {post.pillar}
-              </span>
-              <span className="flex items-center gap-1 font-mono">
-                <Calendar className="w-3.5 h-3.5" />
+      <article className="bg-bg">
+        <PageHero
+          narrow
+          back={{ href: "/blog", label: "Back to Ecommerce Insights" }}
+          meta={
+            <>
+              <Badge tone="accent">{post.pillar}</Badge>
+              <span className="inline-flex items-center gap-1 type-caption text-fg-muted">
+                <Calendar {...icon.sm} size={14} />
                 {post.date}
               </span>
-              <span>•</span>
-              <span className="flex items-center gap-1">
-                <Clock className="w-3.5 h-3.5" />
+              <span aria-hidden className="text-fg-muted">
+                •
+              </span>
+              <span className="inline-flex items-center gap-1 type-caption text-fg-muted">
+                <Clock {...icon.sm} size={14} />
                 {post.readTime}
               </span>
-            </div>
+            </>
+          }
+          title={post.title}
+          lead={post.summary}
+        />
 
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-white tracking-tight leading-tight mb-6">
-              {post.title}
-            </h1>
-
-            <p className="text-slate-300 text-lg sm:text-xl leading-relaxed">{post.summary}</p>
-          </div>
-        </section>
-
-        {/* Content Body */}
-        <div className="py-20 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* 1. The Core Problem */}
-          <section className="mb-14">
-            <span className="eyebrow-light mb-3">
-              The Context
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-bold text-slate-950 mb-4 mt-2">
+        <Container narrow className="section-y">
+          {/* 1. The core problem */}
+          <section aria-labelledby="context-heading" className="mb-14">
+            <Overline className="mb-3">The Context</Overline>
+            <h2 id="context-heading" className="mb-4 type-h2 text-fg">
               The Real Bottleneck
             </h2>
-            <div className="p-8 rounded-2xl bg-white border border-slate-200 text-slate-700 text-base leading-relaxed shadow-2xs">
-              {post.problem}
-            </div>
+            <p className="type-body-lg text-fg-secondary">{post.problem}</p>
           </section>
 
-          {/* 2. Practical Steps */}
-          <section className="mb-14">
-            <span className="eyebrow-light mb-3">
-              Execution
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-bold text-slate-950 mb-6 mt-2">
+          {/* 2. Practical steps */}
+          <section aria-labelledby="steps-heading" className="mb-14">
+            <Overline className="mb-3">Execution</Overline>
+            <h2 id="steps-heading" className="mb-6 type-h2 text-fg">
               Practical Implementation Steps
             </h2>
-            <div className="space-y-6">
+            <ol className="space-y-6">
               {post.steps.map((step, idx) => (
-                <div key={idx} className="border border-slate-200 rounded-2xl p-7 bg-white shadow-2xs">
-                  <h3 className="text-xl font-bold text-slate-950 mb-3">
-                    {step.title}
-                  </h3>
-                  <p className="text-slate-600 text-base leading-relaxed">
-                    {step.description}
-                  </p>
-                </div>
+                <Card as="li" key={idx}>
+                  <h3 className="mb-3 type-h4 text-fg">{step.title}</h3>
+                  <p className="type-body text-fg-secondary">{step.description}</p>
+                </Card>
               ))}
-            </div>
+            </ol>
           </section>
 
-          {/* 3. Actionable Checklist */}
-          <section className="mb-16">
-            <span className="eyebrow-light mb-3">
-              Checklist
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-bold text-slate-950 mb-4 mt-2">
+          {/* 3. Actionable checklist */}
+          <section aria-labelledby="checklist-heading" className="mb-16">
+            <Overline className="mb-3">Checklist</Overline>
+            <h2 id="checklist-heading" className="mb-4 type-h2 text-fg">
               Verification &amp; Deployment Checklist
             </h2>
-            <div className="p-8 rounded-2xl bg-white border border-slate-200 shadow-2xs">
-              <ul className="space-y-3.5">
+            <Card tone="accent" padding="lg">
+              <ul className="space-y-4">
                 {post.checklist.map((item, index) => (
                   <li key={index} className="flex items-start gap-3">
-                    <CheckSquare className="w-5 h-5 text-blue-600 shrink-0 mt-0.5" />
-                    <span className="text-slate-800 text-sm font-medium leading-relaxed">
-                      {item}
-                    </span>
+                    <CheckSquare {...icon.md} className="mt-0.5 shrink-0 text-accent-text" />
+                    <span className="type-body-sm font-medium text-fg">{item}</span>
                   </li>
                 ))}
               </ul>
-            </div>
+            </Card>
           </section>
 
-          {/* 4. CTA Back to /contact */}
-          <section className="p-8 sm:p-12 rounded-2xl bg-[#0B0F1A] text-white grain border border-white/[0.08] text-center relative overflow-hidden">
-            <div className="relative z-10">
-              <h2 className="text-2xl sm:text-3xl font-semibold mb-3 text-white">
-                Want us to implement this for your store?
-              </h2>
-              <p className="text-slate-300 text-sm sm:text-base max-w-md mx-auto mb-6">
-                Request a free engineering audit. We will review your current technical setup and provide an actionable growth roadmap.
-              </p>
-              <Link
-                href="/contact"
-                className="inline-flex items-center text-sm font-semibold text-white btn-glow px-7 py-3.5 rounded-xl transition-all shadow-sm"
-              >
+          {/* 4. CTA */}
+          <CtaBand
+            inset
+            id="post-cta-heading"
+            title="Want us to implement this for your store?"
+            lead="Request a free engineering audit. We will review your current technical setup and provide an actionable growth roadmap."
+            actions={
+              <ButtonLink href="/contact" trailingIcon={<ArrowUpRight {...icon.sm} />}>
                 Request Free Store Audit
-                <ArrowUpRight className="ml-1.5 w-4 h-4 text-blue-100" />
-              </Link>
-            </div>
-          </section>
-        </div>
+              </ButtonLink>
+            }
+          />
+        </Container>
       </article>
     </>
   );

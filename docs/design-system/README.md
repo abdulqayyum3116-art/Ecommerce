@@ -1,8 +1,9 @@
-# Design system — checkpoint 1 (tokens + typography)
+# Design system — Paper & Teal
 
-Status: **proposal, awaiting approval.** Only the tokens, the font loading, the
-home `Hero` and the `/styleguide` route have changed. Every other page still
-uses the legacy styles and will be migrated after a direction is picked.
+Status: **implemented on every route.** Direction B (teal) was approved at
+checkpoint 1. All pages, layout chrome and primitives consume the tokens;
+Tailwind's default palette, font sizes, radii, shadows and easings are reset so
+nothing else can be used.
 
 | File | What it is |
 |---|---|
@@ -10,7 +11,8 @@ uses the legacy styles and will be migrated after a direction is picked.
 | `app/styles/tokens.css` | Generated token CSS (do not hand-edit). |
 | `lib/designTokens.generated.json` | Generated swatch / type / contrast data for the styleguide. |
 | `app/globals.css` (`@theme inline`) | Tailwind v4 utilities wired to the tokens. |
-| `app/styleguide/page.tsx` | Visual verification (noindex). |
+| `components/ui/*` | Primitives: Button / ButtonLink / TextLink, Field + Input / Select / Textarea / Checkbox / Radio / Switch / ChoiceChip, Card / IconTile, Badge / StatusDot, Tabs, Dialog (modal + drawer), Alert / Toast / EmptyState / Skeleton, Table / Pagination, Section / Container / SectionHeader / Overline, PageHero, CtaBand, `icon` presets. |
+| `app/styleguide/page.tsx` | Visual verification of every token and component state, light + dark side by side (noindex). |
 
 Regenerate with `node scripts/build-tokens.mjs --report`.
 
@@ -128,27 +130,20 @@ Weights total: **400 / 500 / 600 / 700** (4). Paragraph measure `--measure: 68ch
 Fonts: `next/font/google`, `display: swap`, preloaded latin subset, automatic
 metric-matched fallback (`adjustFontFallback`) → no swap CLS.
 
-## 4. Colour directions
+## 4. Colour — Paper & Teal (approved)
 
-Both share a **paper → ink** neutral ramp (warm h≈80 at the light end, indigo
-h≈280 at the dark end — medgrow's mood) and differ only in the single accent.
+Neutrals run **paper → ink** (warm h≈80 at the light end, indigo h≈280 at the
+dark end — medgrow's mood). One dominant accent: deep teal, `brand-600`
+`#007777` (OKLCH 51.5% 0.088 195). Status hues are kept well apart from it:
+success 152, warning 70, danger 25, info 240.
 
-| | A · Paper & Cobalt (**recommended**) | B · Paper & Teal |
-|---|---|---|
-| Accent (light) | `brand-600` #2559dd | `brand-600` #007777 |
-| Character | Confident, technical, trustworthy; keeps today's brand blue (logo dot) | Calm, premium, "fresh commerce" |
-| Risk | Blue is common in agency sites — the warm paper + Fraunces carry the distinctiveness | Breaks continuity with current brand; muted at small sizes |
+The alternative, A · Paper & Cobalt (`ramp(264, 0.21)`, `#2559dd`), is
+documented in the generator but no longer emitted. A coral draft was dropped
+because its hue (33) sat next to `danger` (25).
 
-I first drafted B as coral, but coral-600 sat at hue 33 vs `danger` at 25 —
-primary buttons would read as errors — so B became teal.
-
-**Why A:** it preserves brand recognition, its 600 step has the most headroom
-(5.9:1 with white vs 5.4:1), and an orange/coral accent would make us read as a
-re-skin of medgrow.
-
-All 112 checks pass (28 per palette × light/dark): body text ≥ 4.5, UI/borders
-≥ 3, focus ring ≥ 3 against bg / surface / bg-muted. Full table:
-`node scripts/build-tokens.mjs --report`.
+All 64 checks pass (32 per theme): body text ≥ 4.5, UI/borders ≥ 3, focus
+ring ≥ 3 against bg / surface / bg-muted, and text on every solid status
+colour. Full table: `node scripts/build-tokens.mjs --report`, or the styleguide.
 
 Dark mode: ink-tinted surfaces (bg L 18%, never #000), elevation by lightness
 (surface 21.5% → raised 25.5%), accent desaturated ~25–35%, dark ink text on the
@@ -183,23 +178,45 @@ accent button.
 | `text-sm`, `text-base`, `text-lg` body | `type-body-sm` / `type-body` / `type-body-lg` |
 | `text-3xl…7xl` headings | `type-h3` / `type-h2` / `type-h1` / `type-display` |
 | `font-mono` meta labels | `type-caption` (mono reserved for `type-code`) |
-| `rounded` / `rounded-md` | `--rounded-sm` (6px) |
-| `rounded-lg` / `rounded-xl` | `--rounded-md` (10px) |
-| `rounded-2xl`, `1rem` | `--rounded-lg` (16px) |
+| `rounded` / `rounded-md` (old 4/6px) | `rounded-sm` → `--rounded-sm` (6px) |
+| `rounded-lg` / `rounded-xl` (old 8/12px) | `rounded-md` → `--rounded-md` (10px) |
+| `rounded-2xl`, `1rem` | `rounded-lg` → `--rounded-lg` (16px) |
+| hero / modal panels | `rounded-xl` → `--rounded-xl` (24px) |
+| `rounded-xl` buttons | `rounded-full` pills |
 | `shadow-2xs` / `sm` / `md` / `lg` / `2xl` | `shadow-elevation-1…5` |
 | `transition: all .2s` | explicit properties, `duration-150/200/250 ease-standard` |
 | `max-w-7xl px-4 sm:px-6 lg:px-8` | `max-w-[var(--layout-max)] px-[var(--gutter)]` |
 | `py-16/20/24` sections | `py-[var(--section-y)]` |
 
-## Open questions
+## 6. Decisions taken (defaults — say if you want any changed)
 
-1. **Direction:** A (cobalt) or B (teal)?
-2. **Theme strategy:** the current site is dark-first with light bands. Proposal:
-   light-first site, OS-preference dark mode, plus an optional toggle (needs a
-   tiny inline script to avoid a flash). Or keep dark hero/CTA bands via
-   `data-theme="dark"` on those sections?
-3. **tnum/ss01:** self-host full fonts (larger files) or drop tabular figures?
-4. **Breakpoints:** brief lists 480/768/1024/1280/1536; Tailwind's `sm` is 640
-   and is used throughout. I added `xs: 480` and plan to keep `sm: 640` unless
-   you want it removed.
-5. **Overline tracking:** 0.08em (brief) vs medgrow's 0.16em.
+| Question | Decision | Why |
+|---|---|---|
+| Direction | **B · Paper & Teal** | Your pick. |
+| Theme strategy | Light-first; follows the OS dark preference; the conversion-loop section, CTAs and footer are ink bands (`data-theme="dark"`) | Keeps the old site's dark/light rhythm, mirrors medgrow's ink bands; no toggle yet (would need a no-flash inline script). |
+| tnum / ss01 | Not available — Google's subsets drop them. `numeric` utility is applied where figures align and starts working if full fonts are self-hosted via `next/font/local`. | Pending your call. |
+| Breakpoints | `xs` 480 added; Tailwind `sm` 640 kept alongside 768 / 1024 / 1280 / 1536 | Removing 640 would reflow every page for no benefit. |
+| Overline tracking | 0.08em | Per brief (medgrow uses 0.16em). |
+
+### Behaviour notes (UI only, no business logic changed)
+
+- Conversion-loop auto-play starts paused under `prefers-reduced-motion`, and
+  also pauses while it has keyboard focus (previously hover only).
+- Contact form: same submit/validation logic. Empty required fields are now
+  marked `aria-invalid` and linked to an inline message after a failed submit;
+  concern pills expose `aria-pressed`; the submit button shows a spinner and
+  `aria-busy` while "Analyzing Store...".
+- Blog filter: pills expose `aria-pressed`; the result count is announced; an
+  empty state renders if a topic has no posts.
+- Header: skip link, `aria-current` on the active route, drawer with focus trap
+  and Esc; `aria-expanded` on the toggle.
+- Whole-card click targets use a stretched link on the title (one tab stop per
+  card).
+- Copy: unchanged. Two structural tweaks only — footer column titles `h4 → h2`
+  (heading order), and step titles inside the loop's buttons are no longer
+  headings (invalid inside `<button>`).
+
+### Not present on the site (built as primitives, shown in the styleguide)
+
+Modal, toast, table, pagination, skeleton, switch, checkbox, radio — the site
+has no screens using them today.

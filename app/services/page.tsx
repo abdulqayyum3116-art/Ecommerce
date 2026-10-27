@@ -1,6 +1,13 @@
 import Link from "next/link";
 import { ShoppingCart, TrendingUp, Search, Megaphone, Mail, RefreshCw, ArrowUpRight } from "lucide-react";
 import { generateSeoMetadata } from "@/lib/seo";
+import { PageHero } from "@/components/ui/PageHero";
+import { Section, Container } from "@/components/ui/Section";
+import { Card, IconTile } from "@/components/ui/Card";
+import { Badge } from "@/components/ui/Badge";
+import { ButtonLink } from "@/components/ui/Button";
+import { CtaBand } from "@/components/ui/CtaBand";
+import { icon } from "@/components/ui/icon";
 
 export const metadata = generateSeoMetadata({
   title: "Ecommerce Services & Growth Capabilities | CodeSquad",
@@ -62,92 +69,67 @@ const services = [
 
 export default function ServicesHubPage() {
   return (
-    <div className="bg-[#FAFBFC]">
-      {/* Header (Dark Mesh) */}
-      <section className="pt-20 pb-24 border-b border-white/[0.08] mesh-gradient-hero grain text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="max-w-3xl">
-            <span className="eyebrow-dark mb-6">
-              Integrated Capabilities
-            </span>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold text-white tracking-tight leading-tight mb-6">
-              Engineering high-growth online stores from click to repeat order.
-            </h1>
-            <p className="text-slate-300 text-lg leading-relaxed">
-              Every service is connected to the core ecommerce cycle: Attract, Convert, Retain, and Repeat. We eliminate fragmented agency handoffs by engineering the full growth system.
-            </p>
-          </div>
-        </div>
-      </section>
+    <div className="bg-bg">
+      <PageHero
+        overline="Integrated Capabilities"
+        title="Engineering high-growth online stores from click to repeat order."
+        lead="Every service is connected to the core ecommerce cycle: Attract, Convert, Retain, and Repeat. We eliminate fragmented agency handoffs by engineering the full growth system."
+      />
 
-      {/* Services Grid (6 Unified Cards) */}
-      <section className="py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {/* Services grid */}
+      <Section tone="subtle" aria-label="Services">
+        <Container>
+          <ul className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
             {services.map((svc) => {
               const Icon = svc.icon;
               return (
-                <div
-                  key={svc.slug}
-                  className="card-light p-8 flex flex-col justify-between"
-                >
+                <Card as="li" key={svc.slug} padding="lg" interactive className="group flex flex-col justify-between">
                   <div>
-                    <div className="flex items-center justify-between mb-6">
-                      <div className="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center shadow-2xs">
-                        <Icon className="w-6 h-6" />
-                      </div>
-                      <span className="text-xs font-mono font-semibold text-slate-400">
-                        {svc.eyebrow}
-                      </span>
+                    <div className="mb-6 flex items-center justify-between">
+                      <IconTile className="transition-colors duration-200 group-hover:bg-accent group-hover:text-on-accent">
+                        <Icon {...icon.lg} />
+                      </IconTile>
+                      <span className="type-overline text-fg-muted">{svc.eyebrow}</span>
                     </div>
 
-                    <span className="text-[11px] font-semibold text-blue-700 bg-blue-50 border border-blue-100 px-2.5 py-1 rounded-md inline-block mb-3">
+                    <Badge tone="accent" shape="tag" className="mb-3">
                       {svc.tag}
-                    </span>
+                    </Badge>
 
-                    <h2 className="text-2xl font-bold text-slate-950 mb-3">
-                      {svc.title}
-                    </h2>
+                    <h2 className="mb-3 type-h3 text-fg">{svc.title}</h2>
 
-                    <p className="text-slate-600 text-sm leading-relaxed mb-6">
-                      {svc.desc}
-                    </p>
+                    <p className="mb-6 type-body-sm text-fg-secondary">{svc.desc}</p>
                   </div>
 
-                  <div className="pt-4 border-t border-slate-100">
+                  <div className="border-t border-border pt-4">
                     <Link
                       href={`/services/${svc.slug}`}
-                      className="inline-flex items-center text-sm font-semibold text-blue-600 hover:text-blue-800 group"
+                      className="inline-flex items-center gap-1.5 rounded-sm type-body-sm font-bold text-accent-text after:absolute after:inset-0 after:rounded-lg after:content-['']"
                     >
                       View full service breakdown
-                      <ArrowUpRight className="ml-1.5 w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                      <ArrowUpRight
+                        {...icon.sm}
+                        className="transition-transform duration-200 ease-standard group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                      />
                     </Link>
                   </div>
-                </div>
+                </Card>
               );
             })}
-          </div>
-        </div>
-      </section>
+          </ul>
+        </Container>
+      </Section>
 
-      {/* Bottom CTA */}
-      <section className="py-20 bg-[#0B0F1A] text-white border-t border-white/[0.08] grain">
-        <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
-          <h2 className="text-2xl sm:text-3xl font-semibold mb-4">
-            Unsure which service will move the needle first?
-          </h2>
-          <p className="text-slate-400 text-sm sm:text-base mb-8 max-w-xl mx-auto">
-            We will audit your store to identify whether traffic, checkout conversion, or repeat rate is your primary bottleneck.
-          </p>
-          <Link
-            href="/contact"
-            className="inline-flex items-center text-sm font-semibold text-white btn-glow px-7 py-3.5 rounded-xl transition-all shadow-sm"
-          >
+      <CtaBand
+        id="services-cta-heading"
+        title="Unsure which service will move the needle first?"
+        lead="We will audit your store to identify whether traffic, checkout conversion, or repeat rate is your primary bottleneck."
+        actions={
+          <ButtonLink href="/contact" size="lg" trailingIcon={<ArrowUpRight {...icon.sm} />}>
             Request Free Store Audit
-            <ArrowUpRight className="ml-1 w-4 h-4 text-blue-100" />
-          </Link>
-        </div>
-      </section>
+          </ButtonLink>
+        }
+      />
     </div>
   );
 }

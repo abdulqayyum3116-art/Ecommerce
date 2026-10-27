@@ -103,11 +103,14 @@ const neutral = Object.fromEntries(
   STEPS.map((s, i) => [s, c(NEUTRAL_L[i], NEUTRAL_C[i], NEUTRAL_H[i])])
 );
 
-/** Palette directions — only the brand ramp differs between them. */
+/**
+ * Brand: deep teal (h195) — direction B, approved at checkpoint 1.
+ * (Direction A "cobalt" was ramp(264, 0.21); see docs/design-system.)
+ */
 const PALETTES = {
-  cobalt: { label: "A · Paper & Cobalt", brand: ramp(264, 0.21) },
-  teal: { label: "B · Paper & Teal", brand: ramp(195, 0.13) },
+  teal: { label: "Paper & Teal", brand: ramp(195, 0.13) },
 };
+const BRAND = PALETTES.teal.brand;
 
 const status = {
   success: ramp(152, 0.15),
@@ -142,6 +145,7 @@ function lightSemantic(brand) {
     "accent-text": ["brand-700", brand[700]],
     "on-accent": [null, WHITE],
     "focus-ring": ["brand-600", brand[600]],
+    "on-solid": [null, WHITE],
     ...statusTokens("light"),
   };
 }
@@ -172,6 +176,7 @@ function darkSemantic(brand) {
     "accent-text": [null, c(0.8, b4.C * 0.6, b4.h)],
     "on-accent": [null, c(0.18, 0.022, 280)],
     "focus-ring": [null, c(0.82, b4.C * 0.65, b4.h)],
+    "on-solid": [null, c(0.18, 0.022, 280)],
     ...statusTokens("dark"),
   };
 }
@@ -221,6 +226,7 @@ const CHECKS = [
   ...["success", "warning", "danger", "info"].flatMap((s) => [
     [`${s}-text`, `${s}-bg`, 4.5, `${s} alert text`],
     [`${s}-solid`, "bg", 3, `${s} icon/indicator`],
+    ["on-solid", `${s}-solid`, 4.5, `${s} solid button label`],
   ]),
 ];
 
@@ -306,10 +312,8 @@ function primitives(pal, mode) {
   const val = (col) => (mode === "hex" ? toHex(col) : oklch(col));
   for (const s of STEPS) out.push(`  --neutral-${s}: ${val(neutral[s])};`);
   for (const s of STEPS) out.push(`  --brand-${s}: ${val(pal.brand[s])};`);
-  if (pal === PALETTES.cobalt) {
-    for (const [name, r] of Object.entries(status))
-      for (const s of STEPS) out.push(`  --${name}-${s}: ${val(r[s])};`);
-  }
+  for (const [name, r] of Object.entries(status))
+    for (const s of STEPS) out.push(`  --${name}-${s}: ${val(r[s])};`);
   return out;
 }
 
@@ -334,49 +338,32 @@ emit(" *   3. Scales      — type, spacing, radii, elevation, motion.");
 emit(" *");
 emit(" * Theming");
 emit(' *   data-theme="light" | "dark" on <html> or any section; no attribute → OS preference.');
-emit(' *   data-palette="teal" switches the brand ramp to direction B (preview only).');
 emit(" */");
 emit();
 
 emit("/* ── 1. Primitives ─────────────────────────────────────────────────── */");
 emit(":root {");
-primitives(PALETTES.cobalt, "hex").forEach((l) => emit(l));
+primitives(PALETTES.teal, "hex").forEach((l) => emit(l));
 emit("}");
 emit(`${SUPPORTS} {`);
 emit("  :root {");
-primitives(PALETTES.cobalt, "oklch").forEach((l) => emit("  " + l));
+primitives(PALETTES.teal, "oklch").forEach((l) => emit("  " + l));
 emit("  }");
 emit("}");
 emit();
-emit('[data-palette="teal"] {');
-primitives(PALETTES.teal, "hex")
-  .filter((l) => l.includes("--brand-"))
-  .forEach((l) => emit(l));
-emit("}");
-emit(`${SUPPORTS} {`);
-emit('  [data-palette="teal"] {');
-primitives(PALETTES.teal, "oklch")
-  .filter((l) => l.includes("--brand-"))
-  .forEach((l) => emit("  " + l));
-emit("  }");
-emit("}");
-emit();
-
 /*
- * Semantic tokens are re-declared on every element that sets a theme or a
- * palette, so var() references resolve against that element's primitives.
+ * Semantic tokens are re-declared on every element that sets a theme, so a
+ * section can opt into the other theme (e.g. an ink "band" on a light page).
  */
-const LIGHT_SEL = ':root, [data-theme="light"], [data-palette]';
-const light = lightSemantic(PALETTES.cobalt.brand);
-const darkA = darkSemantic(PALETTES.cobalt.brand);
-const darkB = darkSemantic(PALETTES.teal.brand);
-const brandDependent = (name) => name.startsWith("accent") || name === "focus-ring" || name === "on-accent";
+const LIGHT_SEL = ':root, [data-theme="light"]';
+const light = lightSemantic(BRAND);
+const dark = darkSemantic(BRAND);
 
 emit("/* ── 2. Semantic — light (default) ─────────────────────────────────── */");
 emit(`${LIGHT_SEL} {`);
 emit("  color-scheme: light;");
 semanticBlock(light, "hex").forEach((l) => emit(l));
-emit("  --overlay: rgb(from var(--neutral-950) r g b / 0.55);");
+emit(`  --overlay: ${toHex(neutral[950])}8c;`);
 emit("}");
 emit(`${SUPPORTS} {`);
 emit(`  ${LIGHT_SEL} {`);
@@ -390,25 +377,15 @@ emit();
 function darkRules(selector) {
   emit(`${selector} {`);
   emit("  color-scheme: dark;");
-  semanticBlock(darkA, "hex").forEach((l) => emit(l));
-  emit("  --overlay: rgb(8 8 20 / 0.7);");
-  emit("}");
-  emit(`${selector.split(", ").map((s) => `${s.trim()}[data-palette="teal"], ${s.trim()} [data-palette="teal"]`).join(", ")} {`);
-  semanticBlock(darkB, "hex")
-    .filter((l) => brandDependent(l.trim().slice(2).split(":")[0]))
-    .forEach((l) => emit(l));
+  semanticBlock(dark, "hex").forEach((l) => emit(l));
+  emit("  --overlay: #080814b3;");
   emit("}");
 }
 
 function darkRulesOklch(selector) {
   emit(`${SUPPORTS} {`);
   emit(`  ${selector} {`);
-  semanticBlock(darkA, "oklch").forEach((l) => emit("  " + l));
-  emit("  }");
-  emit(`  ${selector.split(", ").map((s) => `${s.trim()}[data-palette="teal"], ${s.trim()} [data-palette="teal"]`).join(", ")} {`);
-  semanticBlock(darkB, "oklch")
-    .filter((l) => brandDependent(l.trim().slice(2).split(":")[0]))
-    .forEach((l) => emit("  " + l));
+  semanticBlock(dark, "oklch").forEach((l) => emit("  " + l));
   emit("  }");
   emit("}");
 }
@@ -512,18 +489,21 @@ emit("}");
 mkdirSync(dirname(OUT), { recursive: true });
 writeFileSync(OUT, lines.join("\n") + "\n");
 
-/* Swatch data for the /styleguide route. */
+/* Swatch data for the /styleguide route. `ink` = ink label reads better than paper. */
+const INK = neutral[950];
+const PAPER = neutral[50];
+const sw = (col) => ({ hex: toHex(col), oklch: oklch(col), ink: contrast(col, INK) >= contrast(col, PAPER) });
 const swatches = {
   steps: STEPS,
-  neutral: STEPS.map((s) => ({ step: s, hex: toHex(neutral[s]), oklch: oklch(neutral[s]) })),
+  neutral: STEPS.map((s) => ({ step: s, ...sw(neutral[s]) })),
   palettes: Object.fromEntries(
     Object.entries(PALETTES).map(([k, p]) => [
       k,
-      { label: p.label, ramp: STEPS.map((s) => ({ step: s, hex: toHex(p.brand[s]), oklch: oklch(p.brand[s]) })) },
+      { label: p.label, ramp: STEPS.map((s) => ({ step: s, ...sw(p.brand[s]) })) },
     ])
   ),
   status: Object.fromEntries(
-    Object.entries(status).map(([k, r]) => [k, STEPS.map((s) => ({ step: s, hex: toHex(r[s]), oklch: oklch(r[s]) }))])
+    Object.entries(status).map(([k, r]) => [k, STEPS.map((s) => ({ step: s, ...sw(r[s]) }))])
   ),
   type: Object.entries(TYPE).map(([name, [step, leading, tracking, weight, family, floor]]) => {
     const lo = Math.max(BASE_MIN * R_MIN ** step, floor ?? 0);

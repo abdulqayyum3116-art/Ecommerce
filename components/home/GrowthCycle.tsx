@@ -2,6 +2,11 @@
 
 import React, { useState } from "react";
 import { Compass, ShoppingBag, HeartHandshake, Repeat } from "lucide-react";
+import { Section, Container, SectionHeader } from "@/components/ui/Section";
+import { Tabs } from "@/components/ui/Tabs";
+import { Badge } from "@/components/ui/Badge";
+import { IconTile } from "@/components/ui/Card";
+import { icon } from "@/components/ui/icon";
 
 interface Stage {
   id: string;
@@ -53,124 +58,78 @@ export default function GrowthCycle() {
   const ActiveIcon = activeStage.icon;
 
   return (
-    <section className="py-24 bg-[#0B0F1A] text-white border-b border-white/[0.08] relative overflow-hidden" aria-labelledby="growth-cycle-heading">
-      {/* Background ambient lighting */}
-      <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-96 h-96 bg-violet-600/10 rounded-full blur-3xl pointer-events-none" />
+    <Section aria-labelledby="growth-cycle-heading">
+      <Container>
+        <SectionHeader
+          id="growth-cycle-heading"
+          align="center"
+          overline="The Ecommerce Growth Engine"
+          title="Attract. Convert. Retain. Repeat."
+          lead="The four connected stages of a profitable online store. We engineer and automate each transition point so your store scales predictably."
+        />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="max-w-3xl mx-auto text-center mb-16">
-          <span className="eyebrow-dark">
-            The Ecommerce Growth Engine
-          </span>
-          <h2 id="growth-cycle-heading" className="text-3xl sm:text-4xl md:text-5xl font-semibold mt-4 text-white">
-            Attract. Convert. Retain. Repeat.
-          </h2>
-          <p className="text-slate-300 text-lg mt-4 leading-relaxed">
-            The four connected stages of a profitable online store. We engineer and automate each transition point so your store scales predictably.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          {/* SVG Animated Rotating Ring Visual */}
-          <div className="lg:col-span-5 flex justify-center">
-            <div className="relative w-72 h-72 sm:w-80 sm:h-80 flex items-center justify-center">
-              {/* Outer SVG rotating dash circle */}
-              <svg className="absolute inset-0 w-full h-full" viewBox="0 0 200 200">
+        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12">
+          {/* Rotating ring */}
+          <div className="flex justify-center lg:col-span-5">
+            <div className="relative flex size-72 items-center justify-center sm:size-80">
+              <svg aria-hidden className="absolute inset-0 size-full" viewBox="0 0 200 200">
+                <circle cx="100" cy="100" r="85" fill="none" className="stroke-border" strokeWidth="3" />
                 <circle
                   cx="100"
                   cy="100"
                   r="85"
                   fill="none"
-                  stroke="rgba(255, 255, 255, 0.08)"
-                  strokeWidth="3"
-                />
-                <circle
-                  cx="100"
-                  cy="100"
-                  r="85"
-                  fill="none"
-                  stroke="#3B82F6"
+                  className="origin-center stroke-accent motion-safe:animate-ring-dash"
                   strokeWidth="3.5"
                   strokeDasharray="20 40"
-                  className="animate-dash origin-center"
+                  strokeLinecap="round"
                 />
               </svg>
 
-              {/* Central Hub Display */}
-              <div className="text-center p-6 glass-card rounded-full shadow-2xl w-56 h-56 flex flex-col items-center justify-center border border-white/[0.12]">
-                <span className="text-xs font-mono uppercase tracking-wider text-slate-400">
-                  Stage {activeStage.number} of 04
-                </span>
-                <span className="text-3xl font-serif font-bold text-white mt-1">
-                  {activeStage.name}
-                </span>
-                <span className="text-xs text-blue-400 font-semibold mt-1">
-                  CodeSquad System
-                </span>
+              <div className="flex size-56 flex-col items-center justify-center rounded-full border border-border bg-surface p-6 text-center shadow-elevation-3">
+                <span className="type-overline text-fg-muted">Stage {activeStage.number} of 04</span>
+                <span className="mt-1 type-h2 text-fg">{activeStage.name}</span>
+                <span className="mt-1 type-caption font-bold text-accent-text">CodeSquad System</span>
               </div>
             </div>
           </div>
 
-          {/* Interactive Stage Controls and Details */}
-          <div className="lg:col-span-7 space-y-6">
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-              {stages.map((stage, idx) => {
-                const isSelected = idx === activeStageIndex;
-                return (
-                  <button
-                    key={stage.id}
-                    onClick={() => setActiveStageIndex(idx)}
-                    className={`text-left p-4 rounded-xl border transition-all cursor-pointer ${
-                      isSelected
-                        ? "bg-blue-600 text-white border-blue-500 shadow-lg shadow-blue-600/30 ring-2 ring-blue-400/20"
-                        : "glass-card text-slate-300 hover:bg-white/[0.08]"
-                    }`}
-                    aria-label={`Select stage ${stage.name}`}
-                  >
-                    <div className="text-xs font-mono opacity-70 mb-1">{stage.number}</div>
-                    <div className="font-semibold text-sm">{stage.name}</div>
-                  </button>
-                );
-              })}
-            </div>
-
-            {/* Stage Detail Card */}
-            <div className="p-8 rounded-2xl glass-card border border-white/[0.12] transition-all">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="p-3 bg-blue-500/20 text-blue-300 rounded-xl border border-blue-400/30">
-                  <ActiveIcon className="w-5 h-5" />
+          {/* Stage tabs + detail */}
+          <div className="lg:col-span-7">
+            <Tabs
+              label="Growth stages"
+              variant="cards"
+              value={activeStage.id}
+              onChange={(id) => setActiveStageIndex(stages.findIndex((s) => s.id === id))}
+              items={stages.map((s) => ({ id: s.id, label: s.name, meta: s.number }))}
+            >
+              <div className="rounded-lg border border-border bg-surface p-6 shadow-elevation-1 sm:p-8">
+                <div className="mb-4 flex items-center gap-3">
+                  <IconTile>
+                    <ActiveIcon {...icon.md} />
+                  </IconTile>
+                  <div>
+                    <h3 className="type-h3 text-fg">{activeStage.name}</h3>
+                    <span className="type-caption numeric text-fg-muted">Stage {activeStage.number}</span>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="text-xl font-bold text-white">
-                    {activeStage.name}
-                  </h3>
-                  <span className="text-xs text-slate-400 font-mono">Stage {activeStage.number}</span>
-                </div>
-              </div>
-              <p className="text-slate-300 text-base leading-relaxed mb-6">
-                {activeStage.description}
-              </p>
+                <p className="mb-6 type-body text-fg-secondary">{activeStage.description}</p>
 
-              <div>
-                <h4 className="text-xs uppercase tracking-wider font-semibold text-slate-200 mb-3">
-                  Core Implementation Levers:
-                </h4>
-                <div className="flex flex-wrap gap-2">
+                <h4 className="mb-3 font-body type-overline text-fg-muted">Core Implementation Levers:</h4>
+                <ul className="flex flex-wrap gap-2">
                   {activeStage.tactics.map((tactic) => (
-                    <span
-                      key={tactic}
-                      className="text-xs font-medium bg-white/[0.06] border border-white/[0.1] text-slate-200 px-3 py-1.5 rounded-lg shadow-2xs"
-                    >
-                      {tactic}
-                    </span>
+                    <li key={tactic}>
+                      <Badge tone="outline" shape="tag">
+                        {tactic}
+                      </Badge>
+                    </li>
                   ))}
-                </div>
+                </ul>
               </div>
-            </div>
+            </Tabs>
           </div>
         </div>
-      </div>
-    </section>
+      </Container>
+    </Section>
   );
 }

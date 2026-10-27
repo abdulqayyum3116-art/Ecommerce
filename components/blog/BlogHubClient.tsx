@@ -2,8 +2,16 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ArrowUpRight, Clock, Calendar } from "lucide-react";
+import { ArrowUpRight, Clock, Calendar, FileSearch } from "lucide-react";
 import { blogPostsList, blogPillars } from "@/lib/blogData";
+import { PageHero } from "@/components/ui/PageHero";
+import { Section, Container } from "@/components/ui/Section";
+import { Card } from "@/components/ui/Card";
+import { Badge } from "@/components/ui/Badge";
+import { Button } from "@/components/ui/Button";
+import { ChoiceChip } from "@/components/ui/Field";
+import { EmptyState } from "@/components/ui/Feedback";
+import { icon } from "@/components/ui/icon";
 
 export default function BlogHubClient() {
   const [selectedPillar, setSelectedPillar] = useState<string>("All");
@@ -14,97 +22,92 @@ export default function BlogHubClient() {
       : blogPostsList.filter((post) => post.pillar === selectedPillar);
 
   return (
-    <div className="bg-[#FAFBFC]">
-      {/* Header (Dark Mesh) */}
-      <section className="pt-20 pb-24 border-b border-white/[0.08] mesh-gradient-hero grain text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="max-w-3xl">
-            <span className="eyebrow-dark mb-6">
-              Technical Insights &amp; Playbooks
-            </span>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold text-white tracking-tight leading-tight mb-6">
-              Practical guides on ecommerce engineering, CRO, and AI search.
-            </h1>
-            <p className="text-slate-300 text-lg leading-relaxed">
-              No generic fluff or AI-spun filler. Actionable checklists, architecture decisions, and code-level optimization strategies written for store operators.
-            </p>
-          </div>
-        </div>
-      </section>
+    <div className="bg-bg">
+      <PageHero
+        overline="Technical Insights & Playbooks"
+        title="Practical guides on ecommerce engineering, CRO, and AI search."
+        lead="No generic fluff or AI-spun filler. Actionable checklists, architecture decisions, and code-level optimization strategies written for store operators."
+      />
 
-      {/* Filter Tabs & Grid */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Pillar Filter Tabs */}
-          <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-14 scrollbar-none">
-            {blogPillars.map((pillar) => {
-              const isSelected = selectedPillar === pillar;
-              return (
-                <button
-                  key={pillar}
-                  onClick={() => setSelectedPillar(pillar)}
-                  className={`text-xs sm:text-sm font-semibold px-4 py-2.5 rounded-full whitespace-nowrap transition-all cursor-pointer ${
-                    isSelected
-                      ? "bg-slate-950 text-white shadow-sm"
-                      : "bg-white text-slate-700 hover:text-slate-950 hover:bg-slate-100 border border-slate-200"
-                  }`}
-                >
-                  {pillar}
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Posts Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredPosts.map((post) => (
-              <article
-                key={post.slug}
-                className="card-light p-8 flex flex-col justify-between"
+      <Section tone="subtle" aria-label="Articles">
+        <Container>
+          {/* Pillar filter */}
+          <div
+            role="group"
+            aria-label="Filter articles by topic"
+            className="-mx-[var(--gutter)] mb-10 flex gap-2 overflow-x-auto px-[var(--gutter)] pb-2 md:mx-0 md:flex-wrap md:px-0"
+          >
+            {blogPillars.map((pillar) => (
+              <ChoiceChip
+                key={pillar}
+                selected={selectedPillar === pillar}
+                onClick={() => setSelectedPillar(pillar)}
+                className="shrink-0 whitespace-nowrap"
               >
-                <div>
-                  <div className="flex items-center justify-between text-xs text-slate-500 mb-4">
-                    <span className="font-semibold text-blue-700 bg-blue-50 border border-blue-100 px-2.5 py-1 rounded-md">
-                      {post.pillar}
-                    </span>
-                    <span className="flex items-center gap-1 font-mono text-slate-400">
-                      <Clock className="w-3.5 h-3.5" />
-                      {post.readTime}
-                    </span>
-                  </div>
-
-                  <h2 className="text-2xl font-bold text-slate-950 mb-3 leading-snug">
-                    <Link
-                      href={`/blog/${post.slug}`}
-                      className="hover:text-blue-600 transition-colors"
-                    >
-                      {post.title}
-                    </Link>
-                  </h2>
-
-                  <p className="text-slate-600 text-sm leading-relaxed mb-6">
-                    {post.summary}
-                  </p>
-                </div>
-
-                <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
-                  <span className="text-xs text-slate-400 flex items-center gap-1 font-mono">
-                    <Calendar className="w-3.5 h-3.5" />
-                    {post.date}
-                  </span>
-                  <Link
-                    href={`/blog/${post.slug}`}
-                    className="inline-flex items-center text-xs font-semibold text-blue-600 hover:text-blue-800"
-                  >
-                    Read article
-                    <ArrowUpRight className="ml-1 w-3.5 h-3.5" />
-                  </Link>
-                </div>
-              </article>
+                {pillar}
+              </ChoiceChip>
             ))}
           </div>
-        </div>
-      </section>
+
+          <p className="sr-only" aria-live="polite">
+            {filteredPosts.length} {filteredPosts.length === 1 ? "article" : "articles"} shown
+          </p>
+
+          {filteredPosts.length === 0 ? (
+            <EmptyState
+              icon={<FileSearch {...icon.md} />}
+              title="No articles in this topic yet"
+              action={
+                <Button variant="secondary" size="sm" onClick={() => setSelectedPillar("All")}>
+                  Show all articles
+                </Button>
+              }
+            />
+          ) : (
+            <ul className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {filteredPosts.map((post) => (
+                <Card as="li" key={post.slug} padding="lg" interactive className="flex flex-col justify-between">
+                  <article className="flex h-full flex-col justify-between">
+                    <div>
+                      <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
+                        <Badge tone="accent" shape="tag">
+                          {post.pillar}
+                        </Badge>
+                        <span className="flex items-center gap-1 type-caption text-fg-muted">
+                          <Clock {...icon.sm} size={14} />
+                          {post.readTime}
+                        </span>
+                      </div>
+
+                      <h2 className="mb-3 type-h4 text-fg">
+                        <Link
+                          href={`/blog/${post.slug}`}
+                          className="rounded-sm after:absolute after:inset-0 after:rounded-lg after:content-['']"
+                        >
+                          {post.title}
+                        </Link>
+                      </h2>
+
+                      <p className="mb-6 type-body-sm text-fg-secondary">{post.summary}</p>
+                    </div>
+
+                    <div className="flex items-center justify-between border-t border-border pt-4">
+                      <span className="flex items-center gap-1 type-caption text-fg-muted">
+                        <Calendar {...icon.sm} size={14} />
+                        {post.date}
+                      </span>
+                      <span aria-hidden className="inline-flex items-center gap-1 type-body-sm font-bold text-accent-text">
+                        Read article
+                        <ArrowUpRight {...icon.sm} />
+                      </span>
+                    </div>
+                  </article>
+                </Card>
+              ))}
+            </ul>
+          )}
+        </Container>
+      </Section>
     </div>
   );
 }

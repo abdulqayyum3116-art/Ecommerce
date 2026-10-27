@@ -1,5 +1,10 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
+import { Section, Container, SectionHeader } from "@/components/ui/Section";
+import { Card } from "@/components/ui/Card";
+import { Badge } from "@/components/ui/Badge";
+import { ButtonLink, TextLink } from "@/components/ui/Button";
+import { icon } from "@/components/ui/icon";
 
 interface CaseStudyPreview {
   slug: string;
@@ -47,133 +52,106 @@ const otherStudies: CaseStudyPreview[] = [
 
 export default function FlatCaseStudiesShowcase() {
   return (
-    <section className="py-24 bg-[#FAFBFC] border-b border-slate-200" aria-labelledby="cases-heading">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
-          <div className="max-w-2xl">
-            <span className="eyebrow-light">
-              Verified Technical Case Studies
-            </span>
-            <h2 id="cases-heading" className="text-3xl sm:text-4xl md:text-5xl font-semibold mt-4 text-slate-950">
-              Measurable systems. Zero vanity numbers.
-            </h2>
-            <p className="text-slate-600 text-lg mt-3">
-              Explore how we design, develop, and automate high-conversion ecommerce infrastructure.
-            </p>
-          </div>
-          <Link
-            href="/case-studies"
-            className="inline-flex items-center text-sm font-semibold text-slate-900 hover:text-blue-600"
-          >
-            Browse all case studies
-            <ArrowUpRight className="ml-1 w-4 h-4" />
-          </Link>
-        </div>
+    <Section tone="subtle" aria-labelledby="cases-heading">
+      <Container>
+        <SectionHeader
+          id="cases-heading"
+          overline="Verified Technical Case Studies"
+          title="Measurable systems. Zero vanity numbers."
+          lead="Explore how we design, develop, and automate high-conversion ecommerce infrastructure."
+          action={
+            <TextLink href="/case-studies">
+              Browse all case studies
+              <ArrowUpRight {...icon.sm} />
+            </TextLink>
+          }
+        />
 
-        {/* Flat Grid Showcase (No 3D, No coverflow) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-          {/* Featured Large Study */}
-          <div className="lg:col-span-7 card-light p-8 sm:p-10 flex flex-col justify-between accent-border-left">
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-12 lg:gap-8">
+          {/* Featured study */}
+          <Card as="article" padding="lg" className="flex flex-col justify-between border-l-4 border-l-accent lg:col-span-7">
             <div>
-              <div className="flex items-center justify-between mb-6">
-                <span className="text-xs font-mono font-semibold uppercase tracking-wider text-blue-700 bg-blue-50 px-3 py-1 rounded border border-blue-100">
+              <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
+                <Badge tone="accent" shape="tag">
                   Featured Case Study
-                </span>
-                <span className="text-xs font-mono text-slate-400">
-                  {featuredStudy.clientType}
-                </span>
+                </Badge>
+                <span className="type-caption text-fg-muted">{featuredStudy.clientType}</span>
               </div>
-              <h3 className="text-2xl sm:text-3xl font-bold text-slate-950 mb-4">
-                {featuredStudy.title}
-              </h3>
-              <p className="text-slate-600 text-base leading-relaxed mb-6">
-                {featuredStudy.summary}
-              </p>
-              <div className="space-y-2 mb-8">
-                <span className="text-xs font-semibold text-slate-900 uppercase tracking-wider">
-                  Engineered Stack:
-                </span>
-                <div className="flex flex-wrap gap-2">
-                  {featuredStudy.deliverables.map((item) => (
-                    <span
-                      key={item}
-                      className="text-xs bg-slate-100 text-slate-700 px-3 py-1.5 rounded-lg border border-slate-200 font-medium"
-                    >
+              <h3 className="mb-4 type-h3 text-fg">{featuredStudy.title}</h3>
+              <p className="mb-6 type-body text-fg-secondary">{featuredStudy.summary}</p>
+              <p className="mb-2 type-overline text-fg-muted">Engineered Stack:</p>
+              <ul className="mb-8 flex flex-wrap gap-2">
+                {featuredStudy.deliverables.map((item) => (
+                  <li key={item}>
+                    <Badge tone="outline" shape="tag">
                       {item}
-                    </span>
-                  ))}
-                </div>
-              </div>
+                    </Badge>
+                  </li>
+                ))}
+              </ul>
             </div>
 
-            <div className="pt-6 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div className="flex flex-col justify-between gap-4 border-t border-border pt-6 sm:flex-row sm:items-center">
               <div>
-                <span className="text-xs text-slate-400 block font-mono">Performance Metric</span>
-                <span className="text-sm font-semibold bg-amber-50 text-amber-900 px-2.5 py-1 rounded border border-amber-200 inline-block mt-1">
+                <span className="block type-caption text-fg-muted">Performance Metric</span>
+                <Badge tone="warning" shape="tag" className="mt-1">
                   {featuredStudy.resultPlaceholder}
-                </span>
+                </Badge>
               </div>
-              <Link
+              <ButtonLink
                 href={`/case-studies/${featuredStudy.slug}`}
-                className="inline-flex items-center text-sm font-semibold text-white bg-slate-950 hover:bg-slate-800 px-5 py-2.5 rounded-xl transition-all shadow-sm"
+                variant="secondary"
+                size="sm"
+                trailingIcon={<ArrowUpRight {...icon.sm} />}
               >
                 Read breakdown
-                <ArrowUpRight className="ml-1.5 w-4 h-4" />
-              </Link>
+              </ButtonLink>
             </div>
-          </div>
+          </Card>
 
-          {/* Secondary Flat Grid Studies */}
-          <div className="lg:col-span-5 flex flex-col gap-6">
+          {/* Secondary studies */}
+          <div className="flex flex-col gap-6 lg:col-span-5">
             {otherStudies.map((study) => (
-              <div
-                key={study.slug}
-                className="card-light p-7 flex flex-col justify-between"
-              >
+              <Card as="article" key={study.slug} interactive className="flex flex-col justify-between">
                 <div>
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="text-xs font-mono text-slate-400">
-                      {study.clientType}
-                    </span>
-                    <span className="text-xs font-semibold bg-amber-50 text-amber-900 px-2 py-0.5 rounded border border-amber-200">
+                  <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
+                    <span className="type-caption text-fg-muted">{study.clientType}</span>
+                    <Badge tone="warning" shape="tag">
                       {study.resultPlaceholder}
-                    </span>
+                    </Badge>
                   </div>
-                  <h3 className="text-lg font-bold text-slate-950 mb-2">
-                    {study.title}
+                  <h3 className="mb-2 type-h4 text-fg">
+                    <Link
+                      href={`/case-studies/${study.slug}`}
+                      className="rounded-sm after:absolute after:inset-0 after:rounded-lg after:content-['']"
+                    >
+                      {study.title}
+                    </Link>
                   </h3>
-                  <p className="text-slate-600 text-sm leading-relaxed mb-4">
-                    {study.summary}
-                  </p>
+                  <p className="mb-4 type-body-sm text-fg-secondary">{study.summary}</p>
                 </div>
-                <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
-                  <div className="flex gap-1.5 flex-wrap">
+                <div className="flex items-center justify-between gap-3 border-t border-border pt-4">
+                  <ul className="flex flex-wrap gap-1.5">
                     {study.deliverables.map((deliv) => (
-                      <span key={deliv} className="text-[11px] bg-slate-100 text-slate-600 px-2 py-0.5 rounded">
-                        {deliv}
-                      </span>
+                      <li key={deliv}>
+                        <Badge shape="tag">{deliv}</Badge>
+                      </li>
                     ))}
-                  </div>
-                  <Link
-                    href={`/case-studies/${study.slug}`}
-                    className="text-xs font-semibold text-blue-600 hover:text-blue-800 flex items-center shrink-0 ml-2"
-                  >
+                  </ul>
+                  <span aria-hidden className="inline-flex shrink-0 items-center gap-0.5 type-body-sm font-bold text-accent-text">
                     View
-                    <ArrowUpRight className="ml-0.5 w-3.5 h-3.5" />
-                  </Link>
+                    <ArrowUpRight {...icon.sm} />
+                  </span>
                 </div>
-              </div>
+              </Card>
             ))}
 
-            {/* Note on Transparency & More Studies Coming Soon */}
-            <div className="p-4 rounded-xl border border-dashed border-slate-300 bg-white/60 text-center">
-              <span className="text-xs font-mono text-slate-500">
-                Additional client case studies coming soon — verified metrics only.
-              </span>
-            </div>
+            <p className="rounded-md border border-dashed border-border-strong p-4 text-center type-caption text-fg-muted">
+              Additional client case studies coming soon — verified metrics only.
+            </p>
           </div>
         </div>
-      </div>
-    </section>
+      </Container>
+    </Section>
   );
 }

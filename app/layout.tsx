@@ -58,9 +58,11 @@ export default function RootLayout({
       lang="en"
       className={`${fraunces.variable} ${dmSans.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-[#0B0F1A] text-slate-900 selection:bg-blue-900 selection:text-blue-100">
+      <body className="flex min-h-full flex-col bg-bg text-fg">
         <Header />
-        <main className="flex-1">{children}</main>
+        <main id="main" tabIndex={-1} className="flex-1 focus:outline-none">
+          {children}
+        </main>
         <Footer />
       </body>
     </html>

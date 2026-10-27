@@ -1,31 +1,28 @@
 "use client";
 
-import Link from "next/link";
 import { ArrowUpRight, ArrowRight, ShieldCheck, Zap } from "lucide-react";
 import HeroTrustStrip from "./HeroTrustStrip";
-
-const ICON = { size: 16, strokeWidth: 1.75, "aria-hidden": true } as const;
+import { ButtonLink } from "@/components/ui/Button";
+import { Badge, StatusDot } from "@/components/ui/Badge";
+import { icon } from "@/components/ui/icon";
 
 export default function Hero() {
   const highlightWords = ["Attract.", "Convert.", "Retain."];
 
   return (
-    <section className="relative isolate overflow-hidden bg-bg text-fg border-b border-border pt-[var(--section-y)] pb-16 md:pb-24">
+    <section className="relative isolate overflow-hidden border-b border-border bg-bg pt-[var(--section-y)] pb-16 text-fg md:pb-24">
       {/* Single, rare emphasis glow behind the headline */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-x-0 -top-40 -z-10 mx-auto h-[36rem] max-w-5xl rounded-full bg-accent-subtle opacity-70 blur-3xl"
       />
 
-      <div className="mx-auto max-w-[var(--layout-max)] px-[var(--gutter)]">
+      <div className="container-page">
         <div className="mx-auto max-w-4xl text-center">
           {/* EXACTLY ONE H1 ON THE ENTIRE HOMEPAGE */}
-          <h1
-            className="type-display text-fg mb-6"
-            aria-label="Turn traffic into revenue. Buyers into regulars."
-          >
+          <h1 className="type-display mb-6 text-fg" aria-label="Turn traffic into revenue. Buyers into regulars.">
             Turn traffic into revenue.{" "}
-            <span className="block italic font-medium text-accent-text">Buyers into regulars.</span>
+            <span className="block font-medium text-accent-text italic">Buyers into regulars.</span>
           </h1>
 
           {/* Tagline with entrance-sequenced words */}
@@ -33,7 +30,7 @@ export default function Hero() {
             {highlightWords.map((word, index) => (
               <span
                 key={word}
-                className="animate-rise inline-block font-display font-semibold text-fg"
+                className="inline-block font-display font-semibold text-fg motion-safe:animate-rise"
                 style={{ animationDelay: `${index * 80}ms` }}
               >
                 {word}
@@ -48,37 +45,38 @@ export default function Hero() {
           </p>
 
           {/* Value micro-pills */}
-          <ul className="mb-10 flex flex-wrap items-center justify-center gap-2 type-caption text-fg-secondary">
-            <li className="inline-flex items-center gap-1.5 rounded-full border border-border bg-surface px-3 py-1.5 shadow-elevation-1">
-              <Zap {...ICON} className="text-accent-text" />
-              Sub-second Mobile PDP Speeds
+          <ul className="mb-10 flex flex-wrap items-center justify-center gap-2">
+            <li>
+              <Badge tone="outline" icon={<Zap {...icon.sm} className="text-accent-text" />} className="shadow-elevation-1">
+                Sub-second Mobile PDP Speeds
+              </Badge>
             </li>
-            <li className="inline-flex items-center gap-1.5 rounded-full border border-border bg-surface px-3 py-1.5 shadow-elevation-1">
-              <ShieldCheck {...ICON} className="text-accent-text" />
-              Zero Bloat Architecture
+            <li>
+              <Badge tone="outline" icon={<ShieldCheck {...icon.sm} className="text-accent-text" />} className="shadow-elevation-1">
+                Zero Bloat Architecture
+              </Badge>
             </li>
-            <li className="inline-flex items-center gap-1.5 rounded-full border border-border bg-surface px-3 py-1.5 shadow-elevation-1">
-              <span aria-hidden className="size-2 rounded-full bg-success-solid pulse-dot" />
-              15-Min Speed-to-Lead Follow-up
+            <li>
+              <Badge tone="outline" icon={<StatusDot live />} className="shadow-elevation-1">
+                15-Min Speed-to-Lead Follow-up
+              </Badge>
             </li>
           </ul>
 
           {/* Primary & secondary CTAs */}
           <div className="mb-16 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Link
-              href="/contact"
-              className="group inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-accent px-7 type-button text-on-accent shadow-elevation-2 transition-[background-color,box-shadow,transform] duration-200 ease-standard hover:bg-accent-hover hover:shadow-elevation-3 active:translate-y-px active:bg-accent-pressed sm:w-auto"
-            >
+            <ButtonLink href="/contact" size="lg" className="w-full sm:w-auto" trailingIcon={<ArrowUpRight {...icon.sm} />}>
               Free Store Audit
-              <ArrowUpRight {...ICON} className="transition-transform duration-200 ease-standard group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-            </Link>
-            <Link
+            </ButtonLink>
+            <ButtonLink
               href="/case-studies"
-              className="group inline-flex h-12 w-full items-center justify-center gap-2 rounded-full border border-border-strong bg-surface-raised px-7 type-button text-fg transition-[background-color,border-color] duration-200 ease-standard hover:border-fg hover:bg-bg-subtle active:bg-bg-muted sm:w-auto"
+              variant="secondary"
+              size="lg"
+              className="w-full sm:w-auto"
+              trailingIcon={<ArrowRight {...icon.sm} className="text-fg-muted" />}
             >
               View Case Studies
-              <ArrowRight {...ICON} className="text-fg-muted transition-transform duration-200 ease-standard group-hover:translate-x-0.5" />
-            </Link>
+            </ButtonLink>
           </div>
         </div>
 

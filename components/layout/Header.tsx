@@ -1,11 +1,28 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { Menu, X, ArrowUpRight } from "lucide-react";
+import { Menu, ArrowUpRight } from "lucide-react";
+import { cn } from "@/lib/cn";
+import { ButtonLink } from "@/components/ui/Button";
+import { Dialog } from "@/components/ui/Dialog";
+import { icon } from "@/components/ui/icon";
+
+export function BrandMark({ className }: { className?: string }) {
+  return (
+    <span className={cn("flex items-center gap-2", className)}>
+      <span className="font-display text-[length:var(--type-h4-size)] leading-none font-semibold tracking-[-0.02em]">
+        Ecommerce<span className="text-accent">.</span>
+      </span>
+      <span className="rounded-full border border-border px-2 py-0.5 type-overline text-fg-muted">By CodeSquad</span>
+    </span>
+  );
+}
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   const navLinks = [
     { label: "Home", href: "/" },
@@ -15,81 +32,98 @@ export default function Header() {
     { label: "Process", href: "/process" },
   ];
 
+  const isActive = (href: string) => (href === "/" ? pathname === "/" : pathname?.startsWith(href));
+
   return (
-    <header className="sticky top-0 z-50 bg-[#0B0F1A]/85 backdrop-blur-xl border-b border-white/[0.08] transition-all">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-        {/* Brand Logo */}
-        <Link
-          href="/"
-          className="flex items-center gap-2 group cursor-pointer"
-          aria-label="Ecommerce By CodeSquad Homepage"
-        >
-          <span className="font-bold text-2xl tracking-tight text-white font-serif">
-            Ecommerce<span className="text-blue-500">.</span>
-          </span>
-          <span className="text-[11px] uppercase tracking-wider font-semibold text-slate-300 bg-white/[0.06] border border-white/[0.1] px-2.5 py-0.5 rounded-full shadow-2xs">
-            By CodeSquad
-          </span>
+    <header className="sticky top-0 z-40 border-b border-border bg-bg/85 text-fg backdrop-blur-xl">
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-50 focus:rounded-full focus:bg-surface-raised focus:px-4 focus:py-2 focus:type-body-sm focus:shadow-elevation-3"
+      >
+        Skip to content
+      </a>
+      <div className="container-page flex h-16 items-center justify-between">
+        <Link href="/" aria-label="Ecommerce By CodeSquad Homepage" className="rounded-sm">
+          <BrandMark />
         </Link>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="text-[15px] font-medium text-slate-300 hover:text-white transition-colors"
-            >
-              {link.label}
-            </Link>
-          ))}
-          <Link
-            href="/contact"
-            className="inline-flex items-center justify-center text-[15px] font-semibold text-white btn-glow px-4 py-2.5 rounded-xl transition-all shadow-sm"
-          >
+        {/* Desktop navigation */}
+        <nav aria-label="Main" className="hidden items-center gap-1 md:flex">
+          {navLinks.map((link) => {
+            const active = isActive(link.href);
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                aria-current={active ? "page" : undefined}
+                className={cn(
+                  "relative rounded-full px-3 py-2 type-body-sm font-medium transition-colors duration-150 ease-standard",
+                  active ? "text-fg" : "text-fg-secondary hover:bg-bg-muted hover:text-fg"
+                )}
+              >
+                {link.label}
+                {active && <span aria-hidden className="absolute inset-x-3 -bottom-px h-0.5 rounded-full bg-accent" />}
+              </Link>
+            );
+          })}
+          <ButtonLink href="/contact" size="sm" className="ml-3" trailingIcon={<ArrowUpRight {...icon.sm} />}>
             Free Store Audit
-            <ArrowUpRight className="ml-1.5 w-4 h-4 text-blue-100 group-hover:text-white" />
-          </Link>
+          </ButtonLink>
         </nav>
 
         {/* Mobile menu button */}
-        <div className="flex md:hidden">
-          <button
-            type="button"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 text-slate-300 hover:text-white focus:outline-none cursor-pointer"
-            aria-label="Toggle navigation menu"
-          >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
-        </div>
+        <button
+          type="button"
+          onClick={() => setMobileMenuOpen(true)}
+          className="-mr-2 inline-flex size-11 items-center justify-center rounded-full text-fg transition-colors duration-150 hover:bg-bg-muted md:hidden"
+          aria-label="Toggle navigation menu"
+          aria-expanded={mobileMenuOpen}
+          aria-haspopup="dialog"
+        >
+          <Menu {...icon.lg} />
+        </button>
       </div>
 
-      {/* Mobile Drawer */}
-      {mobileMenuOpen && (
-        <div className="md:hidden border-b border-white/[0.08] bg-[#0B0F1A] px-4 pt-3 pb-6 space-y-3">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              onClick={() => setMobileMenuOpen(false)}
-              className="block py-2 text-base font-medium text-slate-200 hover:text-white"
-            >
-              {link.label}
-            </Link>
-          ))}
-          <div className="pt-2">
-            <Link
-              href="/contact"
-              onClick={() => setMobileMenuOpen(false)}
-              className="w-full flex items-center justify-center text-base font-semibold text-white btn-glow py-3 rounded-xl"
-            >
-              Free Store Audit
-              <ArrowUpRight className="ml-1.5 w-4 h-4" />
-            </Link>
-          </div>
-        </div>
-      )}
+      {/* Mobile drawer */}
+      <Dialog
+        open={mobileMenuOpen}
+        onClose={() => setMobileMenuOpen(false)}
+        title="Menu"
+        variant="drawer"
+        footer={
+          <ButtonLink
+            href="/contact"
+            fullWidth
+            onClick={() => setMobileMenuOpen(false)}
+            trailingIcon={<ArrowUpRight {...icon.sm} />}
+          >
+            Free Store Audit
+          </ButtonLink>
+        }
+      >
+        <nav aria-label="Mobile">
+          <ul className="flex flex-col gap-1">
+            {navLinks.map((link) => {
+              const active = isActive(link.href);
+              return (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    aria-current={active ? "page" : undefined}
+                    className={cn(
+                      "flex min-h-12 items-center rounded-md px-4 type-body-lg font-medium transition-colors duration-150",
+                      active ? "bg-accent-subtle text-accent-text" : "text-fg hover:bg-bg-muted"
+                    )}
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
+      </Dialog>
     </header>
   );
 }
