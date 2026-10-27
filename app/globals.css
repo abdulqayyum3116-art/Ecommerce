@@ -62,6 +62,7 @@
   --font-serif: var(--font-family-display);
   --font-mono: var(--font-family-mono);
   --font-display: var(--font-family-display);
+  --font-display-italic: var(--font-fraunces-italic), "Fraunces Fallback", Georgia, serif;
   --font-body: var(--font-family-body);
 
   --text-display: var(--type-display-size);

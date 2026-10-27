@@ -22,7 +22,7 @@ export default function Hero() {
           {/* EXACTLY ONE H1 ON THE ENTIRE HOMEPAGE */}
           <h1 className="type-display mb-6 text-fg" aria-label="Turn traffic into revenue. Buyers into regulars.">
             Turn traffic into revenue.{" "}
-            <span className="block font-medium text-accent-text italic">Buyers into regulars.</span>
+            <span className="block font-display-italic font-medium text-accent-text italic">Buyers into regulars.</span>
           </h1>
 
           {/* Tagline with entrance-sequenced words */}

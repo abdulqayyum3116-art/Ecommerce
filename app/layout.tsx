@@ -4,23 +4,33 @@ import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 
-// Two families only. Both are variable fonts with an optical-size axis, so
-// display sizes get the high-contrast cut and small sizes stay sturdy.
+// Two families only. Fraunces is variable with an optical-size axis, so
+// display sizes get the high-contrast cut; DM Sans is variable on weight.
 // next/font self-hosts them, preloads the latin subset and generates a
 // metric-matched fallback (adjustFontFallback) so swapping causes no CLS.
 const fraunces = Fraunces({
   variable: "--font-fraunces",
   subsets: ["latin"],
   axes: ["opsz"],
-  style: ["normal", "italic"],
   display: "swap",
+  fallback: ["Georgia", "Times New Roman", "serif"],
+});
+
+// Italic is used for a single emphasis line, so it is not preloaded and
+// does not compete with the critical fonts.
+const frauncesItalic = Fraunces({
+  variable: "--font-fraunces-italic",
+  subsets: ["latin"],
+  axes: ["opsz"],
+  style: "italic",
+  display: "swap",
+  preload: false,
   fallback: ["Georgia", "Times New Roman", "serif"],
 });
 
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
   subsets: ["latin"],
-  axes: ["opsz"],
   display: "swap",
   fallback: ["system-ui", "Segoe UI", "Roboto", "sans-serif"],
 });
@@ -56,7 +66,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${fraunces.variable} ${dmSans.variable} h-full antialiased`}
+      className={`${fraunces.variable} ${frauncesItalic.variable} ${dmSans.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-bg text-fg">
         <Header />

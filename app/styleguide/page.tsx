@@ -170,7 +170,7 @@ export default function StyleguidePage() {
             <div className="rounded-lg border border-border bg-surface p-6">
               <p className="mb-2 type-overline text-fg-muted">Fraunces · display</p>
               <p className="type-h2">Aa Gg Rr 0123</p>
-              <p className="type-h2 font-medium italic text-accent-text">Buyers into regulars.</p>
+              <p className="type-h2 font-display-italic font-medium italic text-accent-text">Buyers into regulars.</p>
             </div>
             <div className="rounded-lg border border-border bg-surface p-6">
               <p className="mb-2 type-overline text-fg-muted">DM Sans · text</p>
