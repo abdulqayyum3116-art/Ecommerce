@@ -10,22 +10,19 @@ export default function HeroTrustStrip() {
   ];
 
   return (
-    <div className="w-full pt-8 pb-4 border-t border-white/[0.08] flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 text-xs text-slate-400">
-      <span className="font-mono text-slate-400 uppercase tracking-widest text-[11px]">
-        Engineered Ecosystem Compatibility:
-      </span>
-      <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+    <div className="flex w-full flex-col items-center justify-center gap-4 border-t border-border pt-8 pb-4">
+      <span className="type-overline text-fg-muted">Engineered Ecosystem Compatibility:</span>
+      <ul className="flex flex-wrap items-center justify-center gap-2">
         {platforms.map((p) => (
-          <div
+          <li
             key={p.name}
-            className="flex items-center gap-2 glass-card px-3.5 py-1.5 rounded-lg shadow-2xs hover:border-white/[0.15] transition-colors"
+            className="flex items-baseline gap-1.5 rounded-md border border-border bg-surface px-3 py-1.5 type-caption transition-colors duration-150 hover:border-border-strong"
           >
-            <span className="w-1.5 h-1.5 rounded-full bg-blue-400" />
-            <span className="font-semibold text-slate-200">{p.name}</span>
-            <span className="text-[10px] font-mono text-slate-400">({p.note})</span>
-          </div>
+            <span className="font-bold text-fg">{p.name}</span>
+            <span className="text-fg-muted">({p.note})</span>
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   );
 }

@@ -1,84 +1,87 @@
 "use client";
 
-import Link from "next/link";
 import { ArrowUpRight, ArrowRight, ShieldCheck, Zap } from "lucide-react";
-import StoreLoopMock from "./StoreLoopMock";
 import HeroTrustStrip from "./HeroTrustStrip";
+import { ButtonLink } from "@/components/ui/Button";
+import { Badge, StatusDot } from "@/components/ui/Badge";
+import { icon } from "@/components/ui/icon";
 
 export default function Hero() {
   const highlightWords = ["Attract.", "Convert.", "Retain."];
 
   return (
-    <section className="relative pt-16 pb-24 md:pt-24 md:pb-32 overflow-hidden bg-[#0B0F1A] mesh-gradient-hero grain text-white border-b border-white/[0.08]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="max-w-4xl mx-auto text-center">
+    <section className="relative isolate overflow-hidden border-b border-border bg-bg pt-[var(--section-y)] pb-16 text-fg md:pb-24">
+      {/* Single, rare emphasis glow behind the headline */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 -top-40 -z-10 mx-auto h-[36rem] max-w-5xl rounded-full bg-accent-subtle opacity-70 blur-3xl"
+      />
+
+      <div className="container-page">
+        <div className="mx-auto max-w-4xl text-center">
           {/* EXACTLY ONE H1 ON THE ENTIRE HOMEPAGE */}
-          <h1
-            className="text-4xl sm:text-6xl lg:text-7xl font-semibold tracking-tight text-white leading-[1.08] mb-6 pt-2"
-            aria-label="Turn traffic into revenue. Buyers into regulars."
-          >
+          <h1 className="type-display mb-6 text-fg" aria-label="Turn traffic into revenue. Buyers into regulars.">
             Turn traffic into revenue.{" "}
-            <span className="gradient-text block sm:inline">Buyers into regulars.</span>
+            <span className="block font-display-italic font-medium text-accent-text italic">Buyers into regulars.</span>
           </h1>
 
-          {/* Tagline with Entrance Sequential Words */}
-          <div className="flex items-center justify-center gap-2 text-lg sm:text-xl font-medium text-slate-200 mb-6">
+          {/* Tagline with entrance-sequenced words */}
+          <p className="mb-6 flex flex-wrap items-baseline justify-center gap-x-2 gap-y-1 type-body-lg">
             {highlightWords.map((word, index) => (
               <span
                 key={word}
-                className="inline-block font-serif text-white font-semibold"
-                style={{
-                  animationDelay: `${index * 400}ms`,
-                }}
+                className="inline-block font-display font-semibold text-fg motion-safe:animate-rise"
+                style={{ animationDelay: `${index * 80}ms` }}
               >
                 {word}
               </span>
             ))}
-            <span className="text-slate-400 font-normal">Predictable growth for modern brands.</span>
-          </div>
+            <span className="text-fg-muted">Predictable growth for modern brands.</span>
+          </p>
 
           {/* Sub-copy */}
-          <p className="max-w-2xl mx-auto text-slate-300 text-base sm:text-lg leading-relaxed mb-8">
+          <p className="mx-auto mb-8 measure type-body-lg text-fg-secondary">
             We build and optimize high-converting online stores — bespoke Shopify &amp; Headless builds, conversion-rate optimization (CRO), generative AI search SEO, paid shopping feeds, and automated customer retention.
           </p>
 
-          {/* Value Micro-Pills */}
-          <div className="flex flex-wrap items-center justify-center gap-3 mb-10 text-xs font-medium text-slate-300">
-            <span className="inline-flex items-center gap-1.5 glass-card px-3.5 py-1.5 rounded-full shadow-2xs">
-              <Zap className="w-3.5 h-3.5 text-blue-400" />
-              Sub-second Mobile PDP Speeds
-            </span>
-            <span className="inline-flex items-center gap-1.5 glass-card px-3.5 py-1.5 rounded-full shadow-2xs">
-              <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
-              Zero Bloat Architecture
-            </span>
-            <span className="inline-flex items-center gap-1.5 glass-card px-3.5 py-1.5 rounded-full shadow-2xs">
-              <span className="w-1.5 h-1.5 rounded-full bg-blue-400 pulse-dot" />
-              15-Min Speed-to-Lead Follow-up
-            </span>
-          </div>
+          {/* Value micro-pills */}
+          <ul className="mb-10 flex flex-wrap items-center justify-center gap-2">
+            <li>
+              <Badge tone="outline" icon={<Zap {...icon.sm} className="text-accent-text" />} className="shadow-elevation-1">
+                Sub-second Mobile PDP Speeds
+              </Badge>
+            </li>
+            <li>
+              <Badge tone="outline" icon={<ShieldCheck {...icon.sm} className="text-accent-text" />} className="shadow-elevation-1">
+                Zero Bloat Architecture
+              </Badge>
+            </li>
+            <li>
+              <Badge tone="outline" icon={<StatusDot live />} className="shadow-elevation-1">
+                15-Min Speed-to-Lead Follow-up
+              </Badge>
+            </li>
+          </ul>
 
-          {/* Primary & Secondary CTAs */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-            <Link
-              href="/contact"
-              className="w-full sm:w-auto inline-flex items-center justify-center text-base font-semibold text-white btn-glow px-8 py-4 rounded-xl transition-all group cursor-pointer"
-            >
+          {/* Primary & secondary CTAs */}
+          <div className="mb-16 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <ButtonLink href="/contact" size="lg" className="w-full sm:w-auto" trailingIcon={<ArrowUpRight {...icon.sm} />}>
               Free Store Audit
-              <ArrowUpRight className="ml-2 w-4 h-4 text-blue-100 group-hover:text-white transition-colors" />
-            </Link>
-            <Link
+            </ButtonLink>
+            <ButtonLink
               href="/case-studies"
-              className="w-full sm:w-auto inline-flex items-center justify-center text-base font-medium text-slate-200 hover:text-white btn-ghost-dark px-8 py-4 rounded-xl transition-colors cursor-pointer"
+              variant="secondary"
+              size="lg"
+              className="w-full sm:w-auto"
+              trailingIcon={<ArrowRight {...icon.sm} className="text-fg-muted" />}
             >
               View Case Studies
-              <ArrowRight className="ml-2 w-4 h-4 text-slate-400" />
-            </Link>
+            </ButtonLink>
           </div>
         </div>
 
-        {/* Ecosystem Trust Strip */}
-        <div className="max-w-5xl mx-auto">
+        {/* Ecosystem trust strip */}
+        <div className="mx-auto max-w-5xl">
           <HeroTrustStrip />
         </div>
       </div>

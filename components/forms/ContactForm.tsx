@@ -1,7 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { CheckCircle2, ArrowRight, AlertCircle, Sparkles } from "lucide-react";
+import { CheckCircle2, ArrowRight, Sparkles } from "lucide-react";
+import { Button } from "@/components/ui/Button";
+import { Field, Input, Select, Textarea, ChoiceChip } from "@/components/ui/Field";
+import { Alert } from "@/components/ui/Feedback";
+import { icon } from "@/components/ui/icon";
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -54,20 +58,28 @@ export default function ContactForm() {
     }
   };
 
+  // Show field-level errors only after a failed submit.
+  const showFieldErrors = Boolean(errorMessage);
+  const requiredError = (value: string, label: string) =>
+    showFieldErrors && !value ? `${label} is required.` : undefined;
+
   if (submitted) {
     return (
-      <div className="bg-emerald-50/80 border border-emerald-200/90 rounded-2xl p-8 sm:p-10 text-center shadow-sm">
-        <div className="w-14 h-14 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto mb-5 shadow-2xs">
-          <CheckCircle2 className="w-7 h-7" />
-        </div>
-        <h3 className="text-2xl font-bold text-emerald-950 mb-2 font-serif">
-          Audit Request Received
-        </h3>
-        <p className="text-emerald-800 text-sm max-w-md mx-auto mb-6 leading-relaxed">
-          Thank you, <strong className="font-semibold text-emerald-950">{formData.name}</strong>. Our engineering team will review{" "}
-          <span className="font-mono font-semibold bg-emerald-100/70 px-2 py-0.5 rounded text-emerald-900">{formData.storeUrl}</span> and deliver your performance audit within [RESPONSE TIME — TO CONFIRM].
+      <div
+        role="status"
+        className="rounded-xl border border-success-border bg-success-bg p-8 text-center text-success-text sm:p-10"
+      >
+        <span className="mx-auto mb-5 flex size-14 items-center justify-center rounded-full bg-surface-raised text-success-solid shadow-elevation-1">
+          <CheckCircle2 {...icon.lg} size={28} />
+        </span>
+        <h3 className="mb-2 type-h3">Audit Request Received</h3>
+        <p className="mx-auto mb-6 max-w-md type-body-sm">
+          Thank you, <strong className="font-bold">{formData.name}</strong>. Our engineering team will review{" "}
+          <code className="rounded-sm bg-surface-raised px-2 py-0.5 type-code">{formData.storeUrl}</code> and deliver your performance audit within [RESPONSE TIME — TO CONFIRM].
         </p>
-        <button
+        <Button
+          variant="secondary"
+          size="sm"
           onClick={() => {
             setSubmitted(false);
             setFormData({
@@ -79,10 +91,9 @@ export default function ContactForm() {
               message: "",
             });
           }}
-          className="text-xs font-semibold text-emerald-900 underline hover:text-emerald-700 cursor-pointer"
         >
           Submit another inquiry
-        </button>
+        </Button>
       </div>
     );
   }
@@ -90,139 +101,113 @@ export default function ContactForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-white rounded-2xl p-8 sm:p-10 border border-slate-200/90 shadow-sm space-y-6"
+      className="space-y-6 rounded-xl border border-border bg-surface-raised p-6 shadow-elevation-3 sm:p-10"
     >
-      <div className="flex items-center gap-2 pb-2 border-b border-slate-100">
-        <Sparkles className="w-4 h-4 text-blue-600" />
-        <span className="text-xs font-semibold uppercase tracking-wider text-slate-800">
-          Store Details &amp; Priority Diagnostic
-        </span>
+      <div className="flex items-center gap-2 border-b border-border pb-4">
+        <Sparkles {...icon.sm} className="text-accent-text" />
+        <span className="type-overline text-fg">Store Details &amp; Priority Diagnostic</span>
       </div>
 
       {errorMessage && (
-        <div className="p-4 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs flex items-center gap-2">
-          <AlertCircle className="w-4 h-4 shrink-0" />
-          <span>{errorMessage}</span>
-        </div>
+        <Alert tone="danger" title="Please check the form">
+          {errorMessage}
+        </Alert>
       )}
 
-      {/* Primary Concern Pills */}
-      <div>
-        <label className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-2.5">
-          Primary Growth Bottleneck
-        </label>
+      {/* Primary concern */}
+      <fieldset>
+        <legend className="mb-3 type-body-sm font-bold text-fg">Primary Growth Bottleneck</legend>
         <div className="flex flex-wrap gap-2">
-          {concerns.map((c) => {
-            const isSelected = formData.primaryConcern === c;
-            return (
-              <button
-                key={c}
-                type="button"
-                onClick={() => setFormData({ ...formData, primaryConcern: c })}
-                className={`text-xs px-3 py-1.5 rounded-lg border font-medium transition-all cursor-pointer ${
-                  isSelected
-                    ? "bg-blue-600 text-white border-blue-600 shadow-2xs"
-                    : "bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100"
-                }`}
-              >
-                {c}
-              </button>
-            );
-          })}
+          {concerns.map((c) => (
+            <ChoiceChip
+              key={c}
+              selected={formData.primaryConcern === c}
+              onClick={() => setFormData({ ...formData, primaryConcern: c })}
+            >
+              {c}
+            </ChoiceChip>
+          ))}
         </div>
-      </div>
+      </fieldset>
 
-      {/* Name */}
-      <div>
-        <label htmlFor="name" className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-2">
-          Full Name <span className="text-red-500">*</span>
-        </label>
-        <input
-          id="name"
-          type="text"
-          required
-          value={formData.name}
-          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-          placeholder="e.g. Sarah Jenkins"
-          className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 text-sm text-slate-900 placeholder:text-slate-400 bg-slate-50/50"
-        />
-      </div>
+      <Field label="Full Name" required error={requiredError(formData.name, "Full name")}>
+        {(field) => (
+          <Input
+            {...field}
+            type="text"
+            autoComplete="name"
+            value={formData.name}
+            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+            placeholder="e.g. Sarah Jenkins"
+          />
+        )}
+      </Field>
 
-      {/* Email */}
-      <div>
-        <label htmlFor="email" className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-2">
-          Work Email <span className="text-red-500">*</span>
-        </label>
-        <input
-          id="email"
-          type="email"
-          required
-          value={formData.email}
-          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-          placeholder="sarah@yourbrand.com"
-          className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 text-sm text-slate-900 placeholder:text-slate-400 bg-slate-50/50"
-        />
-      </div>
+      <Field label="Work Email" required error={requiredError(formData.email, "Work email")}>
+        {(field) => (
+          <Input
+            {...field}
+            type="email"
+            autoComplete="email"
+            value={formData.email}
+            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+            placeholder="sarah@yourbrand.com"
+          />
+        )}
+      </Field>
 
-      {/* Store URL */}
-      <div>
-        <label htmlFor="storeUrl" className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-2">
-          Store Website URL <span className="text-red-500">*</span>
-        </label>
-        <input
-          id="storeUrl"
-          type="url"
-          required
-          value={formData.storeUrl}
-          onChange={(e) => setFormData({ ...formData, storeUrl: e.target.value })}
-          placeholder="https://yourstore.com"
-          className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 text-sm text-slate-900 placeholder:text-slate-400 bg-slate-50/50"
-        />
-      </div>
+      <Field label="Store Website URL" required error={requiredError(formData.storeUrl, "Store URL")}>
+        {(field) => (
+          <Input
+            {...field}
+            type="url"
+            autoComplete="url"
+            value={formData.storeUrl}
+            onChange={(e) => setFormData({ ...formData, storeUrl: e.target.value })}
+            placeholder="https://yourstore.com"
+          />
+        )}
+      </Field>
 
-      {/* Monthly Orders Select */}
-      <div>
-        <label htmlFor="monthlyOrders" className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-2">
-          Estimated Monthly Orders (Optional)
-        </label>
-        <select
-          id="monthlyOrders"
-          value={formData.monthlyOrders}
-          onChange={(e) => setFormData({ ...formData, monthlyOrders: e.target.value })}
-          className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 text-sm text-slate-900 bg-slate-50/50"
-        >
-          <option value="< 100">&lt; 100 orders / month</option>
-          <option value="100 - 500">100 – 500 orders / month</option>
-          <option value="500 - 2,000">500 – 2,000 orders / month</option>
-          <option value="2,000+">2,000+ orders / month</option>
-        </select>
-      </div>
+      <Field label="Estimated Monthly Orders" optional>
+        {(field) => (
+          <Select
+            {...field}
+            value={formData.monthlyOrders}
+            onChange={(e) => setFormData({ ...formData, monthlyOrders: e.target.value })}
+          >
+            <option value="< 100">&lt; 100 orders / month</option>
+            <option value="100 - 500">100 – 500 orders / month</option>
+            <option value="500 - 2,000">500 – 2,000 orders / month</option>
+            <option value="2,000+">2,000+ orders / month</option>
+          </Select>
+        )}
+      </Field>
 
-      {/* Message */}
-      <div>
-        <label htmlFor="message" className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-2">
-          What is your primary conversion or technical challenge?
-        </label>
-        <textarea
-          id="message"
-          rows={3}
-          value={formData.message}
-          onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-          placeholder="e.g. Our mobile product pages load in 4.5s and checkout abandonment is high..."
-          className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 text-sm text-slate-900 placeholder:text-slate-400 bg-slate-50/50 resize-y"
-        />
-      </div>
+      <Field label="What is your primary conversion or technical challenge?">
+        {(field) => (
+          <Textarea
+            {...field}
+            rows={3}
+            value={formData.message}
+            onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+            placeholder="e.g. Our mobile product pages load in 4.5s and checkout abandonment is high..."
+          />
+        )}
+      </Field>
 
-      <button
+      <Button
         type="submit"
-        disabled={submitting}
-        className="w-full inline-flex items-center justify-center text-base font-semibold text-white bg-slate-950 hover:bg-slate-800 py-4 rounded-xl transition-all shadow-sm hover:shadow disabled:opacity-50 cursor-pointer"
+        size="lg"
+        fullWidth
+        loading={submitting}
+        loadingLabel="Analyzing Store..."
+        trailingIcon={<ArrowRight {...icon.sm} />}
       >
-        {submitting ? "Analyzing Store..." : "Request Free Store Audit"}
-        <ArrowRight className="ml-2 w-4 h-4 text-slate-400" />
-      </button>
+        Request Free Store Audit
+      </Button>
 
-      <p className="text-center text-xs text-slate-400">
+      <p className="text-center type-caption text-fg-muted">
         Strict privacy: We never share store metrics or customer data with third parties.
       </p>
     </form>

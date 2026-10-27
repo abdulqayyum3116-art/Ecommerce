@@ -1,5 +1,9 @@
-import Link from "next/link";
 import { ArrowUpRight, Shirt, Sparkles, Cpu, ShoppingBag } from "lucide-react";
+import { Section, Container, SectionHeader } from "@/components/ui/Section";
+import { Card, IconTile } from "@/components/ui/Card";
+import { Badge } from "@/components/ui/Badge";
+import { TextLink } from "@/components/ui/Button";
+import { icon } from "@/components/ui/icon";
 
 interface Niche {
   title: string;
@@ -42,66 +46,48 @@ const niches: Niche[] = [
 
 export default function NichesSection() {
   return (
-    <section className="py-24 bg-[#0B0F1A] text-white border-b border-white/[0.08] relative overflow-hidden" aria-labelledby="niches-heading">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="max-w-3xl mb-16">
-          <span className="eyebrow-dark">
-            Specialized Verticals
-          </span>
-          <h2 id="niches-heading" className="text-3xl sm:text-4xl md:text-5xl font-semibold mt-4 text-white">
-            Engineered for high-velocity ecommerce niches.
-          </h2>
-          <p className="text-slate-300 text-lg mt-4 leading-relaxed">
-            Generic templates fail specialized catalogs. We tailor UX, checkout ergonomics, and retention automations to the exact purchasing rhythms of your industry.
-          </p>
-        </div>
+    <Section aria-labelledby="niches-heading">
+      <Container>
+        <SectionHeader
+          id="niches-heading"
+          overline="Specialized Verticals"
+          title="Engineered for high-velocity ecommerce niches."
+          lead="Generic templates fail specialized catalogs. We tailor UX, checkout ergonomics, and retention automations to the exact purchasing rhythms of your industry."
+        />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <ul className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
           {niches.map((niche) => {
             const Icon = niche.icon;
             return (
-              <div
-                key={niche.title}
-                className="glass-card rounded-2xl p-7 hover:border-white/[0.18] transition-all duration-300 hover:shadow-xl flex flex-col justify-between"
-              >
+              <Card as="li" key={niche.title} className="flex flex-col justify-between">
                 <div>
-                  <div className="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 mb-6">
-                    <Icon className="w-6 h-6" />
-                  </div>
-                  <span className="text-[11px] font-mono font-medium text-slate-400 uppercase tracking-wider block mb-2">
-                    {niche.focusArea}
-                  </span>
-                  <h3 className="text-xl font-bold text-white mb-3">
-                    {niche.title}
-                  </h3>
-                  <p className="text-slate-300 text-sm leading-relaxed mb-6">
-                    {niche.description}
-                  </p>
+                  <IconTile className="mb-6">
+                    <Icon {...icon.lg} />
+                  </IconTile>
+                  <p className="mb-2 type-overline text-fg-muted">{niche.focusArea}</p>
+                  <h3 className="mb-3 type-h4 text-fg">{niche.title}</h3>
+                  <p className="mb-6 type-body-sm text-fg-secondary">{niche.description}</p>
                 </div>
-
-                <div className="pt-4 border-t border-white/[0.08]">
-                  <span className="text-xs font-semibold text-slate-200 bg-white/[0.06] border border-white/[0.1] px-2.5 py-1 rounded">
+                <div className="border-t border-border pt-4">
+                  <Badge tone="accent" shape="tag">
                     {niche.badge}
-                  </span>
+                  </Badge>
                 </div>
-              </div>
+              </Card>
             );
           })}
-        </div>
+        </ul>
 
-        <div className="mt-14 p-6 glass-card rounded-xl flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-slate-300">
+        <Card tone="subtle" className="mt-12 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
+          <p className="type-body-sm text-fg-secondary">
             Operating in a different direct-to-consumer vertical or B2B commerce? We build custom catalog architectures.
           </p>
-          <Link
-            href="/contact"
-            className="inline-flex items-center text-sm font-semibold text-blue-400 hover:text-blue-300 whitespace-nowrap"
-          >
+          <TextLink href="/contact" className="shrink-0 whitespace-nowrap">
             Request custom vertical audit
-            <ArrowUpRight className="ml-1 w-4 h-4" />
-          </Link>
-        </div>
-      </div>
-    </section>
+            <ArrowUpRight {...icon.sm} />
+          </TextLink>
+        </Card>
+      </Container>
+    </Section>
   );
 }

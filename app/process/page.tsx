@@ -1,6 +1,11 @@
-import Link from "next/link";
 import { ArrowUpRight, CheckCircle2, ShieldCheck, Zap, BarChart3, Repeat } from "lucide-react";
 import { generateSeoMetadata } from "@/lib/seo";
+import { PageHero } from "@/components/ui/PageHero";
+import { Section, Container } from "@/components/ui/Section";
+import { Card, IconTile } from "@/components/ui/Card";
+import { ButtonLink } from "@/components/ui/Button";
+import { CtaBand } from "@/components/ui/CtaBand";
+import { icon } from "@/components/ui/icon";
 
 export const metadata = generateSeoMetadata({
   title: "Our Process | How We Build & Scale Stores | CodeSquad",
@@ -62,97 +67,65 @@ const steps = [
 
 export default function ProcessPage() {
   return (
-    <div className="bg-[#FAFBFC]">
-      {/* Header (Dark Mesh) */}
-      <section className="pt-20 pb-24 border-b border-white/[0.08] mesh-gradient-hero grain text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="max-w-3xl">
-            <span className="eyebrow-dark mb-6">
-              Engineering Rigor
-            </span>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold text-white tracking-tight leading-tight mb-6">
-              A systematic, four-phase process for predictable store growth.
-            </h1>
-            <p className="text-slate-300 text-lg leading-relaxed">
-              We do not rely on guesswork or cookie-cutter templates. Every project follows an engineering cadence designed to protect your existing revenue while unlocking higher margins and conversion rates.
-            </p>
-          </div>
-        </div>
-      </section>
+    <div className="bg-bg">
+      <PageHero
+        overline="Engineering Rigor"
+        title="A systematic, four-phase process for predictable store growth."
+        lead="We do not rely on guesswork or cookie-cutter templates. Every project follows an engineering cadence designed to protect your existing revenue while unlocking higher margins and conversion rates."
+      />
 
-      {/* Process Steps */}
-      <section className="py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="space-y-12">
+      {/* Process steps */}
+      <Section tone="subtle" aria-label="Process phases">
+        <Container>
+          <ol className="relative space-y-8">
             {steps.map((step, idx) => {
               const Icon = step.icon;
               return (
-                <div
-                  key={step.phase}
-                  className="card-light p-8 sm:p-12"
-                >
-                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                <Card as="li" key={step.phase} padding="lg">
+                  <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-12">
                     <div className="lg:col-span-4">
-                      <div className="flex items-center gap-3 mb-4">
-                        <div className="w-12 h-12 rounded-xl bg-blue-600 text-white flex items-center justify-center font-bold text-base shadow-sm shadow-blue-600/30">
-                          <Icon className="w-6 h-6" />
-                        </div>
-                        <span className="text-xs font-mono font-semibold uppercase tracking-wider text-slate-500">
+                      <div className="mb-4 flex items-center gap-3">
+                        <IconTile tone="solid">
+                          <Icon {...icon.lg} />
+                        </IconTile>
+                        <span className="type-overline numeric text-fg-muted">
                           {step.phase} (0{idx + 1})
                         </span>
                       </div>
-                      <h2 className="text-2xl sm:text-3xl font-bold text-slate-950 mb-3">
-                        {step.name}
-                      </h2>
-                      <p className="text-slate-600 text-base leading-relaxed">
-                        {step.tagline}
-                      </p>
+                      <h2 className="mb-3 type-h3 text-fg">{step.name}</h2>
+                      <p className="type-body text-fg-secondary">{step.tagline}</p>
                     </div>
 
-                    <div className="lg:col-span-8 bg-slate-50 p-6 sm:p-8 rounded-2xl border border-slate-200">
-                      <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-900 mb-4">
-                        Core Phase Deliverables:
-                      </h3>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="rounded-lg border border-border bg-bg-subtle p-6 sm:p-8 lg:col-span-8">
+                      <h3 className="mb-4 type-overline text-fg">Core Phase Deliverables:</h3>
+                      <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                         {step.deliverables.map((deliv, i) => (
-                          <div key={i} className="flex items-start gap-2.5">
-                            <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                            <span className="text-sm text-slate-700 leading-snug">
-                              {deliv}
-                            </span>
-                          </div>
+                          <li key={i} className="flex items-start gap-2.5">
+                            <CheckCircle2 {...icon.sm} className="mt-0.5 shrink-0 text-success-solid" />
+                            <span className="type-body-sm text-fg-secondary">{deliv}</span>
+                          </li>
                         ))}
-                      </div>
+                      </ul>
                     </div>
                   </div>
-                </div>
+                </Card>
               );
             })}
-          </div>
-        </div>
-      </section>
+          </ol>
+        </Container>
+      </Section>
 
-      {/* Turnaround Time Note & CTA (Dark Mesh) */}
-      <section className="py-24 bg-[#0B0F1A] text-white grain border-t border-white/[0.08]">
-        <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
-          <span className="eyebrow-dark mb-4">
-            Predictable Timelines
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-semibold mb-4 text-white mt-2">
-            Standard store builds launch in [TIMELINE — TO CONFIRM].
-          </h2>
-          <p className="text-slate-300 max-w-xl mx-auto text-base mb-8">
-            Start with a diagnostic audit of your store before committing to a full redesign.
-          </p>
-          <Link
-            href="/contact"
-            className="inline-flex items-center text-base font-semibold text-white btn-glow px-8 py-4 rounded-xl transition-all shadow-sm"
-          >
+      <CtaBand
+        id="process-cta-heading"
+        overline="Predictable Timelines"
+        title="Standard store builds launch in [TIMELINE — TO CONFIRM]."
+        lead="Start with a diagnostic audit of your store before committing to a full redesign."
+        actions={
+          <ButtonLink href="/contact" size="lg" trailingIcon={<ArrowUpRight {...icon.sm} />}>
             Schedule Store Audit Call
-            <ArrowUpRight className="ml-1.5 w-4 h-4 text-blue-100" />
-          </Link>
-        </div>
-      </section>
+          </ButtonLink>
+        }
+      />
     </div>
   );
 }
