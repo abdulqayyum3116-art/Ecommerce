@@ -72,8 +72,8 @@ export default function AutomationCrmPage() {
           description: "Deploying live automations with step-by-step documentation for your warehouse and support teams.",
         },
       ]}
-      relatedCaseStudySlug="electronics-order-automation"
-      relatedCaseStudyTitle="High-Ticket Electronics Catalog & Automated Multi-Warehouse CRM"
+      relatedCaseStudySlug="ipromo"
+      relatedCaseStudyTitle="iPromo"
     />
   );
 }

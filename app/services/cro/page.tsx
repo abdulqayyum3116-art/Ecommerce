@@ -72,8 +72,8 @@ export default function CroPage() {
           description: "Tracking lift in conversion rate, average order value, and revenue per session.",
         },
       ]}
-      relatedCaseStudySlug="beauty-skincare-cro"
-      relatedCaseStudyTitle="Beauty & Regimen Bundle Builder With Automated Replenishment"
+      relatedCaseStudySlug="gengyveusa"
+      relatedCaseStudyTitle="GengyveUSA"
     />
   );
 }

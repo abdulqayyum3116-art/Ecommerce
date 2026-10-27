@@ -1,8 +1,10 @@
+import Image from "next/image";
 import { ArrowUpRight, CheckCircle2, ArrowRight, X } from "lucide-react";
+import { getCaseStudy } from "@/lib/caseStudiesData";
+import { Metrics } from "@/components/case-studies/CaseStudyCard";
 import { PageHero } from "@/components/ui/PageHero";
 import { Section, Container, SectionHeader, Overline } from "@/components/ui/Section";
 import { Card } from "@/components/ui/Card";
-import { Badge } from "@/components/ui/Badge";
 import { Alert } from "@/components/ui/Feedback";
 import { ButtonLink, TextLink } from "@/components/ui/Button";
 import { CtaBand } from "@/components/ui/CtaBand";
@@ -36,6 +38,7 @@ interface ServiceTemplateProps {
 }
 
 export default function ServiceTemplate(props: ServiceTemplateProps) {
+  const related = getCaseStudy(props.relatedCaseStudySlug);
   return (
     <div className="bg-bg">
       <PageHero
@@ -138,16 +141,21 @@ export default function ServiceTemplate(props: ServiceTemplateProps) {
       {/* Related case study */}
       <section className="bg-bg-subtle py-16">
         <Container>
-          <Card padding="lg" className="flex flex-col justify-between gap-6 border-l-4 border-l-accent md:flex-row md:items-center">
+          <Card padding="lg" className="grid gap-6 border-l-4 border-l-accent md:grid-cols-[auto_1fr_auto] md:items-center">
+            {related && (
+              <div className="relative hidden aspect-[3/2] w-40 overflow-hidden rounded-md bg-bg-muted md:block">
+                <Image src={related.cover.src} alt="" fill sizes="10rem" className="object-cover" />
+              </div>
+            )}
             <div>
               <span className="mb-1 block type-caption text-fg-muted">Related Implementation Study</span>
-              <h2 className="mb-2 type-h4 text-fg">{props.relatedCaseStudyTitle}</h2>
-              <p className="flex flex-wrap items-center gap-2 type-body-sm text-fg-secondary">
-                Performance outcome:
-                <Badge tone="warning" shape="tag">
-                  [RESULT — TO CONFIRM]
-                </Badge>
-              </p>
+              <h2 className="type-h4 text-fg">{props.relatedCaseStudyTitle}</h2>
+              {related && (
+                <>
+                  <p className="mt-1 type-body-sm text-fg-secondary">{related.tagline}</p>
+                  <Metrics metrics={related.metrics} limit={2} size="sm" className="mt-4 max-w-sm" />
+                </>
+              )}
             </div>
             <TextLink href={`/case-studies/${props.relatedCaseStudySlug}`} className="shrink-0 whitespace-nowrap">
               Read full technical breakdown

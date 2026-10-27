@@ -73,8 +73,8 @@ export default function StoreBuildPage() {
           description: "Extensive cross-browser checkout testing, 301 redirect mapping, and zero-downtime DNS deployment.",
         },
       ]}
-      relatedCaseStudySlug="apparel-dtc-growth"
-      relatedCaseStudyTitle="Multi-SKU Apparel Storefront Re-Architecture & Mobile Checkout Streamline"
+      relatedCaseStudySlug="mamas-compass"
+      relatedCaseStudyTitle="Mama's Compass"
     />
   );
 }

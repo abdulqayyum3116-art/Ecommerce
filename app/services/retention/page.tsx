@@ -72,8 +72,8 @@ export default function RetentionPage() {
           description: "Continuous testing of send time delays, SMS copy variations, and dynamic product recommendations.",
         },
       ]}
-      relatedCaseStudySlug="beauty-skincare-cro"
-      relatedCaseStudyTitle="Beauty & Regimen Bundle Builder With Automated Replenishment"
+      relatedCaseStudySlug="ipromo"
+      relatedCaseStudyTitle="iPromo"
     />
   );
 }

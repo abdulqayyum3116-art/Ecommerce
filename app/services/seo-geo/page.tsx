@@ -72,8 +72,8 @@ export default function SeoGeoPage() {
           description: "Tracking rich snippet impressions, Merchant Center clicks, and AI engine referral mentions.",
         },
       ]}
-      relatedCaseStudySlug="apparel-dtc-growth"
-      relatedCaseStudyTitle="Multi-SKU Apparel Storefront Re-Architecture & Mobile Checkout Streamline"
+      relatedCaseStudySlug="energybits"
+      relatedCaseStudyTitle="ENERGYbits"
     />
   );
 }

@@ -72,8 +72,8 @@ export default function PaidAdsPage() {
           description: "Weekly bid optimization and negative keyword maintenance focused on net profit per order.",
         },
       ]}
-      relatedCaseStudySlug="electronics-order-automation"
-      relatedCaseStudyTitle="High-Ticket Electronics Catalog & Automated Multi-Warehouse CRM"
+      relatedCaseStudySlug="gengyveusa"
+      relatedCaseStudyTitle="GengyveUSA"
     />
   );
 }
