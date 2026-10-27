@@ -220,3 +220,32 @@ accent button.
 
 Modal, toast, table, pagination, skeleton, switch, checkbox, radio — the site
 has no screens using them today.
+
+## 7. QA results (production build, 27 Oct 2026)
+
+**Lighthouse** (mobile profile, median of 3 runs, original commit vs this branch):
+
+| Route | Performance | Accessibility | LCP | TBT | CLS |
+|---|---|---|---|---|---|
+| `/` | 93 → **94** | 94 → **100** | 2.99 → 3.09 s | 142 → 52 ms | 0 → 0 |
+| `/services` | 94 → **98** | 94 → **100** | 2.86 → 2.33 s | 140 → 84 ms | 0 → 0 |
+| `/contact` | 93 → **96** | 96 → **100** | 2.81 → 2.66 s | 190 → 121 ms | 0 → 0 |
+
+Best-practices and SEO were 100 on every route measured. `/` is one point
+under the 95 target; its LCP element (the hero sub-copy paragraph, same as
+before) is ~0.1 s slower because the page ships slightly more CSS/JS (token
+sheet, client tabs + dialog). Font payload was cut to stay ahead: preloaded
+fonts ~104 KB vs ~148 KB originally (Fraunces italic is lazy and
+`display: optional`; DM Sans has no `opsz` axis).
+
+**axe-core** (WCAG 2.0/2.1 A + AA + best practices): 0 violations on all 10
+routes × light and dark.
+
+**Keyboard**: skip link → `<main>`; visible 2 px focus ring on every stop;
+tabs move with ← → Home End; mobile drawer traps focus, closes on Esc and
+returns focus to the toggle (`aria-expanded` updates); filter chips toggle
+with Space; the contact form's native validation focuses the first empty
+field.
+
+**Responsive**: no horizontal overflow on any route at 320, 375 and 1440 px
+in either theme.
