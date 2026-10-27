@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState, useSyncExternalStore } from "react";
-import { UserCheck, Eye, ShoppingCart, CreditCard, CheckCircle2, RefreshCw, Sparkles, Pause, Play } from "lucide-react";
+import { UserCheck, Eye, ShoppingCart, CreditCard, CheckCircle2, RefreshCw } from "lucide-react";
 import { cn } from "@/lib/cn";
 import { StatusDot } from "@/components/ui/Badge";
 import { icon } from "@/components/ui/icon";
@@ -114,34 +114,13 @@ export default function StoreLoopMock() {
       <div className="mb-6 flex flex-col justify-between gap-3 border-b border-border pb-4 sm:flex-row sm:items-center">
         <div className="flex items-center gap-3">
           <StatusDot live={!isPaused} />
-          <span className="type-overline text-fg-secondary">Live Conversion Flow Sequence</span>
+          <span className="type-overline text-fg-secondary">Conversion Flow Sequence</span>
           <span className="hidden rounded-sm border border-accent-subtle-border bg-accent-subtle px-2 py-0.5 type-caption text-accent-text sm:inline-block">
             Interactive Teardown
           </span>
         </div>
 
         <div className="flex items-center gap-4 type-caption text-fg-muted">
-          <button
-            type="button"
-            onClick={() => {
-              setInteracting(false);
-              setIsPaused(!isPaused);
-            }}
-            className="inline-flex min-h-9 items-center gap-1.5 rounded-full border border-border-strong bg-surface-raised px-3 py-1.5 text-fg transition-colors duration-150 hover:bg-bg-muted"
-            aria-label={isPaused ? "Resume automated loop" : "Pause automated loop"}
-          >
-            {isPaused ? (
-              <>
-                <Play {...icon.sm} size={14} className="text-success-solid" />
-                <span>Paused (Click to Resume)</span>
-              </>
-            ) : (
-              <>
-                <Pause {...icon.sm} size={14} />
-                <span>Auto-playing (Hover to Pause)</span>
-              </>
-            )}
-          </button>
           <span className="hidden numeric sm:inline-block">
             Step 0{activeStep + 1} / 06
           </span>
@@ -218,7 +197,6 @@ export default function StoreLoopMock() {
         </div>
 
         <div className="flex shrink-0 items-center gap-2 rounded-full border border-border bg-surface px-3.5 py-1.5 type-body-sm font-medium text-fg-secondary">
-          <Sparkles {...icon.sm} className="text-accent-text" />
           <span>
             Metric: <strong className="text-success-text">{current.metric}</strong>
           </span>
