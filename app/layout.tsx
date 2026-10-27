@@ -17,13 +17,14 @@ const fraunces = Fraunces({
 });
 
 // Italic is used for a single emphasis line, so it is not preloaded and
-// does not compete with the critical fonts.
+// does not compete with the critical fonts. `optional` means a late file is
+// never swapped in, so it cannot shift layout (it is used from cache next time).
 const frauncesItalic = Fraunces({
   variable: "--font-fraunces-italic",
   subsets: ["latin"],
   axes: ["opsz"],
   style: "italic",
-  display: "swap",
+  display: "optional",
   preload: false,
   fallback: ["Georgia", "Times New Roman", "serif"],
 });
