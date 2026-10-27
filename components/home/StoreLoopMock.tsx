@@ -68,7 +68,7 @@ const steps: Step[] = [
 ];
 
 export default function StoreLoopMock() {
-  const { index: activeStep, isPaused, select, pauseHandlers } = useAutoAdvance(steps.length, 2000);
+  const { index: activeStep, isPaused, select, ref, pauseHandlers } = useAutoAdvance(steps.length, 2000);
 
   const current = steps[activeStep];
   const CurrentIcon = current.icon;
@@ -76,6 +76,7 @@ export default function StoreLoopMock() {
   return (
     <div
       className="relative w-full overflow-hidden rounded-xl border border-border bg-surface p-5 text-fg shadow-elevation-4 md:p-8"
+      ref={ref}
       {...pauseHandlers}
     >
       {/* Header & status bar */}

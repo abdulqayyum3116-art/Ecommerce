@@ -54,7 +54,7 @@ const stages: Stage[] = [
 ];
 
 export default function GrowthCycle() {
-  const { index: activeStageIndex, select, pauseHandlers } = useAutoAdvance(stages.length, 3000);
+  const { index: activeStageIndex, select, ref, pauseHandlers } = useAutoAdvance(stages.length, 3000);
   const activeStage = stages[activeStageIndex];
   const ActiveIcon = activeStage.icon;
 
@@ -69,7 +69,7 @@ export default function GrowthCycle() {
           lead="The four connected stages of a profitable online store. We engineer and automate each transition point so your store scales predictably."
         />
 
-        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12" {...pauseHandlers}>
+        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12" ref={ref} {...pauseHandlers}>
           {/* Rotating ring */}
           <div className="flex justify-center lg:col-span-5">
             <div className="relative flex size-72 items-center justify-center sm:size-80">
