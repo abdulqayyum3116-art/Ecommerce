@@ -1,4 +1,205 @@
 @import "tailwindcss";
+@import "./styles/tokens.css";
+
+/*
+ * ─── Design-system wiring ─────────────────────────────────────────────
+ * Tailwind utilities that read the semantic tokens in styles/tokens.css.
+ * Components use these (bg-surface, text-fg-muted, type-h2, shadow-elevation-3…),
+ * never raw hex or px font sizes.
+ *
+ * Phase note: Tailwind's built-in radius / shadow / font-family / breakpoint
+ * names are remapped to tokens in the global-styles phase so that current
+ * pages do not shift before the system is approved.
+ */
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-subtle: var(--bg-subtle);
+  --color-bg-muted: var(--bg-muted);
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-fg: var(--text-primary);
+  --color-fg-secondary: var(--text-secondary);
+  --color-fg-muted: var(--text-muted);
+  --color-fg-inverse: var(--text-inverse);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-pressed: var(--accent-pressed);
+  --color-accent-subtle: var(--accent-subtle);
+  --color-accent-subtle-border: var(--accent-subtle-border);
+  --color-accent-text: var(--accent-text);
+  --color-on-accent: var(--on-accent);
+  --color-focus-ring: var(--focus-ring);
+  --color-overlay: var(--overlay);
+  --color-success-bg: var(--success-bg);
+  --color-success-border: var(--success-border);
+  --color-success-text: var(--success-text);
+  --color-success-solid: var(--success-solid);
+  --color-warning-bg: var(--warning-bg);
+  --color-warning-border: var(--warning-border);
+  --color-warning-text: var(--warning-text);
+  --color-warning-solid: var(--warning-solid);
+  --color-danger-bg: var(--danger-bg);
+  --color-danger-border: var(--danger-border);
+  --color-danger-text: var(--danger-text);
+  --color-danger-solid: var(--danger-solid);
+  --color-info-bg: var(--info-bg);
+  --color-info-border: var(--info-border);
+  --color-info-text: var(--info-text);
+  --color-info-solid: var(--info-solid);
+
+  --font-display: var(--font-family-display);
+  --font-body: var(--font-family-body);
+  --font-code: var(--font-family-mono);
+
+  --text-display: var(--type-display-size);
+  --text-display--line-height: var(--type-display-leading);
+  --text-display--letter-spacing: var(--type-display-tracking);
+  --text-h1: var(--type-h1-size);
+  --text-h1--line-height: var(--type-h1-leading);
+  --text-h1--letter-spacing: var(--type-h1-tracking);
+  --text-h2: var(--type-h2-size);
+  --text-h2--line-height: var(--type-h2-leading);
+  --text-h2--letter-spacing: var(--type-h2-tracking);
+  --text-h3: var(--type-h3-size);
+  --text-h3--line-height: var(--type-h3-leading);
+  --text-h3--letter-spacing: var(--type-h3-tracking);
+  --text-h4: var(--type-h4-size);
+  --text-h4--line-height: var(--type-h4-leading);
+  --text-h4--letter-spacing: var(--type-h4-tracking);
+  --text-body-lg: var(--type-body-lg-size);
+  --text-body-lg--line-height: var(--type-body-lg-leading);
+  --text-body: var(--type-body-size);
+  --text-body--line-height: var(--type-body-leading);
+  --text-body-sm: var(--type-body-sm-size);
+  --text-body-sm--line-height: var(--type-body-sm-leading);
+  --text-caption: var(--type-caption-size);
+  --text-caption--line-height: var(--type-caption-leading);
+
+  --shadow-elevation-1: var(--elevation-1);
+  --shadow-elevation-2: var(--elevation-2);
+  --shadow-elevation-3: var(--elevation-3);
+  --shadow-elevation-4: var(--elevation-4);
+  --shadow-elevation-5: var(--elevation-5);
+
+  --ease-standard: var(--motion-ease-out);
+  --breakpoint-xs: 30rem;
+}
+
+/* Composite type styles: family + size + leading + tracking + weight. */
+@utility type-display {
+  font-family: var(--type-display-family);
+  font-size: var(--type-display-size);
+  line-height: var(--type-display-leading);
+  letter-spacing: var(--type-display-tracking);
+  font-weight: var(--type-display-weight);
+  font-optical-sizing: auto;
+  text-wrap: balance;
+}
+@utility type-h1 {
+  font-family: var(--type-h1-family);
+  font-size: var(--type-h1-size);
+  line-height: var(--type-h1-leading);
+  letter-spacing: var(--type-h1-tracking);
+  font-weight: var(--type-h1-weight);
+  font-optical-sizing: auto;
+  text-wrap: balance;
+}
+@utility type-h2 {
+  font-family: var(--type-h2-family);
+  font-size: var(--type-h2-size);
+  line-height: var(--type-h2-leading);
+  letter-spacing: var(--type-h2-tracking);
+  font-weight: var(--type-h2-weight);
+  font-optical-sizing: auto;
+  text-wrap: balance;
+}
+@utility type-h3 {
+  font-family: var(--type-h3-family);
+  font-size: var(--type-h3-size);
+  line-height: var(--type-h3-leading);
+  letter-spacing: var(--type-h3-tracking);
+  font-weight: var(--type-h3-weight);
+  font-optical-sizing: auto;
+  text-wrap: balance;
+}
+@utility type-h4 {
+  font-family: var(--type-h4-family);
+  font-size: var(--type-h4-size);
+  line-height: var(--type-h4-leading);
+  letter-spacing: var(--type-h4-tracking);
+  font-weight: var(--type-h4-weight);
+}
+@utility type-body-lg {
+  font-family: var(--type-body-lg-family);
+  font-size: var(--type-body-lg-size);
+  line-height: var(--type-body-lg-leading);
+  letter-spacing: var(--type-body-lg-tracking);
+  font-weight: var(--type-body-lg-weight);
+  text-wrap: pretty;
+}
+@utility type-body {
+  font-family: var(--type-body-family);
+  font-size: var(--type-body-size);
+  line-height: var(--type-body-leading);
+  font-weight: var(--type-body-weight);
+  text-wrap: pretty;
+}
+@utility type-body-sm {
+  font-family: var(--type-body-sm-family);
+  font-size: var(--type-body-sm-size);
+  line-height: var(--type-body-sm-leading);
+  font-weight: var(--type-body-sm-weight);
+}
+@utility type-caption {
+  font-family: var(--type-caption-family);
+  font-size: var(--type-caption-size);
+  line-height: var(--type-caption-leading);
+  letter-spacing: var(--type-caption-tracking);
+  font-weight: var(--type-caption-weight);
+}
+@utility type-overline {
+  font-family: var(--type-overline-family);
+  font-size: var(--type-overline-size);
+  line-height: var(--type-overline-leading);
+  letter-spacing: var(--type-overline-tracking);
+  font-weight: var(--type-overline-weight);
+  text-transform: uppercase;
+}
+@utility type-button {
+  font-family: var(--type-button-family);
+  font-size: var(--type-button-size);
+  line-height: var(--type-button-leading);
+  font-weight: var(--type-button-weight);
+}
+@utility type-code {
+  font-family: var(--type-code-family);
+  font-size: var(--type-code-size);
+  line-height: var(--type-code-leading);
+}
+@utility numeric {
+  font-variant-numeric: tabular-nums;
+}
+@utility measure {
+  max-width: var(--measure);
+}
+
+/* Entrance: transform + opacity only; disabled under reduced motion. */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+@utility animate-rise {
+  animation: rise var(--motion-slow) var(--motion-ease-out) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-rise {
+    animation: none;
+  }
+}
 
 @layer base {
   :root {
@@ -7,8 +208,6 @@
     --bg-light-elevated: #f1f4f8;
     --foreground: #0f172a;
     --foreground-muted: #475569;
-    --border: #e2e8f0;
-    --border-strong: #cbd5e1;
 
     /* Dark section tokens */
     --bg-dark: #0b0f1a;
@@ -51,10 +250,6 @@ h6 {
   font-family: var(--font-fraunces), serif;
   font-weight: 600;
   letter-spacing: -0.02em;
-}
-
-.font-caveat {
-  font-family: var(--font-caveat), cursive;
 }
 
 /* ─── Dark Mesh Gradient Hero ───────────────────────────────────── */

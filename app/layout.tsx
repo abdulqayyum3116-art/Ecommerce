@@ -1,28 +1,28 @@
 import type { Metadata } from "next";
-import { Fraunces, DM_Sans, Caveat } from "next/font/google";
+import { Fraunces, DM_Sans } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 
+// Two families only. Both are variable fonts with an optical-size axis, so
+// display sizes get the high-contrast cut and small sizes stay sturdy.
+// next/font self-hosts them, preloads the latin subset and generates a
+// metric-matched fallback (adjustFontFallback) so swapping causes no CLS.
 const fraunces = Fraunces({
   variable: "--font-fraunces",
   subsets: ["latin"],
-  weight: ["500", "600"],
+  axes: ["opsz"],
+  style: ["normal", "italic"],
   display: "swap",
+  fallback: ["Georgia", "Times New Roman", "serif"],
 });
 
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
   subsets: ["latin"],
-  weight: ["400", "500", "700"],
+  axes: ["opsz"],
   display: "swap",
-});
-
-const caveat = Caveat({
-  variable: "--font-caveat",
-  subsets: ["latin"],
-  weight: ["600", "700"],
-  display: "swap",
+  fallback: ["system-ui", "Segoe UI", "Roboto", "sans-serif"],
 });
 
 export const metadata: Metadata = {
@@ -56,7 +56,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${fraunces.variable} ${dmSans.variable} ${caveat.variable} h-full antialiased`}
+      className={`${fraunces.variable} ${dmSans.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-[#0B0F1A] text-slate-900 selection:bg-blue-900 selection:text-blue-100">
         <Header />
