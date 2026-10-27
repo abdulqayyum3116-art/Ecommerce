@@ -4,8 +4,8 @@ import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 
 /** Must match --motion-reveal (tokens) used by [data-reveal-state="shown"]. */
-const REVEAL_MS = 700;
-const STAGGER_MS = 100;
+const REVEAL_MS = 1200;
+const STAGGER_MS = 150;
 const MAX_STAGGER_STEPS = 5;
 
 /**

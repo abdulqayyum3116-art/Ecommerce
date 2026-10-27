@@ -340,7 +340,7 @@
  */
 [data-reveal-state="pending"] {
   opacity: 0;
-  translate: 0 1.5rem;
+  translate: 0 2rem;
 }
 [data-reveal-state="shown"] {
   opacity: 1;
