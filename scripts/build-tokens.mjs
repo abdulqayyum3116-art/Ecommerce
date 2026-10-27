@@ -448,6 +448,9 @@ emit("  /* Motion */");
 emit("  --motion-fast: 150ms;");
 emit("  --motion-base: 200ms;");
 emit("  --motion-slow: 250ms;");
+emit("  /* Scroll reveal is intentionally slower than UI feedback (product decision). */");
+emit("  --motion-reveal: 700ms;");
+emit("  --motion-ease-reveal: cubic-bezier(0.33, 1, 0.68, 1);");
 emit("  --motion-ease-out: cubic-bezier(0.16, 1, 0.3, 1);");
 emit("  --motion-ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);");
 emit("}");
@@ -483,6 +486,7 @@ emit("  :root {");
 emit("    --motion-fast: 0ms;");
 emit("    --motion-base: 0ms;");
 emit("    --motion-slow: 0ms;");
+emit("    --motion-reveal: 0ms;");
 emit("  }");
 emit("}");
 

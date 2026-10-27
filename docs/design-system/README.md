@@ -220,8 +220,9 @@ accent button.
 
 Mark any element with `data-reveal` (Cards and SectionHeaders do it by
 default; `<Card reveal={false}>` opts out). `components/layout/ScrollReveal.tsx`
-fades it up 12 px (`--motion-slow`, 250 ms, ease-out) as it enters the
-viewport, cascading siblings 60 ms apart. Elements already on screen at load
+fades it up 24 px (`--motion-reveal`, 700 ms, `--motion-ease-reveal` cubic ease-out) as it enters the
+viewport, cascading siblings 100 ms apart. (Deliberately slower than the
+150–250 ms UI-feedback range — requested so the reveal reads as motion.) Elements already on screen at load
 are never hidden (no LCP or CLS cost), nested reveals are skipped, and nothing
 is hidden without JS or under `prefers-reduced-motion`. The conversion loop
 and growth-engine timers start only when their section is half visible and

@@ -3,9 +3,9 @@
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 
-/** Must match the [data-reveal-state="shown"] transition in globals.css. */
-const REVEAL_MS = 250;
-const STAGGER_MS = 60;
+/** Must match --motion-reveal (tokens) used by [data-reveal-state="shown"]. */
+const REVEAL_MS = 700;
+const STAGGER_MS = 100;
 const MAX_STAGGER_STEPS = 5;
 
 /**

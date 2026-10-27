@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Menu, ArrowUpRight } from "lucide-react";
@@ -8,6 +7,7 @@ import { cn } from "@/lib/cn";
 import { ButtonLink } from "@/components/ui/Button";
 import { Dialog } from "@/components/ui/Dialog";
 import { icon } from "@/components/ui/icon";
+import { NavLink } from "./NavLink";
 
 export function BrandMark({ className }: { className?: string }) {
   return (
@@ -43,16 +43,16 @@ export default function Header() {
         Skip to content
       </a>
       <div className="container-page flex h-16 items-center justify-between">
-        <Link href="/" aria-label="Ecommerce By CodeSquad Homepage" className="rounded-sm">
+        <NavLink href="/" aria-label="Ecommerce By CodeSquad Homepage" className="rounded-sm">
           <BrandMark />
-        </Link>
+        </NavLink>
 
         {/* Desktop navigation */}
         <nav aria-label="Main" className="hidden items-center gap-1 md:flex">
           {navLinks.map((link) => {
             const active = isActive(link.href);
             return (
-              <Link
+              <NavLink
                 key={link.href}
                 href={link.href}
                 aria-current={active ? "page" : undefined}
@@ -63,7 +63,7 @@ export default function Header() {
               >
                 {link.label}
                 {active && <span aria-hidden className="absolute inset-x-3 -bottom-px h-0.5 rounded-full bg-accent" />}
-              </Link>
+              </NavLink>
             );
           })}
           <ButtonLink href="/contact" size="sm" className="ml-3" trailingIcon={<ArrowUpRight {...icon.sm} />}>
@@ -107,7 +107,7 @@ export default function Header() {
               const active = isActive(link.href);
               return (
                 <li key={link.href}>
-                  <Link
+                  <NavLink
                     href={link.href}
                     onClick={() => setMobileMenuOpen(false)}
                     aria-current={active ? "page" : undefined}
@@ -117,7 +117,7 @@ export default function Header() {
                     )}
                   >
                     {link.label}
-                  </Link>
+                  </NavLink>
                 </li>
               );
             })}

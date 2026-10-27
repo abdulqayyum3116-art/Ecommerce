@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { BrandMark } from "./Header";
+import { NavLink } from "./NavLink";
 import { icon } from "@/components/ui/icon";
 
 const linkClass = "inline-flex items-center gap-1 rounded-sm text-fg-secondary transition-colors duration-150 hover:text-fg";
@@ -31,9 +32,9 @@ export default function Footer() {
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-12">
           {/* Brand column */}
           <div className="space-y-5 sm:col-span-2 md:col-span-5">
-            <Link href="/" aria-label="Ecommerce By CodeSquad Homepage" className="inline-flex rounded-sm">
+            <NavLink href="/" aria-label="Ecommerce By CodeSquad Homepage" className="inline-flex rounded-sm">
               <BrandMark />
-            </Link>
+            </NavLink>
             <p className="max-w-sm type-body-sm text-fg-secondary">
               We engineer, optimize, and scale high-performance online stores. Bespoke commerce solutions, speed-to-lead follow-up, and AI-driven retention for direct-to-consumer retailers.
             </p>
