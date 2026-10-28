@@ -54,7 +54,7 @@ const stages: Stage[] = [
 ];
 
 export default function GrowthCycle() {
-  const { index: activeStageIndex, select, ref, pauseHandlers } = useAutoAdvance(stages.length, 3000);
+  const { index: activeStageIndex, isPaused, select, ref, pauseHandlers } = useAutoAdvance(stages.length, 3000);
   const activeStage = stages[activeStageIndex];
   const ActiveIcon = activeStage.icon;
 
@@ -84,6 +84,7 @@ export default function GrowthCycle() {
                   strokeWidth="3.5"
                   strokeDasharray="20 40"
                   strokeLinecap="round"
+                  style={{ animationPlayState: isPaused ? "paused" : "running" }}
                 />
               </svg>
 

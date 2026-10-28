@@ -205,7 +205,7 @@ export default function StoreLoopMock() {
           </span>
           <div className="type-body-sm">
             <p>
-              <span className="font-bold text-fg">Active Lever: {current.label}</span>{" "}
+              <span className="font-bold text-fg">{current.label}</span>{" "}
               <span className="text-fg-muted">({current.sub})</span>
             </p>
             <p className="type-caption text-fg-muted">

@@ -64,7 +64,7 @@ export default function HomePage() {
             align="center"
             overline="Conversion Lifecycle"
             title="The 6-stage store conversion sequence."
-            lead="Hover over or select any phase to inspect the engineering levers powering that transition."
+            lead="From first click to repeat order: the six moments where stores win or lose a sale, and what we build at each one."
           />
           <div className="mx-auto max-w-5xl">
             <StoreLoopMock />
