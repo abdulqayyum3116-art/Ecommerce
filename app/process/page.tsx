@@ -118,7 +118,11 @@ export default function ProcessPage() {
       <CtaBand
         id="process-cta-heading"
         overline="Predictable Timelines"
-        title="Standard store builds launch in [TIMELINE — TO CONFIRM]."
+        title={
+          <>
+            Standard store builds launch <br /> in 4 Weeks.
+          </>
+        }
         lead="Start with a diagnostic audit of your store before committing to a full redesign."
         actions={
           <ButtonLink href="/contact" size="lg" trailingIcon={<ArrowUpRight {...icon.sm} />}>
