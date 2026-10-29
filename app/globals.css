@@ -273,6 +273,38 @@
   animation: shimmer 1.4s var(--motion-ease-in-out) infinite;
 }
 
+/*
+ * Card tilt + spotlight, driven by components/ui/TiltCard.tsx (it only sets
+ * --rx/--ry/--mx/--my for a fine pointer without reduced motion). Tilt uses
+ * `transform`; the hover lift and scroll reveal use `translate`, so they stack.
+ */
+@utility card-tilt {
+  transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+}
+
+@utility card-spotlight {
+  isolation: isolate;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    pointer-events: none;
+    background: radial-gradient(260px circle at var(--mx, 50%) var(--my, 0%), var(--accent-subtle), transparent 70%);
+    opacity: 0;
+    transition: opacity var(--motion-slow) var(--motion-ease-out);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover::before,
+    &:focus-within::before {
+      opacity: 1;
+    }
+  }
+}
+
 /* ─── Base ──────────────────────────────────────────────────────────── */
 @layer base {
   html {
@@ -361,9 +393,21 @@
     opacity var(--motion-reveal) var(--motion-ease-reveal) var(--reveal-delay, 0ms),
     translate var(--motion-reveal) var(--motion-ease-reveal) var(--reveal-delay, 0ms);
 }
+/* Cards also grow slightly as they arrive. */
+[data-reveal="card"][data-reveal-state="pending"] {
+  scale: 0.96;
+}
+[data-reveal="card"][data-reveal-state="shown"] {
+  scale: 1;
+  transition:
+    opacity var(--motion-reveal) var(--motion-ease-reveal) var(--reveal-delay, 0ms),
+    translate var(--motion-reveal) var(--motion-ease-reveal) var(--reveal-delay, 0ms),
+    scale var(--motion-reveal) var(--motion-ease-reveal) var(--reveal-delay, 0ms);
+}
 @media (prefers-reduced-motion: reduce) {
   [data-reveal-state] {
     opacity: 1 !important;
     translate: none !important;
+    scale: none !important;
   }
 }

@@ -5,6 +5,7 @@ import type { CaseStudy } from "@/lib/caseStudiesData";
 import { cn } from "@/lib/cn";
 import { Badge } from "@/components/ui/Badge";
 import { icon } from "@/components/ui/icon";
+import { TiltCard } from "@/components/ui/TiltCard";
 
 /** Headline numbers for a case study. */
 export function Metrics({
@@ -53,11 +54,13 @@ export function CaseStudyCard({
   className?: string;
 }) {
   return (
-    <article
-      data-reveal=""
+    <TiltCard
+      as="article"
+      maxTilt={4}
+      data-reveal="card"
       className={cn(
         "group relative flex flex-col overflow-hidden rounded-lg border border-border bg-surface shadow-elevation-1",
-        "transition-[box-shadow,border-color,translate] duration-200 ease-standard hover:-translate-y-0.5 hover:border-border-strong hover:shadow-elevation-3 motion-reduce:hover:translate-y-0",
+        "transition-[box-shadow,border-color,transform,translate] duration-200 ease-standard hover:-translate-y-0.5 hover:border-border-strong hover:shadow-elevation-3 motion-reduce:hover:translate-y-0",
         className
       )}
     >
@@ -89,6 +92,6 @@ export function CaseStudyCard({
           <ArrowUpRight {...icon.sm} className="transition-transform duration-200 ease-standard group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
         </span>
       </div>
-    </article>
+    </TiltCard>
   );
 }

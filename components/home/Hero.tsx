@@ -36,35 +36,35 @@ export default function Hero() {
                 {word}
               </span>
             ))}
-            <span className="text-fg-muted">Predictable growth for modern brands.</span>
+            <span className="text-fg-muted">More sales from the traffic you already have.</span>
           </p>
 
           {/* Sub-copy */}
           <p className="mx-auto mb-8 measure type-body-lg text-fg-secondary">
-            We build and optimize high-converting online stores — bespoke Shopify &amp; Headless builds, conversion-rate optimization (CRO), generative AI search SEO, paid shopping feeds, and automated customer retention.
+            We design, build and grow online stores: fast Shopify and custom stores, smoother checkout, search and ads that bring buyers in, and emails that bring them back.
           </p>
 
           {/* Value micro-pills */}
-          <ul className="mb-10 flex flex-wrap items-center justify-center gap-2">
+          <ul className="mb-10 flex flex-wrap items-center justify-center gap-2 motion-safe:animate-rise" style={{ animationDelay: "240ms" }}>
             <li>
               <Badge tone="outline" icon={<Zap {...icon.sm} className="text-accent-text" />} className="shadow-elevation-1">
-                Sub-second Mobile PDP Speeds
+                Pages load in under 1s on mobile
               </Badge>
             </li>
             <li>
               <Badge tone="outline" icon={<ShieldCheck {...icon.sm} className="text-accent-text" />} className="shadow-elevation-1">
-                Zero Bloat Architecture
+                Clean, lightweight code
               </Badge>
             </li>
             <li>
               <Badge tone="outline" icon={<StatusDot live />} className="shadow-elevation-1">
-                15-Min Speed-to-Lead Follow-up
+                We reply within 15 minutes
               </Badge>
             </li>
           </ul>
 
           {/* Primary & secondary CTAs */}
-          <div className="mb-16 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <div className="mb-16 flex flex-col items-center justify-center gap-3 motion-safe:animate-rise sm:flex-row" style={{ animationDelay: "320ms" }}>
             <ButtonLink href="/contact" size="lg" className="w-full sm:w-auto" trailingIcon={<ArrowUpRight {...icon.sm} />}>
               Free Store Audit
             </ButtonLink>

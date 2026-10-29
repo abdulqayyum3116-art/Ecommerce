@@ -36,7 +36,7 @@ export function cardClasses({
     TONE[tone],
     PADDING[padding],
     interactive &&
-      "transition-[box-shadow,border-color,transform] duration-200 ease-standard hover:-translate-y-0.5 hover:border-border-strong hover:shadow-elevation-3 motion-reduce:hover:translate-y-0",
+      "transition-[box-shadow,border-color,transform,translate] duration-200 ease-standard hover:-translate-y-0.5 hover:border-border-strong hover:shadow-elevation-3 motion-reduce:hover:translate-y-0",
     className
   );
 }

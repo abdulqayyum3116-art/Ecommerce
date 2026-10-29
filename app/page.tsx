@@ -1,12 +1,12 @@
 import Hero from "@/components/home/Hero";
 import StoreLoopMock from "@/components/home/StoreLoopMock";
 import GrowthCycle from "@/components/home/GrowthCycle";
-import NichesSection from "@/components/home/NichesSection";
 import FlatCaseStudiesShowcase from "@/components/home/FlatCaseStudiesShowcase";
 import HomeCta from "@/components/home/HomeCta";
 import Link from "next/link";
 import { Section, Container, SectionHeader } from "@/components/ui/Section";
-import { Card, IconTile } from "@/components/ui/Card";
+import { cardClasses, IconTile } from "@/components/ui/Card";
+import { TiltCard } from "@/components/ui/TiltCard";
 import { TextLink } from "@/components/ui/Button";
 import { icon } from "@/components/ui/icon";
 import { ArrowUpRight, ShoppingCart, TrendingUp, Search, Megaphone, Mail, RefreshCw } from "lucide-react";
@@ -17,37 +17,37 @@ export default function HomePage() {
       title: "Store Build & Redesign",
       href: "/services/store-build",
       icon: ShoppingCart,
-      desc: "High-performance Shopify, WooCommerce, and Headless Next.js storefronts built to scale.",
+      desc: "A fast, good-looking store on Shopify, WooCommerce or a custom build that grows with you.",
     },
     {
-      title: "CRO & UX Optimization",
+      title: "Conversion Optimization",
       href: "/services/cro",
       icon: TrendingUp,
-      desc: "Remove checkout drop-offs and maximize average order value with rapid testing.",
+      desc: "Find and fix what stops shoppers from buying, then test changes that lift sales.",
     },
     {
-      title: "SEO & GEO for Products",
+      title: "Search & AI Visibility",
       href: "/services/seo-geo",
       icon: Search,
-      desc: "Product feed optimization for Google Shopping, Perplexity, and AI search engines.",
+      desc: "Get your products found on Google, Google Shopping and AI assistants like ChatGPT.",
     },
     {
-      title: "Paid Shopping & Ads",
+      title: "Shopping Ads",
       href: "/services/paid-ads",
       icon: Megaphone,
-      desc: "Performance Max and feed-driven acquisition campaigns tied directly to order margins.",
+      desc: "Google Shopping and Performance Max ads measured on profit, not just clicks.",
     },
     {
       title: "Email & SMS Retention",
       href: "/services/retention",
       icon: Mail,
-      desc: "Klaviyo automated flows for cart abandonment, post-purchase, and win-back sequences.",
+      desc: "Automatic emails and texts that recover abandoned carts and bring buyers back.",
     },
     {
-      title: "CRM & Order Automation",
+      title: "Order Automation",
       href: "/services/automation-crm",
       icon: RefreshCw,
-      desc: "Automated warehouse syncing, order routing, fraud screening, and returns management.",
+      desc: "Orders, stock, fraud checks and returns handled automatically, so nothing slips.",
     },
   ];
 
@@ -62,9 +62,9 @@ export default function HomePage() {
           <SectionHeader
             id="conversion-sequence-heading"
             align="center"
-            overline="Conversion Lifecycle"
-            title="The 6-stage store conversion sequence."
-            lead="From first click to repeat order: the six moments where stores win or lose a sale, and what we build at each one."
+            overline="From click to repeat order"
+            title="The 6 moments that win or lose a sale."
+            lead="Click any step to see what we fix there and the result it usually brings."
           />
           <div className="mx-auto max-w-5xl">
             <StoreLoopMock />
@@ -80,12 +80,12 @@ export default function HomePage() {
         <Container>
           <SectionHeader
             id="home-services-heading"
-            overline="End-to-End Capabilities"
-            title="Six focused pillars for store revenue."
-            lead="Every service connects directly into the revenue cycle. No fragmented handoffs or guesswork."
+            overline="What we do"
+            title="Six services, one goal: more sales."
+            lead="Pick one or combine them. Each one plugs into the same growth system."
             action={
               <TextLink href="/services">
-                View detailed services hub
+                See all services
                 <ArrowUpRight {...icon.sm} />
               </TextLink>
             }
@@ -95,9 +95,14 @@ export default function HomePage() {
             {quickServices.map((svc) => {
               const Icon = svc.icon;
               return (
-                <Card as="li" key={svc.title} interactive className="group flex flex-col justify-between">
+                <TiltCard
+                  as="li"
+                  key={svc.title}
+                  data-reveal="card"
+                  className={cardClasses({ interactive: true, className: "group flex flex-col justify-between" })}
+                >
                   <div>
-                    <IconTile className="mb-6 transition-colors duration-200 group-hover:bg-accent group-hover:text-on-accent">
+                    <IconTile className="mb-6 transition-[background-color,color,scale,rotate] duration-300 ease-standard group-hover:scale-110 group-hover:-rotate-6 group-hover:bg-accent group-hover:text-on-accent">
                       <Icon {...icon.lg} />
                     </IconTile>
                     <h3 className="mb-3 type-h4 text-fg">
@@ -111,26 +116,23 @@ export default function HomePage() {
                     <p className="mb-6 type-body-sm text-fg-secondary">{svc.desc}</p>
                   </div>
                   <div className="flex items-center gap-1 border-t border-border pt-4 type-body-sm font-bold text-accent-text">
-                    <span>Explore capability</span>
+                    <span>Learn more</span>
                     <ArrowUpRight
                       {...icon.sm}
                       className="transition-transform duration-200 ease-standard group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                     />
                   </div>
-                </Card>
+                </TiltCard>
               );
             })}
           </ul>
         </Container>
       </Section>
 
-      {/* 5. Specialized niches */}
-      <NichesSection />
-
-      {/* 6. Case studies showcase */}
+      {/* 5. Case studies showcase */}
       <FlatCaseStudiesShowcase />
 
-      {/* 7. Audit CTA on an ink band */}
+      {/* 6. Audit CTA on an ink band */}
       <HomeCta />
     </>
   );

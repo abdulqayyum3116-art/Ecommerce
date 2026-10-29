@@ -7,20 +7,20 @@ export default function HomeCta() {
   return (
     <CtaBand
       id="cta-heading"
-      overline="Complimentary Assessment"
-      title="Get an engineering audit of your online store."
-      lead="We evaluate your Core Web Vitals, mobile PDP conversion bottlenecks, checkout ergonomics, and browse-abandonment flows — delivered with zero fluff."
+      overline="Free, no obligation"
+      title="Get a free audit of your store."
+      lead="We check your page speed, product pages, checkout and follow-up emails, then send you a clear list of what to fix first."
       actions={
         <>
           <ButtonLink href="/contact" size="lg" className="w-full sm:w-auto" trailingIcon={<ArrowUpRight {...icon.sm} />}>
-            Request Free Store Audit
+            Get My Free Audit
           </ButtonLink>
           <ButtonLink href="/services" variant="secondary" size="lg" className="w-full sm:w-auto">
-            Explore All 6 Services
+            See All Services
           </ButtonLink>
         </>
       }
-      note="Typically delivered within [TURNAROUND TIME — TO CONFIRM] · No obligation"
+      note="Typically delivered within 4 weeks · No obligation"
     />
   );
 }

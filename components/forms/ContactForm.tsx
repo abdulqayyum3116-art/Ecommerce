@@ -75,7 +75,7 @@ export default function ContactForm() {
         <h3 className="mb-2 type-h3">Audit Request Received</h3>
         <p className="mx-auto mb-6 max-w-md type-body-sm">
           Thank you, <strong className="font-bold">{formData.name}</strong>. Our engineering team will review{" "}
-          <code className="rounded-sm bg-surface-raised px-2 py-0.5 type-code">{formData.storeUrl}</code> and deliver your performance audit within [RESPONSE TIME — TO CONFIRM].
+          <code className="rounded-sm bg-surface-raised px-2 py-0.5 type-code">{formData.storeUrl}</code> and deliver your performance audit within 4 weeks.
         </p>
         <Button
           variant="secondary"

@@ -11,12 +11,12 @@ export default function FlatCaseStudiesShowcase() {
       <Container>
         <SectionHeader
           id="cases-heading"
-          overline="Verified Technical Case Studies"
-          title="Measurable systems. Zero vanity numbers."
-          lead="Explore how we design, develop, and automate high-conversion ecommerce infrastructure."
+          overline="Results"
+          title="Real stores. Real numbers."
+          lead="See what changed for stores like yours, and how we did it."
           action={
             <TextLink href="/case-studies">
-              Browse all case studies
+              See all case studies
               <ArrowUpRight {...icon.sm} />
             </TextLink>
           }
