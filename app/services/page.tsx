@@ -3,8 +3,8 @@ import { MousePointerClick, Megaphone, Sparkles, Clapperboard, Mail, PackageChec
 import { generateSeoMetadata } from "@/lib/seo";
 import { PageHero } from "@/components/ui/PageHero";
 import { Section, Container } from "@/components/ui/Section";
-import { Card, IconTile } from "@/components/ui/Card";
-import { Badge } from "@/components/ui/Badge";
+import { Card } from "@/components/ui/Card";
+import { TopicCover } from "@/components/ui/TopicCover";
 import { ButtonLink } from "@/components/ui/Button";
 import { CtaBand } from "@/components/ui/CtaBand";
 import { icon } from "@/components/ui/icon";
@@ -19,6 +19,7 @@ export const metadata = generateSeoMetadata({
 const services = [
   {
     slug: "google-ads",
+    tone: "amber" as const,
     title: "Google Shopping & Search Ads",
     eyebrow: "Service 01",
     icon: MousePointerClick,
@@ -27,6 +28,7 @@ const services = [
   },
   {
     slug: "meta-ads",
+    tone: "rose" as const,
     title: "Meta Ads",
     eyebrow: "Service 02",
     icon: Megaphone,
@@ -35,6 +37,7 @@ const services = [
   },
   {
     slug: "seo-geo",
+    tone: "teal" as const,
     title: "Search & AI Visibility",
     eyebrow: "Service 03",
     icon: Sparkles,
@@ -43,6 +46,7 @@ const services = [
   },
   {
     slug: "product-video",
+    tone: "ink" as const,
     title: "Product Video Creation",
     eyebrow: "Service 04",
     icon: Clapperboard,
@@ -51,6 +55,7 @@ const services = [
   },
   {
     slug: "email-marketing",
+    tone: "blue" as const,
     title: "Email & SMS Marketing",
     eyebrow: "Service 05",
     icon: Mail,
@@ -59,6 +64,7 @@ const services = [
   },
   {
     slug: "order-automation",
+    tone: "green" as const,
     title: "Order Lifecycle Automation",
     eyebrow: "Service 06",
     icon: PackageCheck,
@@ -81,37 +87,33 @@ export default function ServicesHubPage() {
         <Container>
           <ul className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
             {services.map((svc) => {
-              const Icon = svc.icon;
               return (
-                <Card as="li" key={svc.slug} padding="lg" interactive className="group flex flex-col justify-between">
-                  <div>
-                    <div className="mb-6 flex items-center justify-between">
-                      <IconTile className="transition-[background-color,color,scale,rotate] duration-300 ease-standard group-hover:scale-110 group-hover:-rotate-6 group-hover:bg-accent group-hover:text-on-accent">
-                        <Icon {...icon.lg} />
-                      </IconTile>
-                      <span className="type-overline text-fg-muted">{svc.eyebrow}</span>
+                <Card
+                  as="li"
+                  key={svc.slug}
+                  padding="none"
+                  interactive
+                  className="group flex flex-col overflow-hidden"
+                >
+                  <TopicCover tone={svc.tone} icon={svc.icon} label={svc.eyebrow} meta={svc.tag} />
+                  <div className="flex flex-1 flex-col justify-between p-6 sm:p-8">
+                    <div>
+                      <h2 className="mb-3 type-h3 text-fg">{svc.title}</h2>
+                      <p className="mb-6 type-body-sm text-fg-secondary">{svc.desc}</p>
                     </div>
 
-                    <Badge tone="accent" shape="tag" className="mb-3">
-                      {svc.tag}
-                    </Badge>
-
-                    <h2 className="mb-3 type-h3 text-fg">{svc.title}</h2>
-
-                    <p className="mb-6 type-body-sm text-fg-secondary">{svc.desc}</p>
-                  </div>
-
-                  <div className="border-t border-border pt-4">
-                    <Link
-                      href={`/services/${svc.slug}`}
-                      className="inline-flex items-center gap-1.5 rounded-sm type-body-sm font-bold text-accent-text after:absolute after:inset-0 after:rounded-lg after:content-['']"
-                    >
-                      See how it works
-                      <ArrowUpRight
-                        {...icon.sm}
-                        className="transition-transform duration-200 ease-standard group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                      />
-                    </Link>
+                    <div className="border-t border-border pt-4">
+                      <Link
+                        href={`/services/${svc.slug}`}
+                        className="inline-flex items-center gap-1.5 rounded-sm type-body-sm font-bold text-accent-text after:absolute after:inset-0 after:rounded-lg after:content-['']"
+                      >
+                        See how it works
+                        <ArrowUpRight
+                          {...icon.sm}
+                          className="transition-transform duration-200 ease-standard group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                        />
+                      </Link>
+                    </div>
                   </div>
                 </Card>
               );

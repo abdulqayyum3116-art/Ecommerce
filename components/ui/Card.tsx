@@ -6,7 +6,7 @@ type CardProps<T extends ElementType> = {
   as?: T;
   /** Lifts on hover — use when the whole card is a link target. */
   interactive?: boolean;
-  padding?: "sm" | "md" | "lg";
+  padding?: keyof typeof PADDING;
   tone?: "surface" | "subtle" | "accent";
   /** Fade and grow in on scroll (see ScrollReveal). On by default. */
   reveal?: boolean;
@@ -16,7 +16,8 @@ type CardProps<T extends ElementType> = {
   children?: ReactNode;
 } & Omit<ComponentProps<T>, "as" | "className" | "children">;
 
-const PADDING = { sm: "p-4", md: "p-6", lg: "p-6 sm:p-8 lg:p-10" };
+/** `none` is for cards with an edge-to-edge cover; pad the body yourself. */
+const PADDING = { none: "", sm: "p-4", md: "p-6", lg: "p-6 sm:p-8 lg:p-10" };
 const TONE = {
   surface: "bg-surface border-border shadow-elevation-1",
   subtle: "bg-bg-subtle border-border",
@@ -30,7 +31,7 @@ export function cardClasses({
   className,
 }: {
   interactive?: boolean;
-  padding?: "sm" | "md" | "lg";
+  padding?: keyof typeof PADDING;
   tone?: "surface" | "subtle" | "accent";
   className?: string;
 } = {}) {
