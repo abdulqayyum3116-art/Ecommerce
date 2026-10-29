@@ -377,37 +377,7 @@
 }
 
 /*
- * ─── Scroll reveal ───────────────────────────────────────────────────
- * Driven by components/layout/ScrollReveal.tsx. Unlayered so it wins over
- * component transitions while revealing; JS removes the state afterwards.
- * Only `opacity` and `translate` animate.
+ * Scroll reveal ([data-reveal]) is animated entirely in
+ * components/layout/ScrollReveal.tsx via the Web Animations API, so it
+ * writes no attributes that could break hydration.
  */
-[data-reveal-state="pending"] {
-  opacity: 0;
-  translate: 0 2rem;
-}
-[data-reveal-state="shown"] {
-  opacity: 1;
-  translate: 0 0;
-  transition:
-    opacity var(--motion-reveal) var(--motion-ease-reveal) var(--reveal-delay, 0ms),
-    translate var(--motion-reveal) var(--motion-ease-reveal) var(--reveal-delay, 0ms);
-}
-/* Cards also grow slightly as they arrive. */
-[data-reveal="card"][data-reveal-state="pending"] {
-  scale: 0.96;
-}
-[data-reveal="card"][data-reveal-state="shown"] {
-  scale: 1;
-  transition:
-    opacity var(--motion-reveal) var(--motion-ease-reveal) var(--reveal-delay, 0ms),
-    translate var(--motion-reveal) var(--motion-ease-reveal) var(--reveal-delay, 0ms),
-    scale var(--motion-reveal) var(--motion-ease-reveal) var(--reveal-delay, 0ms);
-}
-@media (prefers-reduced-motion: reduce) {
-  [data-reveal-state] {
-    opacity: 1 !important;
-    translate: none !important;
-    scale: none !important;
-  }
-}

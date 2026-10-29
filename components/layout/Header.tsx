@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Menu, ArrowUpRight } from "lucide-react";
 import { cn } from "@/lib/cn";
 import { ButtonLink } from "@/components/ui/Button";
@@ -22,7 +22,19 @@ export function BrandMark({ className }: { className?: string }) {
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+  // Page heroes (Hero, PageHero) slide up under the header so their glow shows
+  // through; they add the header height to their top padding to compensate.
+  const overlapHero = !pathname?.startsWith("/styleguide");
+
+  // Transparent at the top of the page; frosted bar once the user scrolls.
+  useEffect(() => {
+    const update = () => setScrolled(window.scrollY > 8);
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    return () => window.removeEventListener("scroll", update);
+  }, []);
 
   const navLinks = [
     { label: "Home", href: "/" },
@@ -35,7 +47,13 @@ export default function Header() {
   const isActive = (href: string) => (href === "/" ? pathname === "/" : pathname?.startsWith(href));
 
   return (
-    <header className="sticky top-0 z-40 border-b border-border bg-bg/85 text-fg backdrop-blur-xl">
+    <header
+      className={cn(
+        "sticky top-0 z-40 border-b text-fg transition-[background-color,border-color,box-shadow] duration-250 ease-standard",
+        overlapHero && "-mb-16",
+        scrolled ? "border-border bg-bg/85 shadow-elevation-1 backdrop-blur-xl" : "border-transparent bg-transparent"
+      )}
+    >
       <a
         href="#main"
         className="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-50 focus:rounded-full focus:bg-surface-raised focus:px-4 focus:py-2 focus:type-body-sm focus:shadow-elevation-3"
@@ -67,7 +85,7 @@ export default function Header() {
             );
           })}
           <ButtonLink href="/contact" size="sm" className="ml-3" trailingIcon={<ArrowUpRight {...icon.sm} />}>
-            Free Store Audit
+            Free Marketing Audit
           </ButtonLink>
         </nav>
 
@@ -97,7 +115,7 @@ export default function Header() {
             onClick={() => setMobileMenuOpen(false)}
             trailingIcon={<ArrowUpRight {...icon.sm} />}
           >
-            Free Store Audit
+            Free Marketing Audit
           </ButtonLink>
         }
       >

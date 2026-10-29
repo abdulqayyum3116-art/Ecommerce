@@ -231,11 +231,11 @@ export default async function CaseStudyDetailPage({
             <CtaBand
               inset
               id="case-cta-heading"
-              title="Want similar engineering for your store?"
-              lead="Get an in-depth code and conversion audit to identify your highest-leverage growth opportunities."
+              title="Want results like these for your store?"
+              lead="Get a free marketing audit to find your highest-impact growth opportunities across ads, search, video and email."
               actions={
                 <ButtonLink href="/contact" trailingIcon={<ArrowUpRight {...icon.sm} />}>
-                  Request Free Store Audit
+                  Get a Free Marketing Audit
                 </ButtonLink>
               }
             />

@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { UserCheck, Eye, ShoppingCart, CreditCard, CheckCircle2, RefreshCw } from "lucide-react";
+import { Smartphone, Search, Clapperboard, ShoppingBag, PackageCheck, Mail } from "lucide-react";
 import { cn } from "@/lib/cn";
 import { useAutoAdvance } from "@/lib/useAutoAdvance";
 import { StatusDot } from "@/components/ui/Badge";
@@ -12,53 +12,53 @@ interface Step {
   label: string;
   /** Plain-language summary of what we set up at this step. */
   whatWeDo: string;
-  /** Typical result, short enough for the step card. */
-  metric: string;
+  /** The service that handles this step, short enough for the step card. */
+  service: string;
   icon: React.ElementType;
 }
 
 const steps: Step[] = [
   {
     id: 1,
-    label: "Visitor lands",
-    whatWeDo: "Your products show up in search and ads with the right price, photos and details.",
-    metric: "Loads in < 0.8s",
-    icon: UserCheck,
+    label: "Sees an ad",
+    whatWeDo: "A scroll-stopping product video on Facebook or Instagram puts your brand in front of new buyers.",
+    service: "Meta Ads + Video",
+    icon: Smartphone,
   },
   {
     id: 2,
-    label: "Views product",
-    whatWeDo: "Product pages open instantly, and sizes or colours switch without waiting.",
-    metric: "Instant options",
-    icon: Eye,
+    label: "Searches or asks AI",
+    whatWeDo: "They find you on Google Shopping and search, or get your product recommended by ChatGPT and Perplexity.",
+    service: "Google Ads + SEO",
+    icon: Search,
   },
   {
     id: 3,
-    label: "Adds to cart",
-    whatWeDo: "A slide-out cart and free-shipping bar nudge shoppers to add one more item.",
-    metric: "+18% order value",
-    icon: ShoppingCart,
+    label: "Views product",
+    whatWeDo: "A clear demo video and accurate product details answer their questions on the spot.",
+    service: "Product Video",
+    icon: Clapperboard,
   },
   {
     id: 4,
-    label: "Checks out",
-    whatWeDo: "One-tap payment with Apple Pay or Shop Pay, and no slow forms.",
-    metric: "1-tap payment",
-    icon: CreditCard,
+    label: "Places order",
+    whatWeDo: "The sale is tracked accurately, so Google and Meta learn who your best buyers are and find more like them.",
+    service: "Ads Tracking",
+    icon: ShoppingBag,
   },
   {
     id: 5,
-    label: "Order confirmed",
-    whatWeDo: "An instant text confirms the order, and the warehouse receives it automatically.",
-    metric: "Confirmed in 15s",
-    icon: CheckCircle2,
+    label: "Gets updates",
+    whatWeDo: "Instant confirmation, shipping and delivery updates keep them informed without any work from your team.",
+    service: "Order Automation",
+    icon: PackageCheck,
   },
   {
     id: 6,
-    label: "Repeat purchase",
-    whatWeDo: "Automatic emails bring buyers back for their next order.",
-    metric: "+32% 90-day value",
-    icon: RefreshCw,
+    label: "Comes back",
+    whatWeDo: "Timely emails and texts bring them back for their next order.",
+    service: "Email & SMS",
+    icon: Mail,
   },
 ];
 
@@ -185,7 +185,7 @@ export default function StoreLoopMock() {
               </div>
 
               <div className="mt-2 flex items-center justify-between border-t border-border pt-2">
-                <span className="type-caption text-fg-muted">{step.metric}</span>
+                <span className="type-caption text-fg-muted">{step.service}</span>
                 {isActive && <StatusDot tone="accent" live />}
               </div>
             </button>
@@ -212,7 +212,7 @@ export default function StoreLoopMock() {
 
         <div className="flex shrink-0 items-center gap-2 rounded-full border border-border bg-surface px-3.5 py-1.5 type-body-sm font-medium text-fg-secondary">
           <span>
-            Typical result: <strong className="text-success-text">{current.metric}</strong>
+            Handled by: <strong className="text-accent-text">{current.service}</strong>
           </span>
         </div>
       </div>

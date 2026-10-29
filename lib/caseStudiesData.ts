@@ -54,7 +54,8 @@ export const caseStudiesList: CaseStudy[] = [
     "kicker": "Marketing intelligence across a complex DTC stack",
     "intro": "Built a complete marketing intelligence platform analyzing 15+ connected ad and content platforms, with blog generation pipelines and SEO, AEO, and GEO scoring before publish.",
     "services": [
-      "Marketing Intelligence"
+      "Marketing Intelligence",
+      "Search & AI Visibility"
     ],
     "cover": {
       "src": "/case-studies/energybits-cover.webp",
@@ -225,6 +226,7 @@ export const caseStudiesList: CaseStudy[] = [
     "kicker": "Automated product marketing for B2B e-commerce",
     "intro": "Built an automated product-of-the-month image pipeline integrated with Salesforce and email, plus enrichment and analysis for a 25-year-old promotional products company.",
     "services": [
+      "Email Marketing",
       "Image Automation",
       "Salesforce"
     ],
@@ -361,7 +363,7 @@ export const caseStudiesList: CaseStudy[] = [
     "services": [
       "Product Aggregation",
       "AI Scoring",
-      "SEO Content"
+      "Search & AI Visibility"
     ],
     "cover": {
       "src": "/case-studies/mamas-compass-cover.webp",
@@ -459,8 +461,8 @@ export const caseStudiesList: CaseStudy[] = [
     "kicker": "One intelligence layer for a healthcare commerce brand",
     "intro": "Unified SEO, paid ads, and review analysis into one automation layer for a veteran-owned oral care brand.",
     "services": [
+      "Paid Ads",
       "SEO",
-      "Ads",
       "Content"
     ],
     "cover": {

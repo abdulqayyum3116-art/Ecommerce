@@ -12,8 +12,8 @@ export default function ContactForm() {
     name: "",
     email: "",
     storeUrl: "",
-    monthlyOrders: "< 100",
-    primaryConcern: "Mobile Speed & CRO",
+    monthlyAdSpend: "Under $5k",
+    primaryConcern: "Google Ads",
     message: "",
   });
 
@@ -22,11 +22,12 @@ export default function ContactForm() {
   const [errorMessage, setErrorMessage] = useState("");
 
   const concerns = [
-    "Mobile Speed & CRO",
-    "Shopify / Next.js Rebuild",
-    "Google Shopping / GEO",
-    "Klaviyo Cart Recovery",
-    "Inventory & Warehouse Sync",
+    "Google Ads",
+    "Meta Ads",
+    "SEO & AI Search",
+    "Product Video",
+    "Email & SMS",
+    "Order Automation",
   ];
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -74,8 +75,8 @@ export default function ContactForm() {
         </span>
         <h3 className="mb-2 type-h3">Audit Request Received</h3>
         <p className="mx-auto mb-6 max-w-md type-body-sm">
-          Thank you, <strong className="font-bold">{formData.name}</strong>. Our engineering team will review{" "}
-          <code className="rounded-sm bg-surface-raised px-2 py-0.5 type-code">{formData.storeUrl}</code> and deliver your performance audit within 4 weeks.
+          Thank you, <strong className="font-bold">{formData.name}</strong>. Our marketing team will review{" "}
+          <code className="rounded-sm bg-surface-raised px-2 py-0.5 type-code">{formData.storeUrl}</code> and get back to you with your audit.
         </p>
         <Button
           variant="secondary"
@@ -86,8 +87,8 @@ export default function ContactForm() {
               name: "",
               email: "",
               storeUrl: "",
-              monthlyOrders: "< 100",
-              primaryConcern: "Mobile Speed & CRO",
+              monthlyAdSpend: "Under $5k",
+              primaryConcern: "Google Ads",
               message: "",
             });
           }}
@@ -105,7 +106,7 @@ export default function ContactForm() {
     >
       <div className="flex items-center gap-2 border-b border-border pb-4">
         <Sparkles {...icon.sm} className="text-accent-text" />
-        <span className="type-overline text-fg">Store Details &amp; Priority Diagnostic</span>
+        <span className="type-overline text-fg">Your Store &amp; Marketing Goals</span>
       </div>
 
       {errorMessage && (
@@ -116,7 +117,7 @@ export default function ContactForm() {
 
       {/* Primary concern */}
       <fieldset>
-        <legend className="mb-3 type-body-sm font-bold text-fg">Primary Growth Bottleneck</legend>
+        <legend className="mb-3 type-body-sm font-bold text-fg">Where do you want to grow first?</legend>
         <div className="flex flex-wrap gap-2">
           {concerns.map((c) => (
             <ChoiceChip
@@ -169,29 +170,30 @@ export default function ContactForm() {
         )}
       </Field>
 
-      <Field label="Estimated Monthly Orders" optional>
+      <Field label="Monthly Ad Spend" optional>
         {(field) => (
           <Select
             {...field}
-            value={formData.monthlyOrders}
-            onChange={(e) => setFormData({ ...formData, monthlyOrders: e.target.value })}
+            value={formData.monthlyAdSpend}
+            onChange={(e) => setFormData({ ...formData, monthlyAdSpend: e.target.value })}
           >
-            <option value="< 100">&lt; 100 orders / month</option>
-            <option value="100 - 500">100 – 500 orders / month</option>
-            <option value="500 - 2,000">500 – 2,000 orders / month</option>
-            <option value="2,000+">2,000+ orders / month</option>
+            <option value="Not running ads yet">Not running ads yet</option>
+            <option value="Under $5k">Under $5k / month</option>
+            <option value="$5k - $20k">$5k – $20k / month</option>
+            <option value="$20k - $50k">$20k – $50k / month</option>
+            <option value="$50k+">$50k+ / month</option>
           </Select>
         )}
       </Field>
 
-      <Field label="What is your primary conversion or technical challenge?">
+      <Field label="What is your biggest marketing challenge right now?">
         {(field) => (
           <Textarea
             {...field}
             rows={3}
             value={formData.message}
             onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-            placeholder="e.g. Our mobile product pages load in 4.5s and checkout abandonment is high..."
+            placeholder="e.g. Our Meta ads stopped performing and we have no abandoned cart emails..."
           />
         )}
       </Field>
@@ -201,10 +203,10 @@ export default function ContactForm() {
         size="lg"
         fullWidth
         loading={submitting}
-        loadingLabel="Analyzing Store..."
+        loadingLabel="Sending..."
         trailingIcon={<ArrowRight {...icon.sm} />}
       >
-        Request Free Store Audit
+        Request Free Marketing Audit
       </Button>
 
       <p className="text-center type-caption text-fg-muted">

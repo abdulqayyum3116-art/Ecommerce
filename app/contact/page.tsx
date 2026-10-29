@@ -7,27 +7,27 @@ import { Card } from "@/components/ui/Card";
 import { icon } from "@/components/ui/icon";
 
 export const metadata = generateSeoMetadata({
-  title: "Request Free Store Audit & Contact | CodeSquad Ecommerce",
+  title: "Free Ecommerce Marketing Audit & Contact | CodeSquad Ecommerce",
   description:
-    "Request a complimentary technical audit of your online store. We review mobile speed, checkout friction, product SEO schema, and abandoned cart automations.",
+    "Request a free marketing audit of your online store. We review your Google and Meta ad accounts, product feed, SEO and AI search visibility, and email and order flows.",
   path: "/contact",
 });
 
 export default function ContactPage() {
   const auditPoints = [
-    "Mobile PageSpeed & Core Web Vitals audit (LCP, INP, CLS)",
-    "Checkout ergonomics and high-dropoff step identification",
-    "Third-party app script bloat & payload reduction suggestions",
-    "Generative Engine Optimization (GEO) & schema validation check",
-    "Speed-to-lead cart abandonment SMS & email review",
+    "Google Ads and Meta Ads account review (structure, spend and wasted budget)",
+    "Merchant Center product feed and conversion tracking check",
+    "Product SEO and AI search visibility (ChatGPT, Perplexity, AI Overviews)",
+    "Product page and ad creative review, including video",
+    "Email, SMS and order-update flow review",
   ];
 
   return (
     <div className="bg-bg">
       <PageHero
         overline="Zero Obligation"
-        title="Get an engineering teardown of your store."
-        lead="Submit your store URL below. Our technical ecommerce team will conduct a thorough audit of your speed bottlenecks, checkout UX friction, and retention gaps."
+        title="Get a free audit of your store's marketing."
+        lead="Share your store URL below. We'll review your ads, search visibility, creative and email flows, and show you where you're losing sales."
       />
 
       <Section tone="subtle" aria-label="Request an audit">
@@ -35,10 +35,10 @@ export default function ContactPage() {
           <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-12">
             {/* Context & what you receive */}
             <div data-reveal="" className="lg:col-span-6">
-              <Overline className="mb-3">Comprehensive Teardown</Overline>
-              <h2 className="mb-6 type-h2 text-fg">What Your Store Audit Delivers:</h2>
+              <Overline className="mb-3">What You Get</Overline>
+              <h2 className="mb-6 type-h2 text-fg">What Your Marketing Audit Covers:</h2>
               <p className="mb-8 type-body-lg text-fg-secondary">
-                We dive straight into the code, analytics, and checkout behavior. No high-pressure sales pitch — just concrete data and actionable engineering priorities.
+                We look at your real accounts and data. No high-pressure sales pitch, just a clear, prioritised list of what to fix and where to grow.
               </p>
 
               <Card padding="lg" className="mb-6">
@@ -56,7 +56,7 @@ export default function ContactPage() {
               <Card tone="accent" className="flex items-start gap-3.5">
                 <ShieldAlert {...icon.md} className="mt-0.5 shrink-0 text-accent-text" />
                 <p className="type-body-sm text-fg-secondary">
-                  <strong className="text-fg">Transparent Review:</strong> Delivered by engineers, not commission-based salespeople. If your store does not need a redesign, we will tell you directly.
+                  <strong className="text-fg">Transparent Review:</strong> Done by marketers who run these channels every day, not commission-based salespeople. If a channel isn&apos;t right for you yet, we&apos;ll tell you directly.
                 </p>
               </Card>
             </div>

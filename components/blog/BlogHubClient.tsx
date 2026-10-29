@@ -24,9 +24,9 @@ export default function BlogHubClient() {
   return (
     <div className="bg-bg">
       <PageHero
-        overline="Technical Insights & Playbooks"
-        title="Practical guides on ecommerce engineering, CRO, and AI search."
-        lead="No generic fluff or AI-spun filler. Actionable checklists, architecture decisions, and code-level optimization strategies written for store operators."
+        overline="Marketing Insights & Playbooks"
+        title="Practical guides on ecommerce ads, AI search, email and automation."
+        lead="No generic fluff or AI-spun filler. Step-by-step checklists and strategies for growing an online store, written for store owners and marketers."
       />
 
       <Section tone="subtle" aria-label="Articles">

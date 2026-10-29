@@ -1,16 +1,16 @@
 "use client";
 
-import { ArrowUpRight, ArrowRight, ShieldCheck, Zap } from "lucide-react";
+import { ArrowUpRight, ArrowRight, Layers, ChartLine } from "lucide-react";
 import HeroTrustStrip from "./HeroTrustStrip";
 import { ButtonLink } from "@/components/ui/Button";
 import { Badge, StatusDot } from "@/components/ui/Badge";
 import { icon } from "@/components/ui/icon";
 
 export default function Hero() {
-  const highlightWords = ["Attract.", "Convert.", "Retain."];
+  const highlightWords = ["Get found.", "Get chosen.", "Get them back."];
 
   return (
-    <section className="relative isolate overflow-hidden border-b border-border bg-bg pt-[var(--section-y)] pb-16 text-fg md:pb-24">
+    <section className="relative isolate overflow-hidden border-b border-border bg-bg pt-[calc(var(--section-y)+4rem)] pb-16 text-fg md:pb-24">
       {/* Single, rare emphasis glow behind the headline */}
       <div
         aria-hidden
@@ -20,8 +20,8 @@ export default function Hero() {
       <div className="container-page">
         <div className="mx-auto max-w-4xl text-center">
           {/* EXACTLY ONE H1 ON THE ENTIRE HOMEPAGE */}
-          <h1 className="type-display mb-6 text-fg" aria-label="Turn traffic into revenue. Buyers into regulars.">
-            Turn traffic into revenue.{" "}
+          <h1 className="type-display mb-6 text-fg" aria-label="Turn ad spend into revenue. Buyers into regulars.">
+            Turn ad spend into revenue.{" "}
             <span className="block font-display-italic font-medium text-accent-text italic">Buyers into regulars.</span>
           </h1>
 
@@ -36,24 +36,24 @@ export default function Hero() {
                 {word}
               </span>
             ))}
-            <span className="text-fg-muted">More sales from the traffic you already have.</span>
+            <span className="text-fg-muted">Marketing that pays for itself.</span>
           </p>
 
           {/* Sub-copy */}
           <p className="mx-auto mb-8 measure type-body-lg text-fg-secondary">
-            We design, build and grow online stores: fast Shopify and custom stores, smoother checkout, search and ads that bring buyers in, and emails that bring them back.
+            We grow online stores with Google and Meta ads, product SEO and AI search visibility, scroll-stopping product videos, and email and order automations that bring buyers back.
           </p>
 
           {/* Value micro-pills */}
           <ul className="mb-10 flex flex-wrap items-center justify-center gap-2 motion-safe:animate-rise" style={{ animationDelay: "240ms" }}>
             <li>
-              <Badge tone="outline" icon={<Zap {...icon.sm} className="text-accent-text" />} className="shadow-elevation-1">
-                Pages load in under 1s on mobile
+              <Badge tone="outline" icon={<ChartLine {...icon.sm} className="text-accent-text" />} className="shadow-elevation-1">
+                Reported on profit, not clicks
               </Badge>
             </li>
             <li>
-              <Badge tone="outline" icon={<ShieldCheck {...icon.sm} className="text-accent-text" />} className="shadow-elevation-1">
-                Clean, lightweight code
+              <Badge tone="outline" icon={<Layers {...icon.sm} className="text-accent-text" />} className="shadow-elevation-1">
+                Ads, search &amp; email in one plan
               </Badge>
             </li>
             <li>
@@ -66,7 +66,7 @@ export default function Hero() {
           {/* Primary & secondary CTAs */}
           <div className="mb-16 flex flex-col items-center justify-center gap-3 motion-safe:animate-rise sm:flex-row" style={{ animationDelay: "320ms" }}>
             <ButtonLink href="/contact" size="lg" className="w-full sm:w-auto" trailingIcon={<ArrowUpRight {...icon.sm} />}>
-              Free Store Audit
+              Free Marketing Audit
             </ButtonLink>
             <ButtonLink
               href="/case-studies"

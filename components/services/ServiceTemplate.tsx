@@ -33,12 +33,12 @@ interface ServiceTemplateProps {
   deliverables: Deliverable[];
   leadPlatformNotice?: string;
   processSteps: ProcessStep[];
-  relatedCaseStudySlug: string;
-  relatedCaseStudyTitle: string;
+  /** Optional: the related-study card is hidden when there is no match. */
+  relatedCaseStudySlug?: string;
 }
 
 export default function ServiceTemplate(props: ServiceTemplateProps) {
-  const related = getCaseStudy(props.relatedCaseStudySlug);
+  const related = props.relatedCaseStudySlug ? getCaseStudy(props.relatedCaseStudySlug) : undefined;
   return (
     <div className="bg-bg">
       <PageHero
@@ -48,7 +48,7 @@ export default function ServiceTemplate(props: ServiceTemplateProps) {
         actions={
           <>
             <ButtonLink href="/contact" size="lg" trailingIcon={<ArrowUpRight {...icon.sm} />}>
-              Request Free Store Audit
+              Get a Free Marketing Audit
             </ButtonLink>
             <ButtonLink
               href="/case-studies"
@@ -75,7 +75,7 @@ export default function ServiceTemplate(props: ServiceTemplateProps) {
             </div>
 
             <Card padding="lg" className="lg:col-span-7">
-              <h3 className="mb-6 type-overline text-fg">Where Most Stores Leak Revenue:</h3>
+              <h3 className="mb-6 type-overline text-fg">Where Most Brands Lose Sales:</h3>
               <ul className="space-y-4">
                 {props.problemPoints.map((point, i) => (
                   <li key={i} className="flex items-start gap-3">
@@ -97,13 +97,13 @@ export default function ServiceTemplate(props: ServiceTemplateProps) {
         <Container>
           <SectionHeader
             id="solution-heading"
-            overline="The Architecture"
+            overline="What We Do"
             title={props.solutionHeading}
             lead={props.solutionDescription}
           />
           {props.leadPlatformNotice && (
             <Alert tone="info" className="-mt-6 mb-10 max-w-3xl md:-mt-8">
-              <strong>Platform Architecture:</strong> {props.leadPlatformNotice}
+              <strong>Good to know:</strong> {props.leadPlatformNotice}
             </Alert>
           )}
 
@@ -124,7 +124,7 @@ export default function ServiceTemplate(props: ServiceTemplateProps) {
       {/* Process steps */}
       <Section aria-labelledby="cadence-heading">
         <Container>
-          <SectionHeader id="cadence-heading" overline="Execution Cadence" title="How we deploy and scale this capability." />
+          <SectionHeader id="cadence-heading" overline="How It Works" title="How we launch and scale this channel." />
 
           <ol className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
             {props.processSteps.map((step) => (
@@ -139,39 +139,35 @@ export default function ServiceTemplate(props: ServiceTemplateProps) {
       </Section>
 
       {/* Related case study */}
-      <section className="bg-bg-subtle py-16">
-        <Container>
-          <Card padding="lg" className="grid gap-6 border-l-4 border-l-accent md:grid-cols-[auto_1fr_auto] md:items-center">
-            {related && (
+      {related && (
+        <section className="bg-bg-subtle py-16">
+          <Container>
+            <Card padding="lg" className="grid gap-6 border-l-4 border-l-accent md:grid-cols-[auto_1fr_auto] md:items-center">
               <div className="relative hidden aspect-[3/2] w-40 overflow-hidden rounded-md bg-bg-muted md:block">
                 <Image src={related.cover.src} alt="" fill sizes="10rem" className="object-cover" />
               </div>
-            )}
-            <div>
-              <span className="mb-1 block type-caption text-fg-muted">Related Implementation Study</span>
-              <h2 className="type-h4 text-fg">{props.relatedCaseStudyTitle}</h2>
-              {related && (
-                <>
-                  <p className="mt-1 type-body-sm text-fg-secondary">{related.tagline}</p>
-                  <Metrics metrics={related.metrics} limit={2} size="sm" className="mt-4 max-w-sm" />
-                </>
-              )}
-            </div>
-            <TextLink href={`/case-studies/${props.relatedCaseStudySlug}`} className="shrink-0 whitespace-nowrap">
-              Read full technical breakdown
-              <ArrowUpRight {...icon.sm} />
-            </TextLink>
-          </Card>
-        </Container>
-      </section>
+              <div>
+                <span className="mb-1 block type-caption text-fg-muted">Related Case Study</span>
+                <h2 className="type-h4 text-fg">{related.name}</h2>
+                <p className="mt-1 type-body-sm text-fg-secondary">{related.tagline}</p>
+                <Metrics metrics={related.metrics} limit={2} size="sm" className="mt-4 max-w-sm" />
+              </div>
+              <TextLink href={`/case-studies/${related.slug}`} className="shrink-0 whitespace-nowrap">
+                Read the case study
+                <ArrowUpRight {...icon.sm} />
+              </TextLink>
+            </Card>
+          </Container>
+        </section>
+      )}
 
       <CtaBand
         id="service-cta-heading"
-        title="Audit your store's performance today."
-        lead="Get an engineering assessment of your bottlenecks, speed scores, and abandonment recovery flows."
+        title="See where your marketing is leaking sales."
+        lead="We review your ad accounts, product feed, search and AI visibility, and email flows, then send you a clear list of what to fix first."
         actions={
           <ButtonLink href="/contact" size="lg" trailingIcon={<ArrowUpRight {...icon.sm} />}>
-            Request Free Store Audit
+            Get a Free Marketing Audit
           </ButtonLink>
         }
       />

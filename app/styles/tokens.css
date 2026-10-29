@@ -9,7 +9,8 @@
  *   3. Scales      — type, spacing, radii, elevation, motion.
  *
  * Theming
- *   data-theme="light" | "dark" on <html> or any section; no attribute → OS preference.
+ *   Light by default, regardless of the OS setting; data-theme="dark" on a
+ *   section opts it into the ink band.
  */
 
 /* ── 1. Primitives ─────────────────────────────────────────────────── */
@@ -285,90 +286,6 @@
   }
 }
 
-/* OS preference when the page has not pinned a theme. */
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    color-scheme: dark;
-    --bg: #10111b;
-    --bg-subtle: #151622;
-    --bg-muted: #1d1e2c;
-    --surface: #171824;
-    --surface-raised: #20222f;
-    --border: #2e2f3c;
-    --border-strong: #696b79;
-    --text-primary: #f6f3ee;
-    --text-secondary: #c8cad4;
-    --text-muted: #a4a5b2;
-    --text-inverse: #10111b;
-    --accent: #65bab9;
-    --accent-hover: #83cbca;
-    --accent-pressed: #51a7a6;
-    --accent-subtle: #102c2b;
-    --accent-subtle-border: #235050;
-    --accent-text: #8acccb;
-    --on-accent: #10111b;
-    --focus-ring: #8bd3d2;
-    --on-solid: #10111b;
-    --success-bg: #132719;
-    --success-border: #295235;
-    --success-text: #a6deb3;
-    --success-solid: #70b884;
-    --warning-bg: #2c1f10;
-    --warning-border: #5c4222;
-    --warning-text: #edc69b;
-    --warning-solid: #c99b64;
-    --danger-bg: #361715;
-    --danger-border: #70312e;
-    --danger-text: #ffbab3;
-    --danger-solid: #f07f77;
-    --info-bg: #112430;
-    --info-border: #254c66;
-    --info-text: #a1d5fb;
-    --info-solid: #69addb;
-    --overlay: #080814b3;
-  }
-  @supports (color: oklch(0% 0 0)) {
-    :root:not([data-theme="light"]) {
-      --bg: oklch(18% 0.022 280);
-      --bg-subtle: oklch(20.5% 0.024 280);
-      --bg-muted: oklch(24% 0.026 280);
-      --surface: oklch(21.5% 0.024 280);
-      --surface-raised: oklch(25.5% 0.026 280);
-      --border: oklch(31% 0.024 280);
-      --border-strong: oklch(53% 0.022 280);
-      --text-primary: oklch(96.5% 0.008 80);
-      --text-secondary: oklch(84% 0.014 280);
-      --text-muted: oklch(72.5% 0.018 280);
-      --text-inverse: oklch(18% 0.022 280);
-      --accent: oklch(73.5% 0.083 195);
-      --accent-hover: oklch(79.5% 0.072 195);
-      --accent-pressed: oklch(67.5% 0.083 195);
-      --accent-subtle: oklch(27% 0.033 195);
-      --accent-subtle-border: oklch(40% 0.05 195);
-      --accent-text: oklch(80% 0.066 195);
-      --on-accent: oklch(18% 0.022 280);
-      --focus-ring: oklch(82% 0.072 195);
-      --on-solid: oklch(18% 0.022 280);
-      --success-bg: oklch(25% 0.037 152);
-      --success-border: oklch(40% 0.068 152);
-      --success-text: oklch(85% 0.083 152);
-      --success-solid: oklch(72% 0.105 152);
-      --warning-bg: oklch(25% 0.033 70);
-      --warning-border: oklch(40% 0.059 70);
-      --warning-text: oklch(85% 0.072 70);
-      --warning-solid: oklch(72% 0.091 70);
-      --danger-bg: oklch(25% 0.05 25);
-      --danger-border: oklch(40% 0.09 25);
-      --danger-text: oklch(85% 0.082 25);
-      --danger-solid: oklch(72% 0.14 25);
-      --info-bg: oklch(25% 0.034 240);
-      --info-border: oklch(40% 0.062 240);
-      --info-text: oklch(85% 0.076 240);
-      --info-solid: oklch(72% 0.096 240);
-    }
-  }
-}
-
 /* ── 3. Scales ─────────────────────────────────────────────────────── */
 :root {
   /* Families — 2 max. Mono is the system stack (not loaded). */
@@ -500,15 +417,6 @@
   --elevation-3: 0 6px 16px -4px rgb(4 4 14 / 0.5);
   --elevation-4: 0 12px 28px -8px rgb(4 4 14 / 0.55);
   --elevation-5: 0 24px 56px -16px rgb(4 4 14 / 0.6);
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --elevation-1: 0 1px 2px rgb(4 4 14 / 0.4);
-    --elevation-2: 0 2px 6px rgb(4 4 14 / 0.4);
-    --elevation-3: 0 6px 16px -4px rgb(4 4 14 / 0.5);
-    --elevation-4: 0 12px 28px -8px rgb(4 4 14 / 0.55);
-    --elevation-5: 0 24px 56px -16px rgb(4 4 14 / 0.6);
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {

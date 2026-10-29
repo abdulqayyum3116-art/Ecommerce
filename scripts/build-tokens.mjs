@@ -337,7 +337,8 @@ emit(" *                    Components consume ONLY this layer (via Tailwind the
 emit(" *   3. Scales      — type, spacing, radii, elevation, motion.");
 emit(" *");
 emit(" * Theming");
-emit(' *   data-theme="light" | "dark" on <html> or any section; no attribute → OS preference.');
+emit(' *   Light by default, regardless of the OS setting; data-theme="dark" on a');
+emit(" *   section opts it into the ink band.");
 emit(" */");
 emit();
 
@@ -394,15 +395,6 @@ emit("/* ── 2. Semantic — dark ──────────────�
 emit("/* Explicit opt-in on any element. */");
 darkRules('[data-theme="dark"]');
 darkRulesOklch('[data-theme="dark"]');
-emit();
-emit("/* OS preference when the page has not pinned a theme. */");
-emit("@media (prefers-color-scheme: dark) {");
-const osSel = ':root:not([data-theme="light"])';
-const before = lines.length;
-darkRules(osSel);
-darkRulesOklch(osSel);
-for (let i = before; i < lines.length; i++) lines[i] = "  " + lines[i];
-emit("}");
 emit();
 
 emit("/* ── 3. Scales ─────────────────────────────────────────────────────── */");
@@ -474,11 +466,6 @@ const shadowDark = [
 ];
 emit('[data-theme="dark"] {');
 shadowDark.forEach((l) => emit(l));
-emit("}");
-emit("@media (prefers-color-scheme: dark) {");
-emit('  :root:not([data-theme="light"]) {');
-shadowDark.forEach((l) => emit("  " + l));
-emit("  }");
 emit("}");
 emit();
 emit("@media (prefers-reduced-motion: reduce) {");

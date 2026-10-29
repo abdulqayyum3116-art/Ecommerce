@@ -23,32 +23,32 @@ const stages: Stage[] = [
     id: "attract",
     name: "Attract",
     number: "01",
-    description: "Get in front of people already searching for what you sell: on Google Shopping, in ads, and in AI answers like ChatGPT.",
-    tactics: ["Accurate product listings", "Search & Shopping ads", "Visibility in ChatGPT & Perplexity"],
+    description: "Get in front of new buyers: on Google when they search, on Facebook and Instagram while they scroll, and in AI answers like ChatGPT.",
+    tactics: ["Google Shopping & Search ads", "Meta ads", "Product SEO, AEO & GEO"],
     icon: Compass,
   },
   {
     id: "convert",
     name: "Convert",
     number: "02",
-    description: "Turn visitors into orders with pages that load in under a second, product pages built for phones, and a one-click checkout.",
-    tactics: ["Faster store pages", "Always-visible Add to Cart", "Bundles & add-on offers"],
+    description: "Turn interest into orders with product videos that answer questions, ads that land on the right product, and retargeting for shoppers who need a nudge.",
+    tactics: ["Product demo videos", "Retargeting ads", "Accurate conversion tracking"],
     icon: ShoppingBag,
   },
   {
     id: "retain",
     name: "Retain",
     number: "03",
-    description: "Win back shoppers who leave without buying, with quick automatic texts, WhatsApp messages and reminder emails.",
-    tactics: ["Abandoned cart reminders", "Automatic email flows", "Text links back to the cart"],
+    description: "Keep every buyer happy after checkout with automatic order and delivery updates, and win back shoppers who left without buying.",
+    tactics: ["Order & shipping updates", "Abandoned cart emails & texts", "Review requests"],
     icon: HeartHandshake,
   },
   {
     id: "repeat",
     name: "Repeat",
     number: "04",
-    description: "Turn one-time buyers into regulars with timely restock reminders and rewards for your best customers.",
-    tactics: ["Restock reminders", "VIP rewards", "Grow lifetime customer value"],
+    description: "Turn one-time buyers into regulars with email and SMS campaigns, reorder reminders and offers for your best customers.",
+    tactics: ["Email & SMS campaigns", "Reorder reminders", "Win-back offers"],
     icon: Repeat,
   },
 ];
@@ -66,7 +66,7 @@ export default function GrowthCycle() {
           align="center"
           overline="How your store grows"
           title="Attract. Convert. Retain. Repeat."
-          lead="Four stages that feed each other. We set up each one so your growth keeps compounding."
+          lead="Four stages that feed each other. We run the marketing for each one so your growth keeps compounding."
         />
 
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12" ref={ref} {...pauseHandlers}>

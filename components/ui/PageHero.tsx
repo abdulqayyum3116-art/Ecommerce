@@ -27,7 +27,7 @@ export function PageHero({
   narrow?: boolean;
 }) {
   return (
-    <section className="relative isolate overflow-hidden border-b border-border bg-bg pt-16 pb-14 md:pt-24 md:pb-20">
+    <section className="relative isolate overflow-hidden border-b border-border bg-bg pt-32 pb-14 md:pt-40 md:pb-20">
       <div
         aria-hidden
         className="pointer-events-none absolute -top-48 -right-32 -z-10 h-[32rem] w-[32rem] rounded-full bg-accent-subtle opacity-70 blur-3xl"

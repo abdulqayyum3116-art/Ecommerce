@@ -1,4 +1,4 @@
-import { ArrowUpRight, CheckCircle2, ShieldCheck, Zap, BarChart3, Repeat } from "lucide-react";
+import { ArrowUpRight, CheckCircle2, ShieldCheck, Search, Rocket, Repeat } from "lucide-react";
 import { generateSeoMetadata } from "@/lib/seo";
 import { PageHero } from "@/components/ui/PageHero";
 import { Section, Container } from "@/components/ui/Section";
@@ -8,59 +8,59 @@ import { CtaBand } from "@/components/ui/CtaBand";
 import { icon } from "@/components/ui/icon";
 
 export const metadata = generateSeoMetadata({
-  title: "Our Process | How We Build & Scale Stores | CodeSquad",
+  title: "Our Process | How We Grow Ecommerce Brands | CodeSquad",
   description:
-    "Explore CodeSquad's four-phase ecommerce engineering process: Audit & Benchmarking, Clean Architecture, Conversion Deployment, and Growth Scaling.",
+    "CodeSquad's four-phase ecommerce marketing process: Audit, Foundations (tracking, feeds and creative), Launch, and Scale.",
   path: "/process",
 });
 
 const steps = [
   {
     phase: "Phase 01",
-    name: "Audit & Bottleneck Identification",
-    tagline: "We diagnose before we touch a line of code.",
-    icon: Zap,
+    name: "Audit",
+    tagline: "We find what's working and what's wasting money before changing anything.",
+    icon: Search,
     deliverables: [
-      "Core Web Vitals & mobile latency breakdown (LCP, INP, CLS)",
-      "Checkout drop-off and funnel leak analysis in GA4",
-      "Third-party app payload and script bloat inventory",
-      "Feed hygiene and Google Merchant Center diagnosis",
+      "Google Ads and Meta Ads account review: structure, spend and wasted budget",
+      "Merchant Center feed and conversion tracking health check",
+      "Product SEO and AI search visibility check (ChatGPT, Perplexity, AI Overviews)",
+      "Email, SMS and order-update flow review",
     ],
   },
   {
     phase: "Phase 02",
-    name: "Clean Architecture & Design System",
-    tagline: "Engineering conversion ergonomics without bloat.",
+    name: "Foundations",
+    tagline: "Accurate data and strong creative, so every channel has what it needs to work.",
     icon: ShieldCheck,
     deliverables: [
-      "Lightweight Liquid or Next.js App Router component library",
-      "Mobile-first PDP with sticky add-to-cart controls",
-      "Slide-over cart drawer with dynamic free-shipping thresholds",
-      "Native replacements for 5-10 third-party monthly SaaS apps",
+      "Server-side conversion tracking (Meta Conversions API & Google Enhanced Conversions)",
+      "Clean, complete product feed for Google and Meta catalogs",
+      "Product schema, FAQ answers and comparison content for search and AI",
+      "First batch of product videos and ad creative",
     ],
   },
   {
     phase: "Phase 03",
-    name: "Conversion & Speed Deployment",
-    tagline: "Rigorous QA and zero-downtime transition.",
-    icon: BarChart3,
+    name: "Launch",
+    tagline: "Campaigns, flows and automations go live together.",
+    icon: Rocket,
     deliverables: [
-      "Cross-browser and multi-device checkout verification",
-      "100% 301 URL redirect preservation and canonicalization",
-      "Server-side conversion tracking (CAPI & Enhanced Conversions)",
-      "AI search bot indexing rules configured in robots.txt and schema",
+      "Google Shopping, Performance Max and Search campaigns structured by margin",
+      "Meta prospecting and retargeting campaigns with catalog ads",
+      "Welcome, abandoned cart, post-purchase and win-back email & SMS flows",
+      "Order confirmation, shipping, delivery and review-request automations",
     ],
   },
   {
     phase: "Phase 04",
-    name: "Retention, Ads & Automated Scale",
-    tagline: "Turning first-time buyers into repeat regulars.",
+    name: "Scale",
+    tagline: "Spend more where it's profitable, and keep improving everything else.",
     icon: Repeat,
     deliverables: [
-      "15-minute speed-to-lead SMS and email cart recovery flows",
-      "Margin-based Performance Max and Google Shopping campaign restructuring",
-      "Predictive replenishment and VIP win-back automations in Klaviyo",
-      "Multi-warehouse inventory synchronization and fraud screening pipelines",
+      "Weekly budget shifts toward the most profitable products and campaigns",
+      "Ongoing creative and video testing to keep ads fresh",
+      "Expanding SEO and AI visibility to new product groups",
+      "Monthly reporting on revenue, ad spend, new customers and repeat orders",
     ],
   },
 ];
@@ -69,9 +69,9 @@ export default function ProcessPage() {
   return (
     <div className="bg-bg">
       <PageHero
-        overline="Engineering Rigor"
-        title="A systematic, four-phase process for predictable store growth."
-        lead="We do not rely on guesswork or cookie-cutter templates. Every project follows an engineering cadence designed to protect your existing revenue while unlocking higher margins and conversion rates."
+        overline="How We Work"
+        title="A clear, four-phase process for growing your store."
+        lead="No guesswork and no one-size-fits-all packages. We audit first, fix the foundations, launch every channel together, and then scale what's profitable."
       />
 
       {/* Process steps */}
@@ -97,7 +97,7 @@ export default function ProcessPage() {
                     </div>
 
                     <div className="rounded-lg border border-border bg-bg-subtle p-6 sm:p-8 lg:col-span-8">
-                      <h3 className="mb-4 type-overline text-fg">Core Phase Deliverables:</h3>
+                      <h3 className="mb-4 type-overline text-fg">What We Deliver:</h3>
                       <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                         {step.deliverables.map((deliv, i) => (
                           <li key={i} className="flex items-start gap-2.5">
@@ -117,17 +117,12 @@ export default function ProcessPage() {
 
       <CtaBand
         id="process-cta-heading"
-        overline="Predictable Timelines"
-        title={
-          <>
-            Standard store builds launch <br /> 
-            in 4 Weeks.
-          </>
-        }
-        lead="Start with a diagnostic audit of your store before committing to a full redesign."
+        overline="Start With an Audit"
+        title="See where your marketing can grow first."
+        lead="Get a free review of your ads, search visibility and email flows before committing to anything."
         actions={
           <ButtonLink href="/contact" size="lg" trailingIcon={<ArrowUpRight {...icon.sm} />}>
-            Schedule Store Audit Call
+            Get a Free Marketing Audit
           </ButtonLink>
         }
       />

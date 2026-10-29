@@ -13,7 +13,7 @@ import { CaseStudyCard, Metrics } from "@/components/case-studies/CaseStudyCard"
 export const metadata = generateSeoMetadata({
   title: "Case Studies | CodeSquad Ecommerce",
   description:
-    "Explore our engineering case studies for ecommerce brands. Flat, readable breakdowns of problems, tech stacks, and verified results.",
+    "Ecommerce marketing case studies: clear breakdowns of the problem, what we set up across ads, search, content and automation, and the verified results.",
   path: "/case-studies",
 });
 
@@ -23,9 +23,9 @@ export default function CaseStudiesHubPage() {
   return (
     <div className="bg-bg">
       <PageHero
-        overline="Proven Architecture"
-        title="Engineering case studies with zero invented vanity metrics."
-        lead="We document our work with engineering rigor: the exact technical bottlenecks, the architecture built, and the operational outcomes achieved."
+        overline="Proven Results"
+        title="Real case studies with zero invented vanity metrics."
+        lead="What each brand was struggling with, what we set up, and the results it delivered, documented plainly."
       />
 
       <Section tone="subtle" aria-label="Case studies">
@@ -79,11 +79,11 @@ export default function CaseStudiesHubPage() {
 
       <CtaBand
         id="cases-cta-heading"
-        title="Audit your store's performance today."
-        lead="Get an engineering assessment of your bottlenecks, speed scores, and abandonment recovery flows."
+        title="See where your marketing is leaking sales."
+        lead="We review your ad accounts, product feed, search and AI visibility, and email flows, then send you a clear list of what to fix first."
         actions={
           <ButtonLink href="/contact" size="lg" trailingIcon={<ArrowUpRight {...icon.sm} />}>
-            Request Free Store Audit
+            Get a Free Marketing Audit
           </ButtonLink>
         }
       />

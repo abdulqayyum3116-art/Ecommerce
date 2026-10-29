@@ -36,7 +36,7 @@ export default function Footer() {
               <BrandMark />
             </NavLink>
             <p className="max-w-sm type-body-sm text-fg-secondary">
-              We engineer, optimize, and scale high-performance online stores. Bespoke commerce solutions, speed-to-lead follow-up, and AI-driven retention for direct-to-consumer retailers.
+              Ecommerce marketing for growing online brands: Google and Meta ads, product SEO and AI search visibility, product video, email and SMS, and order automation, all in one plan.
             </p>
             <a
               href="https://codesquad.ai"
@@ -51,13 +51,13 @@ export default function Footer() {
           </div>
 
           <div className="md:col-span-3">
-            <Column title="Solutions">
-              <li><Link href="/services/store-build" className={linkClass}>Store Build &amp; Redesign</Link></li>
-              <li><Link href="/services/cro" className={linkClass}>CRO &amp; UX Optimization</Link></li>
-              <li><Link href="/services/seo-geo" className={linkClass}>SEO &amp; GEO for Products</Link></li>
-              <li><Link href="/services/paid-ads" className={linkClass}>Paid Shopping &amp; Ads</Link></li>
-              <li><Link href="/services/retention" className={linkClass}>Email &amp; SMS Retention</Link></li>
-              <li><Link href="/services/automation-crm" className={linkClass}>CRM &amp; Order Automation</Link></li>
+            <Column title="Services">
+              <li><Link href="/services/google-ads" className={linkClass}>Google Shopping &amp; Search Ads</Link></li>
+              <li><Link href="/services/meta-ads" className={linkClass}>Meta Ads</Link></li>
+              <li><Link href="/services/seo-geo" className={linkClass}>Search &amp; AI Visibility</Link></li>
+              <li><Link href="/services/product-video" className={linkClass}>Product Video Creation</Link></li>
+              <li><Link href="/services/email-marketing" className={linkClass}>Email &amp; SMS Marketing</Link></li>
+              <li><Link href="/services/order-automation" className={linkClass}>Order Lifecycle Automation</Link></li>
             </Column>
           </div>
 
@@ -65,8 +65,8 @@ export default function Footer() {
             <Column title="Growth">
               <li><Link href="/case-studies" className={linkClass}>Case Studies</Link></li>
               <li><Link href="/process" className={linkClass}>Our Process</Link></li>
-              <li><Link href="/blog" className={linkClass}>Ecommerce Insights</Link></li>
-              <li><Link href="/contact" className={linkClass}>Free Store Audit</Link></li>
+              <li><Link href="/blog" className={linkClass}>Marketing Insights</Link></li>
+              <li><Link href="/contact" className={linkClass}>Free Marketing Audit</Link></li>
             </Column>
           </div>
 
@@ -86,7 +86,7 @@ export default function Footer() {
               Main Agency: codesquad.ai
             </a>
             <Link href="/contact" className="rounded-sm transition-colors duration-150 hover:text-fg">
-              Free Store Audit
+              Free Marketing Audit
             </Link>
           </div>
         </div>

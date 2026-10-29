@@ -145,11 +145,11 @@ export default async function BlogPostPage({
           <CtaBand
             inset
             id="post-cta-heading"
-            title="Want us to implement this for your store?"
-            lead="Request a free engineering audit. We will review your current technical setup and provide an actionable growth roadmap."
+            title="Want us to run this for your store?"
+            lead="Request a free marketing audit. We'll review your ads, search visibility and email flows, and send you a clear growth plan."
             actions={
               <ButtonLink href="/contact" trailingIcon={<ArrowUpRight {...icon.sm} />}>
-                Request Free Store Audit
+                Get a Free Marketing Audit
               </ButtonLink>
             }
           />

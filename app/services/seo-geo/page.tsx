@@ -2,78 +2,77 @@ import ServiceTemplate from "@/components/services/ServiceTemplate";
 import { generateSeoMetadata } from "@/lib/seo";
 
 export const metadata = generateSeoMetadata({
-  title: "Product SEO & GEO (Generative Engine Optimization) | CodeSquad",
+  title: "Product SEO, AEO & GEO for Ecommerce | CodeSquad",
   description:
-    "Product SEO and Generative Engine Optimization (GEO) for AI search engines like Perplexity, ChatGPT, Claude, and Google Shopping AI Overviews.",
+    "Get your products found on Google, Google Shopping and AI assistants like ChatGPT and Perplexity with product SEO, Answer Engine Optimization (AEO) and Generative Engine Optimization (GEO).",
   path: "/services/seo-geo",
 });
 
 export default function SeoGeoPage() {
   return (
     <ServiceTemplate
-      eyebrow="Pillar 03 — SEO & GEO for Products"
-      h1="Be recommended by Google and AI search engines alike."
-      leadParagraph="Modern shoppers don't just search on Google — they ask ChatGPT, Perplexity, and AI search engines: 'What is the best running shoe for flat feet under $150?' We engineer your product catalog and schema to rank on traditional Google organic and be cited by generative AI engines."
-      problemHeading="Traditional keyword stuffing fails modern AI search models."
-      problemDescription="Large language models (LLMs) and Google's AI Overviews do not rank pages based on old-school keyword density. They look for clean entity graphs, authoritative product schema, rich structured specifications, and verifiable citation signals."
+      eyebrow="Service 03 — Search & AI Visibility"
+      h1="Get your products found on Google and recommended by AI."
+      leadParagraph="Shoppers now search on Google and ask ChatGPT, Perplexity and Google's AI Overviews things like 'What is the best running shoe for flat feet under $150?' We make sure your products show up in both, with product SEO, Answer Engine Optimization (AEO) and Generative Engine Optimization (GEO)."
+      problemHeading="Thin product pages get skipped by Google and ignored by AI."
+      problemDescription="Search engines and AI assistants look for clear product details, structured data and trustworthy answers. Copy-pasted descriptions and missing schema leave them with nothing to rank or quote."
       problemPoints={[
-        "Incomplete or malformed Product schema resulting in missing rich snippets in Google Shopping.",
-        "Thin manufacturer product descriptions duplicated across dozens of competitor websites.",
-        "Zero optimization for Generative Engine Optimization (GEO), causing AI search engines to recommend competitors.",
-        "Faceted navigation issues causing indexation bloat, duplicate URLs, and crawl budget waste.",
+        "Missing or broken product schema, so prices, stock and reviews don't show in search results.",
+        "Manufacturer descriptions copied across dozens of other stores.",
+        "No clear answers to the questions shoppers actually ask, so AI assistants recommend competitors.",
+        "Collection pages that don't target the searches buyers make right before they purchase.",
       ]}
-      solutionHeading="Entity-rich structured data, comprehensive product feeds, and citation architecture."
-      solutionDescription="We optimize your entire product taxonomy. From deep JSON-LD schema implementation (Product, Offer, AggregateRating, BreadcrumbList) to structured comparison tables and conversational FAQ blocks that generative AI models cite directly."
+      solutionHeading="Product SEO, AEO and GEO working together."
+      solutionDescription="Product SEO gets your pages ranking on Google. AEO structures clear answers that search features and assistants can pull directly. GEO builds the comparisons and trust signals that AI tools cite when they recommend products."
       deliverables={[
         {
-          title: "Comprehensive Schema Architecture",
-          description: "Full JSON-LD structured data for every product, variant, availability state, and pricing tier.",
+          title: "Product & Collection SEO",
+          description: "Keyword research, page titles, descriptions and collection pages built around how buyers search.",
+        },
+        {
+          title: "Product Schema",
+          description: "Full structured data for products, prices, stock and reviews, so search results show rich details.",
+        },
+        {
+          title: "Answer Engine Optimization (AEO)",
+          description: "Clear, question-and-answer content and FAQ schema that answer engines can pull straight into results.",
         },
         {
           title: "Generative Engine Optimization (GEO)",
-          description: "Structuring authoritative comparison guides and question-answer entities cited by ChatGPT, Perplexity, and Claude.",
+          description: "Comparison guides and trusted product content that ChatGPT, Perplexity and AI Overviews cite.",
         },
         {
-          title: "Google Merchant Center Clean Feed",
-          description: "Validating GTINs, MPNs, category taxonomy, and shipping attributes for enhanced organic Google Shopping listings.",
+          title: "Free Shopping Listings",
+          description: "A clean Merchant Center feed so your products also appear in Google Shopping's free listings.",
         },
         {
-          title: "Collection & Category Optimization",
-          description: "High-intent collection page architecture targeting bottom-of-funnel commercial search queries.",
-        },
-        {
-          title: "Faceted Crawl Budget Management",
-          description: "Clean canonicalization and robots directives preventing parameter bloat from indexing duplicate variant URLs.",
-        },
-        {
-          title: "AI Crawler Accessibility",
-          description: "Optimized robots.txt rules explicitly welcoming GPTBot, ClaudeBot, and PerplexityBot to index product pages.",
+          title: "AI Visibility Tracking",
+          description: "Monitoring where your brand and products appear in AI answers and which competitors show instead.",
         },
       ]}
       processSteps={[
         {
-          step: "Phase 01",
-          title: "Schema & Feed Audit",
-          description: "Analyzing Google Search Console, Merchant Center warnings, and current schema coverage.",
+          step: "Step 01",
+          title: "Search & AI Audit",
+          description: "Checking rankings, schema coverage and how AI assistants currently describe your products.",
         },
         {
-          step: "Phase 02",
-          title: "Taxonomy & Entity Mapping",
-          description: "Structuring product categories, attributes, and conversational product query clusters.",
+          step: "Step 02",
+          title: "Keyword & Question Map",
+          description: "Mapping the searches and questions buyers ask to the right products and pages.",
         },
         {
-          step: "Phase 03",
-          title: "JSON-LD & Content Deployment",
-          description: "Deploying automated schema generators and technical comparison content into your theme.",
+          step: "Step 03",
+          title: "Content & Schema",
+          description: "Rolling out improved product pages, FAQ answers, comparison content and structured data.",
         },
         {
-          step: "Phase 04",
-          title: "Search Bot Monitoring",
-          description: "Tracking rich snippet impressions, Merchant Center clicks, and AI engine referral mentions.",
+          step: "Step 04",
+          title: "Track & Expand",
+          description: "Tracking rankings, Shopping clicks and AI mentions, then expanding to new product groups.",
         },
       ]}
-      relatedCaseStudySlug="energybits"
-      relatedCaseStudyTitle="ENERGYbits"
+      relatedCaseStudySlug="mamas-compass"
     />
   );
 }

@@ -5,6 +5,8 @@ import { cn } from "@/lib/cn";
 
 /** Tilt and spotlight only for a real mouse, and never under reduced motion. */
 const FINE_POINTER = "(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)";
+/** Cards wider than this tilt proportionally less, so wide panels don't swing. */
+const FULL_TILT_WIDTH = 420;
 
 type TiltCardProps<T extends ElementType> = {
   as?: T;
@@ -39,10 +41,11 @@ export function TiltCard<T extends ElementType = "div">({ as, maxTilt = 6, class
       const r = el.getBoundingClientRect();
       const x = clientX - r.left;
       const y = clientY - r.top;
+      const tilt = maxTilt * Math.min(1, FULL_TILT_WIDTH / r.width);
       el.style.setProperty("--mx", `${x}px`);
       el.style.setProperty("--my", `${y}px`);
-      el.style.setProperty("--rx", `${((0.5 - y / r.height) * 2 * maxTilt).toFixed(2)}deg`);
-      el.style.setProperty("--ry", `${((x / r.width - 0.5) * 2 * maxTilt).toFixed(2)}deg`);
+      el.style.setProperty("--rx", `${((0.5 - y / r.height) * 2 * tilt).toFixed(2)}deg`);
+      el.style.setProperty("--ry", `${((x / r.width - 0.5) * 2 * tilt).toFixed(2)}deg`);
     });
   }
 

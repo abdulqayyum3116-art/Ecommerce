@@ -15,86 +15,16 @@ export interface BlogPostData {
 
 export const blogPillars = [
   "All",
-  "Shopify / WooCommerce Builds",
-  "CRO",
-  "Product SEO / GEO",
-  "Paid Ads for Stores",
-  "Email & SMS Retention",
-  "Automation & CRM for Ecommerce",
+  "Google Ads",
+  "Search & AI Visibility",
+  "Email & SMS Marketing",
+  "Order Automation",
 ] as const;
 
 export const blogPostsList: BlogPostData[] = [
   {
-    slug: "shopify-vs-headless-nextjs-guide",
-    pillar: "Shopify / WooCommerce Builds",
-    title: "When to Stay on Monolithic Shopify vs. Replatforming to Headless Next.js",
-    summary:
-      "A technical evaluation framework for CTOs and founders deciding between Shopify Liquid and a headless Next.js App Router frontend.",
-    readTime: "6 min read",
-    date: "October 2026",
-    problem:
-      "Many high-growth DTC brands replatform to headless frontends prematurely, creating high developer maintenance overhead without achieving tangible conversion gains. Conversely, brands with heavy multi-market, localized, or complex configurator requirements frequently hit hard walls within standard monolithic theme limits.",
-    steps: [
-      {
-        title: "1. Audit Your True Mobile Latency Bottleneck",
-        description:
-          "Benchmark whether slow performance stems from Shopify Liquid rendering or 30+ unvetted third-party JavaScript apps injecting blocking scripts into your document head.",
-      },
-      {
-        title: "2. Evaluate Catalog Customization Complexity",
-        description:
-          "If your products require dynamic 3D configuration, real-time custom engraving previews, or multi-ERP pricing lookups, decoupled React Server Components provide distinct architectural advantages.",
-      },
-      {
-        title: "3. Total Cost of Ownership (TCO) Calculation",
-        description:
-          "Account for ongoing hosting (e.g. Vercel / Cloudflare), headless CMS subscriptions, and developer maintenance before abandoning Shopify's native checkout and ecosystem.",
-      },
-    ],
-    checklist: [
-      "Benchmarked mobile Core Web Vitals on standard theme vs. prototype.",
-      "Audited third-party app dependencies to confirm which can be replaced natively.",
-      "Ensured marketing team has a headless CMS preview workflow ready.",
-      "Calculated server-side caching strategy for catalog collections.",
-    ],
-  },
-  {
-    slug: "ecommerce-cro-checklist-conversions",
-    pillar: "CRO",
-    title: "The Mobile PDP Ergonomics Checklist: 7 Micro-Fixes That Lift Checkout Starts",
-    summary:
-      "Practical, code-level usability improvements for mobile product detail pages to eliminate hesitation and cart drop-offs.",
-    readTime: "5 min read",
-    date: "October 2026",
-    problem:
-      "Over 75% of ecommerce traffic lands on mobile devices, yet most product pages are designed on 27-inch desktop monitors. Mobile users encounter buried call-to-actions, ambiguous sizing information, and awkward thumb-reach zones that depress add-to-cart rates.",
-    steps: [
-      {
-        title: "1. Implement a Persistent Sticky Add-to-Cart Bar",
-        description:
-          "Ensure the purchase action bar remains pinned to the bottom of the viewport when the primary button scrolls out of sight, displaying the selected variant and price.",
-      },
-      {
-        title: "2. Move Shipping Estimates Above the Fold",
-        description:
-          "Explicit delivery timelines (e.g. 'Order within 3 hrs for delivery by Thursday') eliminate checkout hesitation far better than vague 'Fast shipping' badges.",
-      },
-      {
-        title: "3. Upgrade to an Interactive Slide-Over Cart Drawer",
-        description:
-          "Keep customers on their current shopping page by opening a slide-over drawer with a live free-shipping progress meter rather than redirecting to a full cart page.",
-      },
-    ],
-    checklist: [
-      "Sticky mobile CTA tested across iOS Safari and Android Chrome.",
-      "Dynamic free shipping threshold calculation tested with currency conversions.",
-      "Variant swatch tap targets measure at least 44px by 44px.",
-      "Clear returns and satisfaction guarantee visible within 200px of the purchase button.",
-    ],
-  },
-  {
     slug: "product-seo-geo-ai-search-visibility",
-    pillar: "Product SEO / GEO",
+    pillar: "Search & AI Visibility",
     title: "How to Structure Product Schemas for Generative Search (ChatGPT, Claude & Perplexity)",
     summary:
       "Preparing your ecommerce catalog for Generative Engine Optimization (GEO) so AI agents recommend your products.",
@@ -128,7 +58,7 @@ export const blogPostsList: BlogPostData[] = [
   },
   {
     slug: "google-shopping-pmax-feed-optimization",
-    pillar: "Paid Ads for Stores",
+    pillar: "Google Ads",
     title: "Why Margin-Based Feed Labels Outperform Standard Performance Max Campaigns",
     summary:
       "Restructuring Google Shopping feeds using custom labels to stop burning ad spend on low-margin products.",
@@ -162,7 +92,7 @@ export const blogPostsList: BlogPostData[] = [
   },
   {
     slug: "email-sms-retention-post-purchase-flows",
-    pillar: "Email & SMS Retention",
+    pillar: "Email & SMS Marketing",
     title: "The 15-Minute Abandoned Cart Window: Speed-to-Lead Automations in Klaviyo",
     summary:
       "How sub-15-minute SMS notifications and personalized email triggers turn hesitated checkouts into completed orders.",
@@ -196,7 +126,7 @@ export const blogPostsList: BlogPostData[] = [
   },
   {
     slug: "order-fulfillment-crm-automation",
-    pillar: "Automation & CRM for Ecommerce",
+    pillar: "Order Automation",
     title: "Architecting Multi-Warehouse Inventory Sync Without Overselling",
     summary:
       "Eliminating inventory discrepancies and manual order routing with event-driven webhooks and reliable idempotency.",

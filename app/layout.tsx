@@ -40,15 +40,15 @@ const dmSans = DM_Sans({
 export const metadata: Metadata = {
   metadataBase: new URL("https://ecommerce.codesquad.ai"),
   title: {
-    default: "CodeSquad Ecommerce | We Build & Grow Online Stores",
+    default: "CodeSquad Ecommerce | Ecommerce Marketing Agency",
     template: "%s | CodeSquad Ecommerce",
   },
   description:
-    "Specialist ecommerce growth partner. Store builds, CRO & UX, product SEO & GEO, paid ads, email retention, and order automations for modern D2C brands.",
+    "Ecommerce marketing agency for growing D2C brands: Google Ads, Meta Ads, product SEO with AEO & GEO, product video creation, email & SMS marketing, and order lifecycle automation.",
   openGraph: {
-    title: "CodeSquad Ecommerce | Store Builds, CRO, SEO & Retention",
+    title: "CodeSquad Ecommerce | Google & Meta Ads, SEO, Video & Email",
     description:
-      "We build and grow online stores — store builds, CRO, SEO, ads and automation for ecommerce brands.",
+      "We grow online stores with Google and Meta ads, product SEO and AI search, product video, email and order automation.",
     url: "https://ecommerce.codesquad.ai",
     siteName: "CodeSquad Ecommerce",
     locale: "en_US",

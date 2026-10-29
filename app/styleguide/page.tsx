@@ -43,17 +43,17 @@ const TYPE_CLASS: Record<string, string> = {
 };
 
 const TYPE_SAMPLES: Record<string, string> = {
-  display: "Turn traffic into revenue.",
-  h1: "We build & grow online stores.",
+  display: "Turn ad spend into revenue.",
+  h1: "We grow online stores.",
   h2: "Six focused pillars for store revenue.",
   h3: "Attract. Convert. Retain. Repeat.",
-  h4: "CRO & UX Optimization",
-  "body-lg": "We build and optimize high-converting online stores — bespoke Shopify & Headless builds.",
+  h4: "Google Shopping & Search Ads",
+  "body-lg": "Google and Meta ads, AI search visibility, product video and email that bring buyers back.",
   body: "Every service connects directly into the revenue cycle. No fragmented handoffs or guesswork.",
   "body-sm": "Klaviyo automated flows for cart abandonment, post-purchase, and win-back sequences.",
   caption: "Performance metric · 6 min read · Oct 2026",
   overline: "End-to-end capabilities",
-  button: "Free Store Audit",
+  button: "Free Marketing Audit",
   code: '<ProductCard sku="A-1042" />',
 };
 
@@ -174,9 +174,9 @@ export default function StyleguidePage() {
             </div>
             <div className="rounded-lg border border-border bg-surface p-6">
               <p className="mb-2 type-overline text-fg-muted">DM Sans · text</p>
-              <p className="type-body-lg">Regular 400 — Checkout ergonomics</p>
-              <p className="type-body-lg font-medium">Medium 500 — Checkout ergonomics</p>
-              <p className="type-body-lg font-bold">Bold 700 — Checkout ergonomics</p>
+              <p className="type-body-lg">Regular 400 — Buyers into regulars</p>
+              <p className="type-body-lg font-medium">Medium 500 — Buyers into regulars</p>
+              <p className="type-body-lg font-bold">Bold 700 — Buyers into regulars</p>
             </div>
           </div>
           <p className="mt-6 measure type-body-sm text-fg-muted">

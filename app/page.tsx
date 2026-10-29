@@ -9,45 +9,45 @@ import { cardClasses, IconTile } from "@/components/ui/Card";
 import { TiltCard } from "@/components/ui/TiltCard";
 import { TextLink } from "@/components/ui/Button";
 import { icon } from "@/components/ui/icon";
-import { ArrowUpRight, ShoppingCart, TrendingUp, Search, Megaphone, Mail, RefreshCw } from "lucide-react";
+import { ArrowUpRight, MousePointerClick, Megaphone, Sparkles, Clapperboard, Mail, PackageCheck } from "lucide-react";
 
 export default function HomePage() {
   const quickServices = [
     {
-      title: "Store Build & Redesign",
-      href: "/services/store-build",
-      icon: ShoppingCart,
-      desc: "A fast, good-looking store on Shopify, WooCommerce or a custom build that grows with you.",
+      title: "Google Shopping & Search Ads",
+      href: "/services/google-ads",
+      icon: MousePointerClick,
+      desc: "Show up on Google the moment shoppers search for what you sell, with campaigns run for profit.",
     },
     {
-      title: "Conversion Optimization",
-      href: "/services/cro",
-      icon: TrendingUp,
-      desc: "Find and fix what stops shoppers from buying, then test changes that lift sales.",
+      title: "Meta Ads",
+      href: "/services/meta-ads",
+      icon: Megaphone,
+      desc: "Reach new buyers on Facebook and Instagram with catalog ads and fresh, tested creative.",
     },
     {
       title: "Search & AI Visibility",
       href: "/services/seo-geo",
-      icon: Search,
-      desc: "Get your products found on Google, Google Shopping and AI assistants like ChatGPT.",
+      icon: Sparkles,
+      desc: "Product SEO, AEO and GEO so you rank on Google and get recommended by ChatGPT and Perplexity.",
     },
     {
-      title: "Shopping Ads",
-      href: "/services/paid-ads",
-      icon: Megaphone,
-      desc: "Google Shopping and Performance Max ads measured on profit, not just clicks.",
+      title: "Product Video Creation",
+      href: "/services/product-video",
+      icon: Clapperboard,
+      desc: "Short product videos for ads, product pages and social that show why it's worth buying.",
     },
     {
-      title: "Email & SMS Retention",
-      href: "/services/retention",
+      title: "Email & SMS Marketing",
+      href: "/services/email-marketing",
       icon: Mail,
-      desc: "Automatic emails and texts that recover abandoned carts and bring buyers back.",
+      desc: "Automatic flows and campaigns that recover carts and turn one-time buyers into regulars.",
     },
     {
-      title: "Order Automation",
-      href: "/services/automation-crm",
-      icon: RefreshCw,
-      desc: "Orders, stock, fraud checks and returns handled automatically, so nothing slips.",
+      title: "Order Lifecycle Automation",
+      href: "/services/order-automation",
+      icon: PackageCheck,
+      desc: "Order, shipping and delivery updates, reviews, returns and reorders, all handled automatically.",
     },
   ];
 
@@ -56,15 +56,15 @@ export default function HomePage() {
       {/* 1. Hero with single H1 */}
       <Hero />
 
-      {/* 2. Interactive store-loop mock on an ink band */}
+      {/* 2. Marketing journey mock on an ink band */}
       <Section tone="band" aria-labelledby="conversion-sequence-heading">
         <Container>
           <SectionHeader
             id="conversion-sequence-heading"
             align="center"
-            overline="From click to repeat order"
-            title="The 6 moments that win or lose a sale."
-            lead="Click any step to see what we fix there and the result it usually brings."
+            overline="From first ad to repeat order"
+            title="Six moments where marketing wins the sale."
+            lead="Click any step to see what we set up there and which service handles it."
           />
           <div className="mx-auto max-w-5xl">
             <StoreLoopMock />
@@ -81,8 +81,8 @@ export default function HomePage() {
           <SectionHeader
             id="home-services-heading"
             overline="What we do"
-            title="Six services, one goal: more sales."
-            lead="Pick one or combine them. Each one plugs into the same growth system."
+            title="Six services, one goal: more profitable sales."
+            lead="Pick one or combine them. Each channel feeds the others."
             action={
               <TextLink href="/services">
                 See all services

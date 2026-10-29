@@ -1,5 +1,6 @@
 import type { ComponentProps, ElementType, ReactNode } from "react";
 import { cn } from "@/lib/cn";
+import { TiltCard } from "./TiltCard";
 
 type CardProps<T extends ElementType> = {
   as?: T;
@@ -7,8 +8,10 @@ type CardProps<T extends ElementType> = {
   interactive?: boolean;
   padding?: "sm" | "md" | "lg";
   tone?: "surface" | "subtle" | "accent";
-  /** Fade up on scroll (see ScrollReveal). On by default. */
+  /** Fade and grow in on scroll (see ScrollReveal). On by default. */
   reveal?: boolean;
+  /** 3D tilt + cursor spotlight on hover (see TiltCard). On by default. */
+  tilt?: boolean;
   className?: string;
   children?: ReactNode;
 } & Omit<ComponentProps<T>, "as" | "className" | "children">;
@@ -47,15 +50,22 @@ export function Card<T extends ElementType = "div">({
   padding,
   tone,
   reveal = true,
+  tilt = true,
   className,
   children,
   ...rest
 }: CardProps<T>) {
   const Tag = (as ?? "div") as ElementType;
+  const props = {
+    "data-reveal": reveal ? "card" : undefined,
+    className: cardClasses({ interactive, padding, tone, className }),
+    ...rest,
+  };
+  if (!tilt) return <Tag {...props}>{children}</Tag>;
   return (
-    <Tag data-reveal={reveal ? "" : undefined} className={cardClasses({ interactive, padding, tone, className })} {...rest}>
+    <TiltCard as={Tag} {...props}>
       {children}
-    </Tag>
+    </TiltCard>
   );
 }
 

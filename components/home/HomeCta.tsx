@@ -8,8 +8,8 @@ export default function HomeCta() {
     <CtaBand
       id="cta-heading"
       overline="Free, no obligation"
-      title="Get a free audit of your store."
-      lead="We check your page speed, product pages, checkout and follow-up emails, then send you a clear list of what to fix first."
+      title="Get a free marketing audit."
+      lead="We review your ad accounts, product feed, search and AI visibility, and email flows, then send you a clear list of what to fix first."
       actions={
         <>
           <ButtonLink href="/contact" size="lg" className="w-full sm:w-auto" trailingIcon={<ArrowUpRight {...icon.sm} />}>
@@ -20,7 +20,7 @@ export default function HomeCta() {
           </ButtonLink>
         </>
       }
-      note="Typically delivered within 4 weeks · No obligation"
+      note="Free and no obligation"
     />
   );
 }

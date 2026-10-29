@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ShoppingCart, TrendingUp, Search, Megaphone, Mail, RefreshCw, ArrowUpRight } from "lucide-react";
+import { MousePointerClick, Megaphone, Sparkles, Clapperboard, Mail, PackageCheck, ArrowUpRight } from "lucide-react";
 import { generateSeoMetadata } from "@/lib/seo";
 import { PageHero } from "@/components/ui/PageHero";
 import { Section, Container } from "@/components/ui/Section";
@@ -10,60 +10,60 @@ import { CtaBand } from "@/components/ui/CtaBand";
 import { icon } from "@/components/ui/icon";
 
 export const metadata = generateSeoMetadata({
-  title: "Ecommerce Services & Growth Capabilities | CodeSquad",
+  title: "Ecommerce Marketing Services | CodeSquad",
   description:
-    "Explore CodeSquad's six core ecommerce services: Store builds, CRO, SEO/GEO for product feeds, paid ads, retention automations, and CRM order workflows.",
+    "CodeSquad's six ecommerce marketing services: Google Ads, Meta Ads, product SEO with AEO & GEO, product video creation, email & SMS marketing, and order lifecycle automation.",
   path: "/services",
 });
 
 const services = [
   {
-    slug: "store-build",
-    title: "Store Build & Redesign",
-    eyebrow: "Pillar 01",
-    icon: ShoppingCart,
-    tag: "Shopify Lead · Next.js Headless",
-    desc: "We engineer lightweight, blazing-fast storefronts built for conversion. From clean Shopify theme development to headless Next.js architectures, we strip bloat and optimize checkout ergonomics.",
+    slug: "google-ads",
+    title: "Google Shopping & Search Ads",
+    eyebrow: "Service 01",
+    icon: MousePointerClick,
+    tag: "Shopping · Performance Max · Search",
+    desc: "Put your products in front of shoppers already searching for them. We clean up your product feed, fix conversion tracking and structure campaigns around your margins.",
   },
   {
-    slug: "cro",
-    title: "CRO & UX Optimization",
-    eyebrow: "Pillar 02",
-    icon: TrendingUp,
-    tag: "Mobile-First · Cart Drawer UX",
-    desc: "Eliminate checkout drop-offs and elevate average order value (AOV). We deploy sticky add-to-cart controls, dynamic bundle builders, instant variant swatches, and frictionless one-page checkouts.",
+    slug: "meta-ads",
+    title: "Meta Ads",
+    eyebrow: "Service 02",
+    icon: Megaphone,
+    tag: "Facebook · Instagram · Advantage+",
+    desc: "Reach new buyers while they scroll. Catalog ads, steady creative testing and Conversions API tracking so Meta finds the people most likely to buy.",
   },
   {
     slug: "seo-geo",
-    title: "SEO / GEO for Products",
-    eyebrow: "Pillar 03",
-    icon: Search,
-    tag: "AI Search Bots · Google Shopping",
-    desc: "Generative Engine Optimization (GEO) and Answer Engine Optimization (AEO). We structure product schema, merchant feeds, and descriptive FAQs for discovery on Google, Perplexity, and ChatGPT.",
+    title: "Search & AI Visibility",
+    eyebrow: "Service 03",
+    icon: Sparkles,
+    tag: "Product SEO · AEO · GEO",
+    desc: "Get your products found on Google and recommended by ChatGPT, Perplexity and AI Overviews, with product SEO, schema, clear answers and comparison content.",
   },
   {
-    slug: "paid-ads",
-    title: "Paid Ads for Stores",
-    eyebrow: "Pillar 04",
-    icon: Megaphone,
-    tag: "Google Shopping · Performance Max",
-    desc: "Acquisition campaigns tied to true order contribution margin. We optimize product feeds, structure Google Shopping campaigns by inventory margins, and eliminate wasted spend on dead SKUs.",
+    slug: "product-video",
+    title: "Product Video Creation",
+    eyebrow: "Service 04",
+    icon: Clapperboard,
+    tag: "Ad Creatives · UGC · Product Demos",
+    desc: "Short, sales-focused videos for your ads, product pages and social channels, in every format each platform needs.",
   },
   {
-    slug: "retention",
-    title: "Email & Retention Automation",
-    eyebrow: "Pillar 05",
+    slug: "email-marketing",
+    title: "Email & SMS Marketing",
+    eyebrow: "Service 05",
     icon: Mail,
-    tag: "Klaviyo · SMS Speed-to-Lead",
-    desc: "Transform one-time purchasers into repeat buyers. Automated browse abandonment, speed-to-lead SMS cart recovery, post-purchase replenishment reminders, and cohort-specific VIP flows.",
+    tag: "Flows · Campaigns · Segments",
+    desc: "Abandoned cart, welcome, post-purchase and win-back flows, plus regular campaigns that turn one-time buyers into regulars.",
   },
   {
-    slug: "automation-crm",
-    title: "CRM & Order Automation",
-    eyebrow: "Pillar 06",
-    icon: RefreshCw,
-    tag: "Multi-Warehouse · Fraud Screening",
-    desc: "Remove operational friction behind every order. Real-time multi-location inventory syncing, automated routing to 3PL fulfillment centers, high-fraud flagging, and self-service return workflows.",
+    slug: "order-automation",
+    title: "Order Lifecycle Automation",
+    eyebrow: "Service 06",
+    icon: PackageCheck,
+    tag: "Updates · Reviews · Returns · Reorders",
+    desc: "Automatic order, shipping and delivery updates, review requests, easy returns and reorder reminders that keep customers informed and coming back.",
   },
 ];
 
@@ -71,9 +71,9 @@ export default function ServicesHubPage() {
   return (
     <div className="bg-bg">
       <PageHero
-        overline="Integrated Capabilities"
-        title="Engineering high-growth online stores from click to repeat order."
-        lead="Every service is connected to the core ecommerce cycle: Attract, Convert, Retain, and Repeat. We eliminate fragmented agency handoffs by engineering the full growth system."
+        overline="Ecommerce Marketing Services"
+        title="Every channel that brings buyers in and brings them back."
+        lead="Ads, search, video, email and automation, planned together around one goal: more profitable sales. Each service feeds the others, so you don't have to manage a handful of separate agencies."
       />
 
       {/* Services grid */}
@@ -86,7 +86,7 @@ export default function ServicesHubPage() {
                 <Card as="li" key={svc.slug} padding="lg" interactive className="group flex flex-col justify-between">
                   <div>
                     <div className="mb-6 flex items-center justify-between">
-                      <IconTile className="transition-colors duration-200 group-hover:bg-accent group-hover:text-on-accent">
+                      <IconTile className="transition-[background-color,color,scale,rotate] duration-300 ease-standard group-hover:scale-110 group-hover:-rotate-6 group-hover:bg-accent group-hover:text-on-accent">
                         <Icon {...icon.lg} />
                       </IconTile>
                       <span className="type-overline text-fg-muted">{svc.eyebrow}</span>
@@ -106,7 +106,7 @@ export default function ServicesHubPage() {
                       href={`/services/${svc.slug}`}
                       className="inline-flex items-center gap-1.5 rounded-sm type-body-sm font-bold text-accent-text after:absolute after:inset-0 after:rounded-lg after:content-['']"
                     >
-                      View full service breakdown
+                      See how it works
                       <ArrowUpRight
                         {...icon.sm}
                         className="transition-transform duration-200 ease-standard group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
@@ -122,11 +122,11 @@ export default function ServicesHubPage() {
 
       <CtaBand
         id="services-cta-heading"
-        title="Unsure which service will move the needle first?"
-        lead="We will audit your store to identify whether traffic, checkout conversion, or repeat rate is your primary bottleneck."
+        title="Not sure which channel to start with?"
+        lead="We'll review your ads, product feed, search and AI visibility, and email flows, then tell you where the quickest wins are."
         actions={
           <ButtonLink href="/contact" size="lg" trailingIcon={<ArrowUpRight {...icon.sm} />}>
-            Request Free Store Audit
+            Get a Free Marketing Audit
           </ButtonLink>
         }
       />
