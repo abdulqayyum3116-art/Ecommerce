@@ -7,18 +7,8 @@ import { cn } from "@/lib/cn";
 import { ButtonLink } from "@/components/ui/Button";
 import { Dialog } from "@/components/ui/Dialog";
 import { icon } from "@/components/ui/icon";
+import { Logo } from "@/components/ui/Logo";
 import { NavLink } from "./NavLink";
-
-export function BrandMark({ className }: { className?: string }) {
-  return (
-    <span className={cn("flex items-center gap-2", className)}>
-      <span className="font-display text-[length:var(--type-h4-size)] leading-none font-semibold tracking-[-0.02em]">
-        Ecommerce<span className="text-accent">.</span>
-      </span>
-      <span className="rounded-full border border-border px-2 py-0.5 type-overline text-fg-muted">By CodeSquad</span>
-    </span>
-  );
-}
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -62,7 +52,7 @@ export default function Header() {
       </a>
       <div className="container-page flex h-16 items-center justify-between">
         <NavLink href="/" aria-label="Ecommerce By CodeSquad Homepage" className="rounded-sm">
-          <BrandMark />
+          <Logo />
         </NavLink>
 
         {/* Desktop navigation */}

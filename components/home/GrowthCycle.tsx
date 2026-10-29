@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Compass, ShoppingBag, HeartHandshake, Repeat } from "lucide-react";
+import { Compass, ShoppingBag, HeartHandshake, TrendingUp } from "lucide-react";
 import { useAutoAdvance } from "@/lib/useAutoAdvance";
 import { Section, Container, SectionHeader } from "@/components/ui/Section";
 import { Tabs } from "@/components/ui/Tabs";
@@ -20,36 +20,36 @@ interface Stage {
 
 const stages: Stage[] = [
   {
-    id: "attract",
-    name: "Attract",
+    id: "found",
+    name: "Get found",
     number: "01",
-    description: "Get in front of new buyers: on Google when they search, on Facebook and Instagram while they scroll, and in AI answers like ChatGPT.",
-    tactics: ["Google Shopping & Search ads", "Meta ads", "Product SEO, AEO & GEO"],
+    description: "Show up wherever shoppers look: on Google when they search, on Facebook and Instagram while they scroll, and in AI answers from ChatGPT and Perplexity.",
+    tactics: ["Google Shopping & Search Ads", "Meta Ads", "Product SEO, AEO & GEO"],
     icon: Compass,
   },
   {
-    id: "convert",
-    name: "Convert",
+    id: "chosen",
+    name: "Get chosen",
     number: "02",
-    description: "Turn interest into orders with product videos that answer questions, ads that land on the right product, and retargeting for shoppers who need a nudge.",
-    tactics: ["Product demo videos", "Retargeting ads", "Accurate conversion tracking"],
+    description: "Win the click and the sale with product videos that answer questions, ads that land on the right product, and retargeting for shoppers who need a nudge.",
+    tactics: ["Product Video", "Retargeting Ads", "Conversion Tracking"],
     icon: ShoppingBag,
   },
   {
-    id: "retain",
-    name: "Retain",
+    id: "back",
+    name: "Get them back",
     number: "03",
-    description: "Keep every buyer happy after checkout with automatic order and delivery updates, and win back shoppers who left without buying.",
-    tactics: ["Order & shipping updates", "Abandoned cart emails & texts", "Review requests"],
+    description: "Keep buyers happy after checkout with order and delivery updates, recover abandoned carts, and bring customers back with timely emails and texts.",
+    tactics: ["Order Lifecycle Automation", "Email & SMS Flows", "Review Requests"],
     icon: HeartHandshake,
   },
   {
-    id: "repeat",
-    name: "Repeat",
+    id: "grow",
+    name: "Grow",
     number: "04",
-    description: "Turn one-time buyers into regulars with email and SMS campaigns, reorder reminders and offers for your best customers.",
-    tactics: ["Email & SMS campaigns", "Reorder reminders", "Win-back offers"],
-    icon: Repeat,
+    description: "Each loop teaches us what sells. We move budget to your most profitable products, refresh creative, and report it all in plain numbers.",
+    tactics: ["Profit-Based Budgets", "Creative Testing", "Monthly Reporting"],
+    icon: TrendingUp,
   },
 ];
 
@@ -64,9 +64,9 @@ export default function GrowthCycle() {
         <SectionHeader
           id="growth-cycle-heading"
           align="center"
-          overline="How your store grows"
-          title="Attract. Convert. Retain. Repeat."
-          lead="Four stages that feed each other. We run the marketing for each one so your growth keeps compounding."
+          overline="The growth flywheel"
+          title="Every channel feeds the next."
+          lead="Ads and search bring buyers in, video and retargeting win the sale, email and automation bring them back, and every repeat order makes the next campaign cheaper."
         />
 
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12" ref={ref} {...pauseHandlers}>
@@ -90,7 +90,7 @@ export default function GrowthCycle() {
 
               <div className="flex size-56 flex-col items-center justify-center rounded-full border border-border bg-surface p-6 text-center shadow-elevation-3">
                 <span className="type-overline text-fg-muted">Stage {activeStage.number} of 04</span>
-                <span key={activeStage.id} className="mt-1 type-h2 text-fg motion-safe:animate-rise">
+                <span key={activeStage.id} className="mt-2 type-h3 text-balance text-fg motion-safe:animate-rise">
                   {activeStage.name}
                 </span>
                 <span className="mt-1 type-caption font-bold text-accent-text">Click a stage to explore</span>

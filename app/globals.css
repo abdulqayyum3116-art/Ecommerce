@@ -377,6 +377,95 @@
 }
 
 /*
+ * ─── Logo ────────────────────────────────────────────────────────────
+ * components/ui/Logo.tsx + LogoMark.tsx. On load the loop draws in, then the
+ * arrowhead and centre dot pop in and the wordmark slides in. On hover the
+ * loop spins once and the tile tilts like the card icon tiles. Hover uses a
+ * second, identical keyframe name so switching names restarts it. Nothing
+ * moves under reduced motion: the finished logo is the default state.
+ */
+.logo-arc {
+  stroke-dasharray: 1;
+}
+.logo-loop {
+  transform-box: view-box;
+  transform-origin: 20px 20px;
+}
+.logo-dot,
+.logo-dot-pulse {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+@keyframes logo-arc-draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+}
+@keyframes logo-pop {
+  0% {
+    opacity: 0;
+    scale: 0;
+  }
+  70% {
+    opacity: 1;
+    scale: 1.25;
+  }
+}
+@keyframes logo-fade {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes logo-text-in {
+  from {
+    opacity: 0;
+    translate: -4px 0;
+  }
+}
+@keyframes logo-spin {
+  to {
+    rotate: 360deg;
+  }
+}
+@keyframes logo-pulse {
+  50% {
+    scale: 1.35;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .logo-arc {
+    animation: logo-arc-draw 800ms var(--motion-ease-out) 150ms both;
+  }
+  .logo-arrow {
+    animation: logo-fade 200ms var(--motion-ease-out) 800ms both;
+  }
+  .logo-dot {
+    animation: logo-pop 450ms var(--motion-ease-out) 550ms both;
+  }
+  .logo-text {
+    animation: logo-text-in 500ms var(--motion-ease-out) 300ms both;
+  }
+
+  .logo-mark {
+    transition:
+      rotate var(--motion-slow) var(--motion-ease-out),
+      scale var(--motion-slow) var(--motion-ease-out);
+  }
+  .brand-mark:hover .logo-mark {
+    rotate: -6deg;
+    scale: 1.06;
+  }
+  .brand-mark:hover .logo-loop {
+    animation: logo-spin 700ms var(--motion-ease-in-out);
+  }
+  .brand-mark:hover .logo-dot-pulse {
+    animation: logo-pulse 700ms var(--motion-ease-in-out);
+  }
+}
+
+/*
  * Scroll reveal ([data-reveal]) is animated entirely in
  * components/layout/ScrollReveal.tsx via the Web Animations API, so it
  * writes no attributes that could break hydration.

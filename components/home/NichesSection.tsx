@@ -1,4 +1,4 @@
-import { ArrowUpRight, Shirt, Sparkles, Cpu, ShoppingBag } from "lucide-react";
+import { ArrowUpRight, Shirt, Gem, Cpu, ShoppingBag } from "lucide-react";
 import { Section, Container, SectionHeader } from "@/components/ui/Section";
 import { Card, IconTile } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
@@ -26,7 +26,7 @@ const niches: Niche[] = [
     badge: "Sub-second PDPs & Bundles",
     description: "Multi-step regimen builders, automated subscription replenish intervals, and shade-finder UX optimized for sub-second mobile buying.",
     focusArea: "Convert & Retain",
-    icon: Sparkles,
+    icon: Gem,
   },
   {
     title: "Consumer Electronics",

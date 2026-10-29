@@ -9,7 +9,7 @@ import { cardClasses, IconTile } from "@/components/ui/Card";
 import { TiltCard } from "@/components/ui/TiltCard";
 import { TextLink } from "@/components/ui/Button";
 import { icon } from "@/components/ui/icon";
-import { ArrowUpRight, MousePointerClick, Megaphone, Sparkles, Clapperboard, Mail, PackageCheck } from "lucide-react";
+import { ArrowUpRight, MousePointerClick, Megaphone, ScanSearch, Clapperboard, Mail, PackageCheck } from "lucide-react";
 
 export default function HomePage() {
   const quickServices = [
@@ -28,7 +28,7 @@ export default function HomePage() {
     {
       title: "Search & AI Visibility",
       href: "/services/seo-geo",
-      icon: Sparkles,
+      icon: ScanSearch,
       desc: "Product SEO, AEO and GEO so you rank on Google and get recommended by ChatGPT and Perplexity.",
     },
     {

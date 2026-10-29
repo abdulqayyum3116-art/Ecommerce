@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { MousePointerClick, Megaphone, Sparkles, Clapperboard, Mail, PackageCheck, ArrowUpRight } from "lucide-react";
+import { MousePointerClick, Megaphone, ScanSearch, Clapperboard, Mail, PackageCheck, ArrowUpRight } from "lucide-react";
 import { generateSeoMetadata } from "@/lib/seo";
 import { PageHero } from "@/components/ui/PageHero";
 import { Section, Container } from "@/components/ui/Section";
@@ -40,7 +40,7 @@ const services = [
     tone: "teal" as const,
     title: "Search & AI Visibility",
     eyebrow: "Service 03",
-    icon: Sparkles,
+    icon: ScanSearch,
     tag: "Product SEO · AEO · GEO",
     desc: "Get your products found on Google and recommended by ChatGPT, Perplexity and AI Overviews, with product SEO, schema, clear answers and comparison content.",
   },

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ArrowUpRight, Clock, Calendar, FileSearch, MousePointerClick, Sparkles, Mail, PackageCheck, BookOpen } from "lucide-react";
+import { ArrowUpRight, Clock, Calendar, FileSearch, MousePointerClick, ScanSearch, Mail, PackageCheck, BookOpen } from "lucide-react";
 import { blogPostsList, blogPillars } from "@/lib/blogData";
 import { PageHero } from "@/components/ui/PageHero";
 import { Section, Container } from "@/components/ui/Section";
@@ -16,7 +16,7 @@ import { TopicCover, type TopicTone } from "@/components/ui/TopicCover";
 /** Same colour per topic as the matching service card on /services. */
 const TOPICS: Record<string, { tone: TopicTone; icon: React.ElementType }> = {
   "Google Ads": { tone: "amber", icon: MousePointerClick },
-  "Search & AI Visibility": { tone: "teal", icon: Sparkles },
+  "Search & AI Visibility": { tone: "teal", icon: ScanSearch },
   "Email & SMS Marketing": { tone: "blue", icon: Mail },
   "Order Automation": { tone: "green", icon: PackageCheck },
 };

@@ -46,7 +46,7 @@ const TYPE_SAMPLES: Record<string, string> = {
   display: "Turn ad spend into revenue.",
   h1: "We grow online stores.",
   h2: "Six focused pillars for store revenue.",
-  h3: "Attract. Convert. Retain. Repeat.",
+  h3: "Every channel feeds the next.",
   h4: "Google Shopping & Search Ads",
   "body-lg": "Google and Meta ads, AI search visibility, product video and email that bring buyers back.",
   body: "Every service connects directly into the revenue cycle. No fragmented handoffs or guesswork.",

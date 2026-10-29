@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { CheckCircle2, ArrowRight, Sparkles } from "lucide-react";
+import { CheckCircle2, ArrowRight, ClipboardList } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Field, Input, Select, Textarea, ChoiceChip } from "@/components/ui/Field";
 import { Alert } from "@/components/ui/Feedback";
@@ -105,7 +105,7 @@ export default function ContactForm() {
       className="space-y-6 rounded-xl border border-border bg-surface-raised p-6 shadow-elevation-3 sm:p-10"
     >
       <div className="flex items-center gap-2 border-b border-border pb-4">
-        <Sparkles {...icon.sm} className="text-accent-text" />
+        <ClipboardList {...icon.sm} className="text-accent-text" />
         <span className="type-overline text-fg">Your Store &amp; Marketing Goals</span>
       </div>
 

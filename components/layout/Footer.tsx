@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { BrandMark } from "./Header";
+import { Logo } from "@/components/ui/Logo";
 import { NavLink } from "./NavLink";
 import { icon } from "@/components/ui/icon";
 
@@ -33,7 +33,7 @@ export default function Footer() {
           {/* Brand column */}
           <div className="space-y-5 sm:col-span-2 md:col-span-5">
             <NavLink href="/" aria-label="Ecommerce By CodeSquad Homepage" className="inline-flex rounded-sm">
-              <BrandMark />
+              <Logo />
             </NavLink>
             <p className="max-w-sm type-body-sm text-fg-secondary">
               Ecommerce marketing for growing online brands: Google and Meta ads, product SEO and AI search visibility, product video, email and SMS, and order automation, all in one plan.
