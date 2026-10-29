@@ -120,7 +120,8 @@ export default function ProcessPage() {
         overline="Predictable Timelines"
         title={
           <>
-            Standard store builds launch <br /> in 4 Weeks.
+            Standard store builds launch <br /> 
+            in 4 Weeks.
           </>
         }
         lead="Start with a diagnostic audit of your store before committing to a full redesign."
