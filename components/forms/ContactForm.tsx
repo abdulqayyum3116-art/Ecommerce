@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { CheckCircle2, ArrowRight, ClipboardList } from "lucide-react";
 import { Button } from "@/components/ui/Button";
-import { Field, Input, Select, Textarea, ChoiceChip } from "@/components/ui/Field";
+import { Field, Input, Textarea, ChoiceChip } from "@/components/ui/Field";
 import { Alert } from "@/components/ui/Feedback";
 import { icon } from "@/components/ui/icon";
 
@@ -12,7 +12,7 @@ export default function ContactForm() {
     name: "",
     email: "",
     storeUrl: "",
-    monthlyAdSpend: "Under $5k",
+    phone: "",
     primaryConcern: "Google Ads",
     message: "",
   });
@@ -32,19 +32,23 @@ export default function ContactForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (submitting) return;
     setSubmitting(true);
     setErrorMessage("");
 
     try {
-      // NOTE: In alignment with SCOPE RULES §7:
-      // No external CRM or email API endpoint is currently configured in this repository.
-      // TODO: Connect this form submission to CodeSquad CRM / Email API endpoint (e.g. HubSpot, Postmark, or Resend).
-      
-      // Simulate network request with validation
-      await new Promise((resolve) => setTimeout(resolve, 800));
+      if (!formData.name || !formData.email || !formData.phone.trim()) {
+        throw new Error("Please fill in all required fields (Name, Email, Phone Number).");
+      }
 
-      if (!formData.name || !formData.email || !formData.storeUrl) {
-        throw new Error("Please fill in all required fields (Name, Email, Store URL).");
+      const response = await fetch("/api/inquiry", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+      const result = await response.json();
+      if (!response.ok || result.success !== true) {
+        throw new Error(result.error || "We couldn't save your inquiry. Please try again.");
       }
 
       setSubmitted(true);
@@ -76,7 +80,11 @@ export default function ContactForm() {
         <h3 className="mb-2 type-h3">Audit Request Received</h3>
         <p className="mx-auto mb-6 max-w-md type-body-sm">
           Thank you, <strong className="font-bold">{formData.name}</strong>. Our marketing team will review{" "}
-          <code className="rounded-sm bg-surface-raised px-2 py-0.5 type-code">{formData.storeUrl}</code> and get back to you with your audit.
+          {formData.storeUrl ? (
+            <code className="rounded-sm bg-surface-raised px-2 py-0.5 type-code">{formData.storeUrl}</code>
+          ) : (
+            "your request"
+          )} and get back to you with your audit.
         </p>
         <Button
           variant="secondary"
@@ -87,7 +95,7 @@ export default function ContactForm() {
               name: "",
               email: "",
               storeUrl: "",
-              monthlyAdSpend: "Under $5k",
+              phone: "",
               primaryConcern: "Google Ads",
               message: "",
             });
@@ -157,7 +165,20 @@ export default function ContactForm() {
         )}
       </Field>
 
-      <Field label="Store Website URL" required error={requiredError(formData.storeUrl, "Store URL")}>
+      <Field label="Phone Number" required error={requiredError(formData.phone.trim(), "Phone number")}>
+        {(field) => (
+          <Input
+            {...field}
+            type="tel"
+            autoComplete="tel"
+            value={formData.phone}
+            onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+            placeholder="e.g. +1 555 123 4567"
+          />
+        )}
+      </Field>
+
+      <Field label="Store Website URL" optional>
         {(field) => (
           <Input
             {...field}
@@ -167,22 +188,6 @@ export default function ContactForm() {
             onChange={(e) => setFormData({ ...formData, storeUrl: e.target.value })}
             placeholder="https://yourstore.com"
           />
-        )}
-      </Field>
-
-      <Field label="Monthly Ad Spend" optional>
-        {(field) => (
-          <Select
-            {...field}
-            value={formData.monthlyAdSpend}
-            onChange={(e) => setFormData({ ...formData, monthlyAdSpend: e.target.value })}
-          >
-            <option value="Not running ads yet">Not running ads yet</option>
-            <option value="Under $5k">Under $5k / month</option>
-            <option value="$5k - $20k">$5k – $20k / month</option>
-            <option value="$20k - $50k">$20k – $50k / month</option>
-            <option value="$50k+">$50k+ / month</option>
-          </Select>
         )}
       </Field>
 
