@@ -1,5 +1,5 @@
 import Hero from "@/components/home/Hero";
-import StoreLoopMock from "@/components/home/StoreLoopMock";
+import StoreGrowthProblems from "@/components/home/StoreGrowthProblems";
 import GrowthCycle from "@/components/home/GrowthCycle";
 import FlatCaseStudiesShowcase from "@/components/home/FlatCaseStudiesShowcase";
 import HomeCta from "@/components/home/HomeCta";
@@ -56,21 +56,8 @@ export default function HomePage() {
       {/* 1. Hero with single H1 */}
       <Hero />
 
-      {/* 2. Marketing journey mock on an ink band */}
-      <Section tone="band" aria-labelledby="conversion-sequence-heading">
-        <Container>
-          <SectionHeader
-            id="conversion-sequence-heading"
-            align="center"
-            overline="From first ad to repeat order"
-            title="Six moments where marketing wins the sale."
-            lead="Click any step to see what we set up there and which service handles it."
-          />
-          <div className="mx-auto max-w-5xl">
-            <StoreLoopMock />
-          </div>
-        </Container>
-      </Section>
+      {/* 2. Practical starting points for store growth */}
+      <StoreGrowthProblems />
 
       {/* 3. Growth system cycle (Attract → Convert → Retain → Repeat) */}
       <GrowthCycle />
