@@ -395,7 +395,7 @@
   --motion-base: 200ms;
   --motion-slow: 250ms;
   /* Scroll reveal is intentionally slower than UI feedback (product decision). */
-  --motion-reveal: 1200ms;
+  --motion-reveal: 700ms;
   --motion-ease-reveal: cubic-bezier(0.33, 1, 0.68, 1);
   --motion-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --motion-ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);

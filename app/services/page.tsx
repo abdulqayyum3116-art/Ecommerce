@@ -85,7 +85,7 @@ export default function ServicesHubPage() {
       {/* Services grid */}
       <Section tone="subtle" aria-label="Services">
         <Container>
-          <ul className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <ul data-reveal-group="" className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
             {services.map((svc) => {
               return (
                 <Card

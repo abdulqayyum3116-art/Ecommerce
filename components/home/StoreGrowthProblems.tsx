@@ -34,9 +34,9 @@ export default function StoreGrowthProblems() {
           title="What’s holding your store back?"
           lead="More traffic isn’t always the first fix. Start with the problem you’re seeing, then check what’s behind it."
         />
-        <ul className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+        <ul data-reveal-group="" className="grid grid-cols-1 gap-6 lg:grid-cols-3">
           {problems.map((problem, index) => (
-            <Card as="li" key={problem.title} tilt={false} reveal={false} className="flex flex-col">
+            <Card as="li" key={problem.title} tilt={false} reveal={true} className="flex flex-col">
               <span aria-hidden="true" className="mb-4 type-overline numeric text-accent-text">0{index + 1}</span>
               <h3 className="mb-6 type-h3 text-fg">{problem.title}</h3>
               <GrowthProblemIllustration variant={index as 0 | 1 | 2} />

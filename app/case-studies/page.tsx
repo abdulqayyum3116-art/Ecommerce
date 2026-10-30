@@ -69,7 +69,7 @@ export default function CaseStudiesHubPage() {
           </article>
 
           {/* The rest */}
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div data-reveal-group="" className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
             {others.map((study) => (
               <CaseStudyCard key={study.slug} study={study} headingLevel="h2" />
             ))}

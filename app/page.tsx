@@ -78,7 +78,7 @@ export default function HomePage() {
             }
           />
 
-          <ul className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <ul data-reveal-group="" className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
             {quickServices.map((svc) => {
               const Icon = svc.icon;
               return (

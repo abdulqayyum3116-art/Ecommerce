@@ -22,7 +22,7 @@ export default function FlatCaseStudiesShowcase() {
           }
         />
 
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div data-reveal-group="" className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {caseStudiesList.slice(0, 3).map((study) => (
             <CaseStudyCard key={study.slug} study={study} />
           ))}

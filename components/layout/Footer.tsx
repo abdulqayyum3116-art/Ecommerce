@@ -44,7 +44,7 @@ export default function Footer() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1 rounded-full border border-accent-subtle-border bg-accent-subtle px-3.5 py-1.5 type-caption font-bold text-accent-text transition-colors duration-150 hover:border-accent"
             >
-              Part of CodeSquad Agency — Visit codesquad.ai
+              Visit codesquad.ai
               <ArrowUpRight {...icon.sm} size={14} />
               <span className="sr-only">(opens in a new tab)</span>
             </a>
