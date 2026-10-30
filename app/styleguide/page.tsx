@@ -48,7 +48,7 @@ const TYPE_SAMPLES: Record<string, string> = {
   h2: "Six focused pillars for store revenue.",
   h3: "Every channel feeds the next.",
   h4: "Google Shopping & Search Ads",
-  "body-lg": "Google and Meta ads, AI search visibility, product video and email that bring buyers back.",
+  "body-lg": "Google and Meta ads, AI search visibility, social media with product videos and email that bring buyers back.",
   body: "Every service connects directly into the revenue cycle. No fragmented handoffs or guesswork.",
   "body-sm": "Klaviyo automated flows for cart abandonment, post-purchase, and win-back sequences.",
   caption: "Performance metric · 6 min read · Oct 2026",

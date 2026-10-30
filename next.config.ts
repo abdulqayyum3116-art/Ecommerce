@@ -20,7 +20,11 @@ const nextConfig: NextConfig = {
       ["/blog/shopify-vs-headless-nextjs-guide", "/blog"],
       ["/blog/ecommerce-cro-checklist-conversions", "/blog"],
     ];
-    return [...caseStudies, ...retired.map(([source, destination]) => ({ source, destination, permanent: true }))];
+    return [
+      { source: "/services/product-video", destination: "/services/social-media-handling", permanent: true },
+      ...caseStudies,
+      ...retired.map(([source, destination]) => ({ source, destination, permanent: true })),
+    ];
   },
   partialPrefetching: true,
   turbopack: {

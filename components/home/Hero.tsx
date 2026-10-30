@@ -41,7 +41,7 @@ export default function Hero() {
 
           {/* Sub-copy */}
           <p className="mx-auto mb-8 measure type-body-lg text-fg-secondary">
-            We grow online stores with Google and Meta ads, product SEO and AI search visibility, scroll-stopping product videos, and email and order automations that bring buyers back.
+            We grow online stores with Google and Meta ads, product SEO and AI search visibility, social media handling with scroll-stopping product videos, and email and order automations that bring buyers back.
           </p>
 
           {/* Value micro-pills */}

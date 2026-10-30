@@ -9,7 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/services/google-ads",
     "/services/meta-ads",
     "/services/seo-geo",
-    "/services/product-video",
+    "/services/social-media-handling",
     "/services/email-marketing",
     "/services/order-automation",
     "/case-studies",

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { MousePointerClick, Megaphone, ScanSearch, Clapperboard, Mail, PackageCheck, ArrowUpRight } from "lucide-react";
+import { MousePointerClick, Megaphone, ScanSearch, MessagesSquare, Mail, PackageCheck, ArrowUpRight } from "lucide-react";
 import { generateSeoMetadata } from "@/lib/seo";
 import { PageHero } from "@/components/ui/PageHero";
 import { Section, Container } from "@/components/ui/Section";
@@ -12,7 +12,7 @@ import { icon } from "@/components/ui/icon";
 export const metadata = generateSeoMetadata({
   title: "Ecommerce Marketing Services | CodeSquad",
   description:
-    "CodeSquad's six ecommerce marketing services: Google Ads, Meta Ads, product SEO with AEO & GEO, product video creation, email & SMS marketing, and order lifecycle automation.",
+    "CodeSquad's six ecommerce marketing services: Google Ads, Meta Ads, product SEO with AEO & GEO, social media handling with video creation, email & SMS marketing, and order lifecycle automation.",
   path: "/services",
 });
 
@@ -45,13 +45,13 @@ const services = [
     desc: "Get your products found on Google and recommended by ChatGPT, Perplexity and AI Overviews, with product SEO, schema, clear answers and comparison content.",
   },
   {
-    slug: "product-video",
+    slug: "social-media-handling",
     tone: "ink" as const,
-    title: "Product Video Creation",
+    title: "Social Media Handling",
     eyebrow: "Service 04",
-    icon: Clapperboard,
-    tag: "Ad Creatives · UGC · Product Demos",
-    desc: "Short, sales-focused videos for your ads, product pages and social channels, in every format each platform needs.",
+    icon: MessagesSquare,
+    tag: "Content · Video · Community",
+    desc: "Content strategy, posts, product videos, publishing, comments and DMs, with reporting to keep improving your social presence.",
   },
   {
     slug: "email-marketing",
@@ -79,7 +79,7 @@ export default function ServicesHubPage() {
       <PageHero
         overline="Ecommerce Marketing Services"
         title="Every channel that brings buyers in and brings them back."
-        lead="Ads, search, video, email and automation, planned together around one goal: more profitable sales. Each service feeds the others, so you don't have to manage a handful of separate agencies."
+        lead="Ads, search, social media, email and automation, planned together around one goal: more profitable sales. Each service feeds the others, so you don't have to manage a handful of separate agencies."
       />
 
       {/* Services grid */}
@@ -125,7 +125,7 @@ export default function ServicesHubPage() {
       <CtaBand
         id="services-cta-heading"
         title="Not sure which channel to start with?"
-        lead="We'll review your ads, product feed, search and AI visibility, and email flows, then tell you where the quickest wins are."
+        lead="We'll review your ads, product feed, search and AI visibility, social channels, and email flows, then tell you where the quickest wins are."
         actions={
           <ButtonLink href="/contact" size="lg" trailingIcon={<ArrowUpRight {...icon.sm} />}>
             Get a Free Marketing Audit

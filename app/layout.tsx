@@ -44,11 +44,11 @@ export const metadata: Metadata = {
     template: "%s | CodeSquad Ecommerce",
   },
   description:
-    "Ecommerce marketing agency for growing D2C brands: Google Ads, Meta Ads, product SEO with AEO & GEO, product video creation, email & SMS marketing, and order lifecycle automation.",
+    "Ecommerce marketing agency for growing D2C brands: Google Ads, Meta Ads, product SEO with AEO & GEO, social media handling with video creation, email & SMS marketing, and order lifecycle automation.",
   openGraph: {
-    title: "CodeSquad Ecommerce | Google & Meta Ads, SEO, Video & Email",
+    title: "CodeSquad Ecommerce | Google & Meta Ads, SEO, Social Media & Email",
     description:
-      "We grow online stores with Google and Meta ads, product SEO and AI search, product video, email and order automation.",
+      "We grow online stores with Google and Meta ads, product SEO and AI search, social media handling including product videos, email and order automation.",
     url: "https://ecommerce.codesquad.ai",
     siteName: "CodeSquad Ecommerce",
     locale: "en_US",

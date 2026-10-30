@@ -25,7 +25,7 @@ export default function ContactForm() {
     "Google Ads",
     "Meta Ads",
     "SEO & AI Search",
-    "Product Video",
+    "Social Media Handling",
     "Email & SMS",
     "Order Automation",
   ];

@@ -164,7 +164,7 @@ export default function ServiceTemplate(props: ServiceTemplateProps) {
       <CtaBand
         id="service-cta-heading"
         title="See where your marketing is leaking sales."
-        lead="We review your ad accounts, product feed, search and AI visibility, and email flows, then send you a clear list of what to fix first."
+        lead="We review your ad accounts, product feed, search and AI visibility, social channels, and email flows, then send you a clear list of what to fix first."
         actions={
           <ButtonLink href="/contact" size="lg" trailingIcon={<ArrowUpRight {...icon.sm} />}>
             Get a Free Marketing Audit

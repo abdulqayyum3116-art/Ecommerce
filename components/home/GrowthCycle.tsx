@@ -31,8 +31,8 @@ const stages: Stage[] = [
     id: "chosen",
     name: "Get chosen",
     number: "02",
-    description: "Win the click and the sale with product videos that answer questions, ads that land on the right product, and retargeting for shoppers who need a nudge.",
-    tactics: ["Product Video", "Retargeting Ads", "Conversion Tracking"],
+    description: "Build trust with consistent social content, product videos that answer questions and conversations with your community, backed by relevant ads and retargeting.",
+    tactics: ["Social Media Handling", "Retargeting Ads", "Conversion Tracking"],
     icon: ShoppingBag,
   },
   {
@@ -66,7 +66,7 @@ export default function GrowthCycle() {
           align="center"
           overline="The growth flywheel"
           title="Every channel feeds the next."
-          lead="Ads and search bring buyers in, video and retargeting win the sale, email and automation bring them back, and every repeat order makes the next campaign cheaper."
+          lead="Ads and search bring buyers in, social content, video and retargeting help win the sale, email and automation bring them back, and every repeat order makes the next campaign cheaper."
         />
 
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12" ref={ref} {...pauseHandlers}>

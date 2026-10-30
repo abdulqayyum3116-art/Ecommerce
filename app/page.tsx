@@ -9,7 +9,7 @@ import { cardClasses, IconTile } from "@/components/ui/Card";
 import { TiltCard } from "@/components/ui/TiltCard";
 import { TextLink } from "@/components/ui/Button";
 import { icon } from "@/components/ui/icon";
-import { ArrowUpRight, MousePointerClick, Megaphone, ScanSearch, Clapperboard, Mail, PackageCheck } from "lucide-react";
+import { ArrowUpRight, MousePointerClick, Megaphone, ScanSearch, MessagesSquare, Mail, PackageCheck } from "lucide-react";
 
 export default function HomePage() {
   const quickServices = [
@@ -32,10 +32,10 @@ export default function HomePage() {
       desc: "Product SEO, AEO and GEO so you rank on Google and get recommended by ChatGPT and Perplexity.",
     },
     {
-      title: "Product Video Creation",
-      href: "/services/product-video",
-      icon: Clapperboard,
-      desc: "Short product videos for ads, product pages and social that show why it's worth buying.",
+      title: "Social Media Handling",
+      href: "/services/social-media-handling",
+      icon: MessagesSquare,
+      desc: "Content, product videos, publishing and community management that keep your brand active and buyers engaged.",
     },
     {
       title: "Email & SMS Marketing",

@@ -25,6 +25,7 @@ const steps = [
       "Merchant Center feed and conversion tracking health check",
       "Product SEO and AI search visibility check (ChatGPT, Perplexity, AI Overviews)",
       "Email, SMS and order-update flow review",
+      "Social channel, content and community engagement review",
     ],
   },
   {
@@ -36,7 +37,7 @@ const steps = [
       "Server-side conversion tracking (Meta Conversions API & Google Enhanced Conversions)",
       "Clean, complete product feed for Google and Meta catalogs",
       "Product schema, FAQ answers and comparison content for search and AI",
-      "First batch of product videos and ad creative",
+      "Social content calendar, first posts, product videos and ad creative",
     ],
   },
   {
@@ -47,6 +48,7 @@ const steps = [
     deliverables: [
       "Google Shopping, Performance Max and Search campaigns structured by margin",
       "Meta prospecting and retargeting campaigns with catalog ads",
+      "Approved social content published, with comment and DM management",
       "Welcome, abandoned cart, post-purchase and win-back email & SMS flows",
       "Order confirmation, shipping, delivery and review-request automations",
     ],
@@ -59,6 +61,7 @@ const steps = [
     deliverables: [
       "Weekly budget shifts toward the most profitable products and campaigns",
       "Ongoing creative and video testing to keep ads fresh",
+      "Social reach, engagement and content reporting to refine the next calendar",
       "Expanding SEO and AI visibility to new product groups",
       "Monthly reporting on revenue, ad spend, new customers and repeat orders",
     ],

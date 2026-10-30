@@ -36,7 +36,7 @@ export default function Footer() {
               <Logo />
             </NavLink>
             <p className="max-w-sm type-body-sm text-fg-secondary">
-              Ecommerce marketing for growing online brands: Google and Meta ads, product SEO and AI search visibility, product video, email and SMS, and order automation, all in one plan.
+              Ecommerce marketing for growing online brands: Google and Meta ads, product SEO and AI search visibility, social media handling including product videos, email and SMS, and order automation, all in one plan.
             </p>
             <a
               href="https://codesquad.ai"
@@ -55,7 +55,7 @@ export default function Footer() {
               <li><Link href="/services/google-ads" className={linkClass}>Google Shopping &amp; Search Ads</Link></li>
               <li><Link href="/services/meta-ads" className={linkClass}>Meta Ads</Link></li>
               <li><Link href="/services/seo-geo" className={linkClass}>Search &amp; AI Visibility</Link></li>
-              <li><Link href="/services/product-video" className={linkClass}>Product Video Creation</Link></li>
+              <li><Link href="/services/social-media-handling" className={linkClass}>Social Media Handling</Link></li>
               <li><Link href="/services/email-marketing" className={linkClass}>Email &amp; SMS Marketing</Link></li>
               <li><Link href="/services/order-automation" className={linkClass}>Order Lifecycle Automation</Link></li>
             </Column>
