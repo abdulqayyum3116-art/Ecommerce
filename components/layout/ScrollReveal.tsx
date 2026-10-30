@@ -16,12 +16,16 @@ function toMs(value: string, fallback: number) {
   return v.endsWith("ms") ? n : v.endsWith("s") ? n * 1000 : n;
 }
 
-function frames(card: boolean): Keyframe[] {
-  return [
-    { opacity: 0, translate: "0 30px", ...(card && { scale: "0.985" }), offset: 0 },
-    { opacity: 1, translate: "0 0", ...(card && { scale: "1" }), offset: 1 },
-  ];
-}
+// Rise 30px while settling from a hair under full size.
+const FRAMES: Keyframe[] = [
+  { opacity: 0, translate: "0 30px", scale: "0.985" },
+  { opacity: 1, translate: "0 0", scale: "1" },
+];
+// Images in a clipped frame ease out from a slight zoom as their block reveals.
+const IMAGE_FRAMES: Keyframe[] = [{ scale: "1.12" }, { scale: "1" }];
+const IMAGE_DURATION = 1100;
+const STAGGER = 70;
+const MAX_STAGGER = STAGGER * 3;
 
 export default function ScrollReveal() {
   const pathname = usePathname();
@@ -36,8 +40,7 @@ export default function ScrollReveal() {
     if (!root) return;
     const styles = getComputedStyle(document.documentElement);
     const duration = toMs(styles.getPropertyValue("--motion-reveal"), 700);
-    const easing = styles.getPropertyValue("--motion-ease-reveal").trim() || "cubic-bezier(0.33, 1, 0.68, 1)";
-    const desktop = window.matchMedia("(min-width: 1024px)");
+    const easing = styles.getPropertyValue("--motion-ease-reveal").trim() || "cubic-bezier(0.16, 1, 0.3, 1)";
 
     function show(el: HTMLElement) {
       observer.unobserve(el);
@@ -50,7 +53,7 @@ export default function ScrollReveal() {
 
     function delayFor(el: HTMLElement) {
       const group = el.closest("[data-reveal-group]");
-      if (!desktop.matches || !group) return 0;
+      if (!group) return 0;
       const top = el.offsetTop;
       const row = Array.from(group.querySelectorAll<HTMLElement>("[data-reveal]")).filter(
         (item) => item.closest("[data-reveal-group]") === group &&
@@ -58,27 +61,29 @@ export default function ScrollReveal() {
           item.offsetParent === el.offsetParent && Math.abs(item.offsetTop - top) < 8
       );
       row.sort((a, b) => a.offsetLeft - b.offsetLeft);
-      return Math.min(Math.max(0, row.indexOf(el)) * 90, 180);
+      return Math.min(Math.max(0, row.indexOf(el)) * STAGGER, MAX_STAGGER);
     }
 
     function reveal(el: HTMLElement) {
       if (preference.matches) { show(el); return; }
       const delay = delayFor(el);
       show(el);
-      const animation = el.animate(frames(el.dataset.reveal === "card"), {
-        duration, easing, delay, fill: "backwards",
-      });
+      const animation = el.animate(FRAMES, { duration, easing, delay, fill: "backwards" });
       running.set(el, animation);
       animation.onfinish = () => running.delete(el);
+      for (const img of el.querySelectorAll("img")) {
+        const frame = img.parentElement;
+        if (!frame || getComputedStyle(frame).overflow === "visible") continue;
+        img.animate(IMAGE_FRAMES, { duration: IMAGE_DURATION, easing, delay, fill: "backwards" });
+      }
     }
 
-    // Start once the element's top is a quarter of the way up the screen, so the
-    // motion plays where the reader is looking rather than at the bottom edge.
+    // Start as soon as an eighth of the element has scrolled into view.
     const observer = new IntersectionObserver((entries) => {
       for (const entry of entries) {
         if (entry.isIntersecting) reveal(entry.target as HTMLElement);
       }
-    }, { rootMargin: "0px 0px -25% 0px", threshold: 0 });
+    }, { threshold: 0.12 });
 
     // Content at the very end of a page may never reach that line: reveal
     // whatever is on screen once the page can't scroll any further.
@@ -102,7 +107,7 @@ export default function ScrollReveal() {
           completed.add(el);
           continue;
         }
-        const hidden = frames(el.dataset.reveal === "card")[0];
+        const hidden = FRAMES[0];
         pending.set(el, el.animate([hidden, hidden], { duration: 0, fill: "forwards" }));
         observer.observe(el);
       }

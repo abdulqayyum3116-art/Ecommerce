@@ -442,7 +442,7 @@ emit("  --motion-base: 200ms;");
 emit("  --motion-slow: 250ms;");
 emit("  /* Scroll reveal is intentionally slower than UI feedback (product decision). */");
 emit("  --motion-reveal: 700ms;");
-emit("  --motion-ease-reveal: cubic-bezier(0.33, 1, 0.68, 1);");
+emit("  --motion-ease-reveal: cubic-bezier(0.16, 1, 0.3, 1);");
 emit("  --motion-ease-out: cubic-bezier(0.16, 1, 0.3, 1);");
 emit("  --motion-ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);");
 emit("}");
