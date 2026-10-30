@@ -465,6 +465,43 @@
   }
 }
 
+/* Homepage emphasis matches the CodeSquad gradient and drawn underline. */
+.hero-ecommerce-accent {
+  position: relative;
+  display: inline-block;
+  padding-right: 0.08em;
+  background: linear-gradient(120deg, #173a8f, #1f7fc0, #25c6b6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero-ecommerce-underline {
+  position: absolute;
+  left: 0;
+  bottom: -0.12em;
+  width: 100%;
+  height: 0.2em;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.hero-ecommerce-underline path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+}
+
+@keyframes hero-ecommerce-underline-draw {
+  from { stroke-dashoffset: 1; }
+  to { stroke-dashoffset: 0; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-ecommerce-underline path {
+    animation: hero-ecommerce-underline-draw 1.1s cubic-bezier(0.65, 0, 0.35, 1) 0.9s both;
+  }
+}
+
 /*
  * Scroll reveal ([data-reveal]) is animated entirely in
  * components/layout/ScrollReveal.tsx via the Web Animations API, so it

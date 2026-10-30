@@ -1,17 +1,18 @@
+import Image from "next/image";
 import { cn } from "@/lib/cn";
-import { LogoMark } from "./LogoMark";
+import lightLogo from "@/public/logo.png";
+import darkLogo from "@/public/logo-dark.png";
 
-/** Full logo lockup: the mark beside a two-line "Ecommerce / by CodeSquad" wordmark. */
-export function Logo({ className }: { className?: string }) {
+/** CodeSquad lockup for light or dark backgrounds. */
+export function Logo({ className, theme = "light" }: { className?: string; theme?: "light" | "dark" }) {
   return (
-    <span className={cn("brand-mark flex items-center gap-2.5", className)}>
-      <LogoMark />
-      <span className="logo-text flex flex-col">
-        <span className="font-display text-[length:var(--type-h4-size)] leading-none font-semibold tracking-[-0.02em] text-fg">
-          Ecommerce
-        </span>
-        <span className="mt-1 type-overline leading-none text-fg-muted">by CodeSquad</span>
-      </span>
+    <span className={cn("inline-flex w-44 shrink-0 items-center sm:w-48", className)}>
+      <Image
+        src={theme === "dark" ? darkLogo : lightLogo}
+        alt="CodeSquad AI Solutions"
+        className="h-auto w-full"
+        sizes="(min-width: 640px) 192px, 176px"
+      />
     </span>
   );
 }

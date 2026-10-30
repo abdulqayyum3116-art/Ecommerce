@@ -1,5 +1,6 @@
 "use client";
 
+import { useId } from "react";
 import { ArrowUpRight, ArrowRight, Layers, ChartLine } from "lucide-react";
 import HeroTrustStrip from "./HeroTrustStrip";
 import { ButtonLink } from "@/components/ui/Button";
@@ -7,6 +8,7 @@ import { Badge, StatusDot } from "@/components/ui/Badge";
 import { icon } from "@/components/ui/icon";
 
 export default function Hero() {
+  const underlineGradientId = useId();
   const highlightWords = ["Get found.", "Get chosen.", "Get them back."];
 
   return (
@@ -20,9 +22,22 @@ export default function Hero() {
       <div className="container-page">
         <div className="mx-auto max-w-4xl text-center">
           {/* EXACTLY ONE H1 ON THE ENTIRE HOMEPAGE */}
-          <h1 className="type-display mb-6 text-fg" aria-label="Turn ad spend into revenue. Buyers into regulars.">
-            Turn ad spend into revenue.{" "}
-            <span className="block font-display-italic font-medium text-accent-text italic">Buyers into regulars.</span>
+          <h1 className="type-display mb-6 pb-[0.2em] text-fg" aria-label="We drive profitable growth for Ecommerce.">
+            We drive profitable growth for{" "}
+            <span className="inline-block whitespace-nowrap font-display-italic font-medium italic">
+              <span className="hero-ecommerce-accent">
+                Ecommerce.
+                <svg className="hero-ecommerce-underline" viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+                  <defs>
+                    <linearGradient id={underlineGradientId} x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" stopColor="#3b82f6" />
+                      <stop offset="100%" stopColor="#14b8a6" />
+                    </linearGradient>
+                  </defs>
+                  <path d="M3 12 Q40 2 77 10 T151 10 T225 10 T297 10" pathLength="1" fill="none" stroke={`url(#${underlineGradientId})`} strokeWidth="3" strokeLinecap="round" />
+                </svg>
+              </span>
+            </span>
           </h1>
 
           {/* Tagline with entrance-sequenced words */}

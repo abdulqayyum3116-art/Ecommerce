@@ -33,7 +33,7 @@ export default function Footer() {
           {/* Brand column */}
           <div className="space-y-5 sm:col-span-2 md:col-span-5">
             <NavLink href="/" aria-label="Ecommerce By CodeSquad Homepage" className="inline-flex rounded-sm">
-              <Logo />
+              <Logo theme="dark" />
             </NavLink>
             <p className="max-w-sm type-body-sm text-fg-secondary">
               Ecommerce marketing for growing online brands: Google and Meta ads, product SEO and AI search visibility, social media handling including product videos, email and SMS, and order automation, all in one plan.
