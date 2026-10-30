@@ -58,20 +58,19 @@ export async function POST(request: Request) {
     };
     if (key.startsWith("eyJ")) headers.Authorization = `Bearer ${key}`;
 
-    const response = await fetch(`${url.replace(/\/$/, "")}/rest/v1/leads`, {
+    const response = await fetch(`${url.replace(/\/$/, "")}/rest/v1/medspa_leads`, {
       method: "POST",
       headers,
       body: JSON.stringify({
         name,
         email,
         source: "ecommerce-audit",
-        message: [
-          `Phone: ${phone}`,
-          `Website: ${storeUrl || "Not provided"}`,
-          `Primary concern: ${primaryConcern}`,
-          "",
-          message || "No additional message provided.",
-        ].join("\n"),
+        payload: {
+          phone,
+          storeUrl: storeUrl || null,
+          primaryConcern,
+          message,
+        },
       }),
       signal: AbortSignal.timeout(15000),
       cache: "no-store",

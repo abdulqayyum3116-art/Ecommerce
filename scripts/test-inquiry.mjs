@@ -32,14 +32,19 @@ const valid = { name: " Test User ", email: "test@example.com", phone: "+1 555 1
   assert.equal(calls.length, 0, "Invalid inquiries must not reach Supabase");
   assert.equal((await submit(valid)).status, 201);
   const saved = JSON.parse(calls[0].options.body);
+  assert.equal(calls[0].url, "https://example.supabase.co/rest/v1/medspa_leads");
   assert.equal(saved.name, "Test User");
+  assert.equal(saved.email, valid.email);
   assert.equal(saved.source, "ecommerce-audit");
-  assert.match(saved.message, /Phone: \+1 555 123 4567/);
-  assert.match(saved.message, /Website: Not provided/);
-  assert.match(saved.message, /Primary concern: Google Ads/);
-  assert.match(saved.message, /Audit my store/);
+  assert.deepEqual(saved.payload, {
+    phone: valid.phone,
+    storeUrl: null,
+    primaryConcern: valid.primaryConcern,
+    message: valid.message,
+  });
+  assert.equal(Object.hasOwn(saved, "message"), false);
   assert.equal((await submit({ ...valid, storeUrl: "https://example.com" })).status, 201);
-  assert.match(JSON.parse(calls[1].options.body).message, /Website: https:\/\/example.com/);
+  assert.equal(JSON.parse(calls[1].options.body).payload.storeUrl, "https://example.com");
   upstreamStatus = 403;
   assert.equal((await submit(valid)).status, 502);
   failNetwork = true;
